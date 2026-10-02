@@ -10,15 +10,15 @@ namespace RetroHorror.EditorTools
 {
     public static class LayoutSwitcher
     {
-        // Đường dẫn tương đối tới 2 file layout bạn đã lưu
+        // Relative paths to the two saved layout files
         private const string SCENE_GAME_LAYOUT = "Assets/Editor/Layouts/SceneGame.wlt";
         private const string SCENE_ONLY_LAYOUT = "Assets/Editor/Layouts/SceneOnly.wlt";
 
         private const string PREF_KEY = "RetroHorror_CurrentLayoutToggle";
 
         /// <summary>
-        /// Phím tắt F12 để chuyển đổi qua lại giữa 2 layout
-        /// Có thể tuỳ chỉnh lại phím trong Unity: Edit > Shortcuts > Layout > Toggle Scene & Game Layout
+        /// F12 shortcut to toggle between the two layouts
+        /// The shortcut can be customized in Unity: Edit > Shortcuts > Layout > Toggle Scene & Game Layout
         /// </summary>
         [MenuItem("Window/Layouts/Toggle Scene & Game Layout _F12", priority = 999)]
         [Shortcut("Layout/Toggle Scene & Game Layout", KeyCode.F12)]
@@ -57,18 +57,18 @@ namespace RetroHorror.EditorTools
 
             if (!File.Exists(fullPath))
             {
-                Debug.LogError($"[LayoutSwitcher] Không tìm thấy file layout tại: {fullPath}");
+                Debug.LogError($"[LayoutSwitcher] Layout file not found at: {fullPath}");
                 return;
             }
 
             Type windowLayoutType = typeof(EditorApplication).Assembly.GetType("UnityEditor.WindowLayout");
             if (windowLayoutType == null)
             {
-                Debug.LogError("[LayoutSwitcher] Không tìm thấy class UnityEditor.WindowLayout.");
+                Debug.LogError("[LayoutSwitcher] UnityEditor.WindowLayout class not found.");
                 return;
             }
 
-            // 1. Thử TryLoadWindowLayout(string path, bool newProjectLayoutWasCreated) - Thường dùng trên Unity 6
+            // 1. Try TryLoadWindowLayout(string path, bool newProjectLayoutWasCreated) - Commonly used in Unity 6
             MethodInfo method = windowLayoutType.GetMethod(
                 "TryLoadWindowLayout",
                 BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static,
@@ -80,11 +80,11 @@ namespace RetroHorror.EditorTools
             if (method != null)
             {
                 object result = method.Invoke(null, new object[] { fullPath, false });
-                Debug.Log($"[LayoutSwitcher] Đã chuyển sang layout: {Path.GetFileNameWithoutExtension(relativePath)} (Result: {result})");
+                Debug.Log($"[LayoutSwitcher] Switched to layout: {Path.GetFileNameWithoutExtension(relativePath)} (Result: {result})");
                 return;
             }
 
-            // 2. Thử LoadWindowLayout(string, bool, bool, bool, bool) - Unity 6 overload
+            // 2. Try LoadWindowLayout(string, bool, bool, bool, bool) - Unity 6 overload
             method = windowLayoutType.GetMethod(
                 "LoadWindowLayout",
                 BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static,
@@ -96,11 +96,11 @@ namespace RetroHorror.EditorTools
             if (method != null)
             {
                 method.Invoke(null, new object[] { fullPath, false, true, false, true });
-                Debug.Log($"[LayoutSwitcher] Đã chuyển sang layout: {Path.GetFileNameWithoutExtension(relativePath)}");
+                Debug.Log($"[LayoutSwitcher] Switched to layout: {Path.GetFileNameWithoutExtension(relativePath)}");
                 return;
             }
 
-            // 3. Thử LoadWindowLayout(string, bool) - Unity 2021/2022
+            // 3. Try LoadWindowLayout(string, bool) - Unity 2021/2022
             method = windowLayoutType.GetMethod(
                 "LoadWindowLayout",
                 BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static,
@@ -112,11 +112,11 @@ namespace RetroHorror.EditorTools
             if (method != null)
             {
                 method.Invoke(null, new object[] { fullPath, false });
-                Debug.Log($"[LayoutSwitcher] Đã chuyển sang layout: {Path.GetFileNameWithoutExtension(relativePath)}");
+                Debug.Log($"[LayoutSwitcher] Switched to layout: {Path.GetFileNameWithoutExtension(relativePath)}");
                 return;
             }
 
-            // 4. Thử LoadWindowLayout(string) - Các bản cũ hơn
+            // 4. Try LoadWindowLayout(string) - Older versions
             method = windowLayoutType.GetMethod(
                 "LoadWindowLayout",
                 BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static,
@@ -128,11 +128,11 @@ namespace RetroHorror.EditorTools
             if (method != null)
             {
                 method.Invoke(null, new object[] { fullPath });
-                Debug.Log($"[LayoutSwitcher] Đã chuyển sang layout: {Path.GetFileNameWithoutExtension(relativePath)}");
+                Debug.Log($"[LayoutSwitcher] Switched to layout: {Path.GetFileNameWithoutExtension(relativePath)}");
                 return;
             }
 
-            Debug.LogError("[LayoutSwitcher] Không tìm thấy method load layout phù hợp trong UnityEditor.WindowLayout.");
+            Debug.LogError("[LayoutSwitcher] Suitable layout loading method not found in UnityEditor.WindowLayout.");
         }
     }
 }
