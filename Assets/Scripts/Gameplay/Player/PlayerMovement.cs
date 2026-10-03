@@ -8,10 +8,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb2d;
     [SerializeField]
     private float moveSpeed = 5f;
+    private Animator animator;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb2d.linearVelocity = inputReader.MovementValue * moveSpeed;
-        transform.localScale = new(inputReader.MovementValue.x < 0 ? -1 : 1, 1, 1);
+        if (inputReader.MovementValue.x != 0)
+        {
+            transform.localScale = new(inputReader.MovementValue.x < 0 ? -1 : 1, 1, 1);
+        }
+        animator.SetFloat("Speed", Mathf.Abs(inputReader.MovementValue.magnitude));
     }
 }

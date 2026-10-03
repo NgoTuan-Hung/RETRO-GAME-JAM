@@ -3145,8 +3145,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 24}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.029411765}
-    oldSize: {x: 34, y: 34}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 32, y: 32}
     newSize: {x: 34, y: 34}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3167,7 +3167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   inputReader: {fileID: 1201309562}
-  moveSpeed: 20
+  moveSpeed: 40
 --- !u!114 &1201309562
 MonoBehaviour:
   m_ObjectHideFlags: 0
