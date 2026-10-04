@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 48f028d780ffe500fab4c99617a6c3af
+guid: 985333c82d3262e409694ff17a896a9e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3265284708127491127
-    second: dj_booth_0
+      213: 8770986327325781645
+    second: dj_0
+  - first:
+      213: 3749061750790782854
+    second: dj_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dj_booth_0
+      name: dj_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 11
         y: 0
-        width: 32
-        height: 16
+        width: 17
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 734447e442f905d20800000000000000
-      internalID: 3265284708127491127
+      spriteID: d8eaf02189dc8b970800000000000000
+      internalID: 8770986327325781645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dj_1
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 0
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68f73e88cc7570430800000000000000
+      internalID: 3749061750790782854
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dj_booth_0: 3265284708127491127
+      dj_0: 8770986327325781645
+      dj_1: 3749061750790782854
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
