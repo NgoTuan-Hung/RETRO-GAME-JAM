@@ -1,0 +1,87 @@
+﻿Speaker,Listener,ID_tag,Previous,Condition,Dialog,Reusable
+,,,,,,
+barman,Player,bm1,,,"""Evening Boss.  Big Night!""",no
+Player,barman,bm2,bm1,,"""Hi, Big Night?""",no
+barman,Player,bm3,bm2,,"""Yeah!  Our first night open!"".",no
+Player,barman,bm4,bm3,,"""Let's hope it's not our last!""",no
+barman,Player,bm5,bm4,,"""Hey, Boss.  Where did you dig-up that janitor?  Real old fossil!""",no
+Player,barman,bm6,bm5,,"""Janitor?  I didn't hire a janitor.""",no
+barman,Player,bm7,bm6,,"""Well someone did.  He's down there in the boiler room.""",no
+Player,barman,bm8,,bm7,"""How do I get to the boiler room?""",yes
+barman,player,bm9,bm8,,"""It's down in the basement.""",yes
+Player,barman,bm10,,bm9,"""How do I get to the basement?""",yes
+barman,player,bm11,bm10,,"""It's through one of those doors over there on the right""",yes
+,,,,,,
+dj,player,dj1,,bm1,"""Hey Boss.  Gimme a minute to get setup.  Then we'll get the joint jumpin'""",no
+player,dj,dj2,dj1,,"""Great!  Anything you need from me?""",no
+dj,player,dj3,dj2,,"""Just keep the records coming,  Put them down here.  I'll play whatever you give me.""",no
+,,,,,,
+player,janitor,jnt1,,,"""Hey! Are you the janitor?""",no
+janitor,player,jnt2,jnt1,,"""Am I?  I dunno.  I think so.""",no
+player,janitor,jnt3,jnt2,,"""Well, who hired you?""",no
+janitor,player,jnt4,jnt3,,"""I dunno.  Didn't you?""",no
+player,janitor,jnt5,jnt4,,"""No.""",no
+janitor,player,jnt6,jnt5,,"""Am I fired?""",no
+player,janitor,jnt7,jnt6,,"""You weren't even hired!""",no
+,,,,,,
+player,janitor,jnt8,,jnt1,"""Are you still here?""",yes
+janitor,player,jnt9,jnt8,,"""I guess.""",yes
+,,,,,,
+player,janitor,jnt10,,jnt1,"""Whats your name?""",yes
+janitor,player,jnt11,jnt10,,"""Vince Everett""",yes
+,,,,,,
+boogie-woogie,player,bw1,,,"""Ooohhh — Life again.  After so long.  Life, and music! Muahaha!""",no
+boogie-woogie,player,bw2,,bw1,"""… The mirror ball is spinning.  But no one's having fun.  The dancers keep on dancing.  When the night is done. ...""",yes
+boogie-woogie,player,bw3,,bw1,"""… And the beat goes on and on.  And the beat goes on and on.  And the beat goes on and on and on and on.  Forever! ...""",yes
+boogie-woogie,player,bw4,,bw1,"""Muahaha!  Muahahahaha!""",yes
+,,,,,,
+player,dj,dj4,,playing_disco,"""Hey!  What are you playing?""",yes
+dj,player,dj5,dj4,,"""Some kinda weird, freaky Disco!""",yes
+player,dj,dj6,dj5,,"""Stop play that!""",yes
+dj,player,dj7,dj6,,"""I don't wanna play it.  But I can't stop.  I can't stop!""",yes
+,,,,,,
+player,dj,dj8,,playing_disco,"""Hey — don't play any more disco!""",yes
+dj,player,dj9,dj8,,"""I don't wanna man.  I just can't stop!""",
+,,,,,,
+barman,player,bm11,,bm7,"""Hey boss.  Did you meet the janitor yet?""",yes
+player,barman,bm12,bm11,jnt2,"""Yeah.  You were right about him being a fossil.""",yes
+barman,player,bm13,bm12,jnt11,"""So did you find out who he is?""",yes
+player,barman,bm14,bm13,,"""Says his name is Vince Everett!""",yes
+barman,player,bm15,bm14,,"""Vince Everett?  Say — I've heard that name before!""",yes
+player,barman,bm16,bm15,,"""Yeah?  Where?""",yes
+barman,player,bm17,bm16,,"""I can't remember.""",yes
+player,barman,bm18,bm17,,"""You're as bad as he is.""",yes
+,,,,,,
+player,dj,dj10,,jnt11,"""Hey, do you know anything about the Janitor?""",yes
+dj,player,dj11,dj10,,"""Never met him.  What's his name?""",yes
+player,dj,dj12,dj11,,"""Vince Everett?""",yes
+dj,player,dj13,dj12,,"""Oh hey!  That was the name Elvis used in Jailhouse Rock!""",yes
+,,,,,,
+player,dj,dj14,,dj13,"""Who is Elvis?""",yes
+dj,player,dj15,dj14,,"""I'm goint to pretend you didn't say that!""",yes
+player,dj,dj16,dj15,,"""Seriously.  Who is Elvis?""",yes
+dj,player,dj17,dj16,,"""Elvis Presley.  The King.  The first real rock star - way back in the 50s and 60s.  He was the first megastar!  Biggest ever!""",yes
+player,dj,dj18,dj17,,"""Ok.  So whose Vince Everett?""",yes
+dj,player,dj19,dj18,,"""That's the name of his character in his breakout movie — Jailhouse Rock""",yes
+,,,,,,
+barman,player,bm19,,,"""Hey boss!  Did I tell you my Dad used to work here?""",yes
+player,barman,bm20,bm19,,"""Oh year?  When?""",yes
+barman,player,bm21,bm20,,"""Oh, way, way back.  It was his first job back in the 70's.  He used to tell me tales about this place.""",yes
+player,barman bm22,,bm21,,"""You'll have to tell me some.""",yes
+,,,,,,
+barman,player,bm19,,jnt11,"""Hey boss!  How come the janitor gets a name, and I don't?""",yes
+player,barman,bm20,bm19,,"""I don't know.  Maybe he's important.  Didn't they give you any name at all?""",yes
+barman,player,bm21,bm20,,"""Nope!  I'm just in here as 'barman'.  They didn't even capitalise it!""",yes
+player,barman bm22,,bm21,,"""Those cheap, lousy ********!""",yes
+,,,,,,
+,,,,,,
+player,boogie-woogie,bw5,,bw4,,
+,,bw6,,,,
+,,bw7,,,,
+,,bw8,,,,
+,,bw9,,,,
+,,bw10,,,,
+,,bw11,,,,
+,,bw12,,,,
+,,bw13,,,,
+,,bw14,,,,
