@@ -64,24 +64,23 @@ dj,player,dj17,dj16,,"""Elvis Presley.  The King.  The first real rock star - wa
 player,dj,dj18,dj17,,"""Ok.  So whose Vince Everett?""",yes
 dj,player,dj19,dj18,,"""That's the name of his character in his breakout movie — Jailhouse Rock""",yes
 ,,,,,,
-barman,player,bm19,,,"""Hey boss!  Did I tell you my Dad used to work here?""",yes
+barman,player,bm19,,bm11,"""Hey boss!  Did I tell you my Dad used to work here?""",yes
 player,barman,bm20,bm19,,"""Oh year?  When?""",yes
 barman,player,bm21,bm20,,"""Oh, way, way back.  It was his first job back in the 70's.  He used to tell me tales about this place.""",yes
-player,barman bm22,,bm21,,"""You'll have to tell me some.""",yes
+player,barman,bm22,bm21,,"""You'll have to tell me some.""",yes
 ,,,,,,
-barman,player,bm19,,jnt11,"""Hey boss!  How come the janitor gets a name, and I don't?""",yes
-player,barman,bm20,bm19,,"""I don't know.  Maybe he's important.  Didn't they give you any name at all?""",yes
-barman,player,bm21,bm20,,"""Nope!  I'm just in here as 'barman'.  They didn't even capitalise it!""",yes
-player,barman bm22,,bm21,,"""Those cheap, lousy ********!""",yes
+barman,player,bm23,,jnt11,"""Hey boss!  How come the janitor gets a name, and I don't?""",no
+player,barman,bm24,bm23,,"""I don't know.  Maybe he's important.  Didn't they give you any name at all?""",no
+barman,player,bm25,bm24,,"""Nope!  I'm just in here as 'barman'.  They didn't even capitalise it!""",no
+player,barman,bm26,bm25,,"""Those cheap, lousy ********!""",no
+barman,player,bm27,bm26,,"""Yeah.  Its like … all I'm here for is scenery and exposition.  It's so … degrading.""",no
 ,,,,,,
-,,,,,,
-player,boogie-woogie,bw5,,bw4,,
-,,bw6,,,,
-,,bw7,,,,
-,,bw8,,,,
-,,bw9,,,,
-,,bw10,,,,
-,,bw11,,,,
-,,bw12,,,,
-,,bw13,,,,
-,,bw14,,,,
+boogie-woogie,player,bw5,,bw4,"""Oooh!  Another soul for my army!""",no
+player,boogie-woogie,bw6,bw5,,"""Who … no — what are you?""",no
+boogie-woogie,player,bw7,bw6,,"""I'm the Boogie-Woogie man!""",no
+player,boogie-woogie,bw8,bw7,,"""The what now?""",no
+boogie-woogie,player,bw9,bw8,,"""The Boogie-Woogie man.""",no
+player,boogie-woogie,bw10,bw9,,"""?""",no
+boogie-woogie,player,bw11,bw10,,"""The Demon of Disco?  Unholy Master of the Disco Infernal?""",no
+player,boogie-woogie,bw12,bw11,,"""?""",no
+boogie-woogie,player,bw13,bw12,,"""This is so disappointing.  I go to all this trouble trying to bring about the end of the world, and you don't even know who I am.""",no
