@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: e5fcbfaea1ddb2fcc9b04f78df85d4b9
+guid: 4c80fa7985a55ae4c8456c982dbdd920
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1139472117740561074
-    second: bar_counter_0
+      213: 905052867648754174
+    second: boogie_woogie_0
+  - first:
+      213: 6614599188398037979
+    second: boogie_woogie_1
+  - first:
+      213: 8056642771120791370
+    second: boogie_woogie_2
+  - first:
+      213: -5783363615841918207
+    second: boogie_woogie_3
+  - first:
+      213: 1612078864850559734
+    second: boogie_woogie_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +112,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bar_counter_0
+      name: boogie_woogie_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 13
         y: 0
-        width: 64
-        height: 16
+        width: 26
+        height: 95
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2b263699ad730df00800000000000000
-      internalID: 1139472117740561074
+      spriteID: ef11727b9c46f8c00800000000000000
+      internalID: 905052867648754174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boogie_woogie_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 95
+        width: 19
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdb5d0c8ae6cbcb50800000000000000
+      internalID: 6614599188398037979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boogie_woogie_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 47
+        width: 18
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4f9fd61ae1fecf60800000000000000
+      internalID: 8056642771120791370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boogie_woogie_3
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 47
+        width: 28
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 103e2d6de6d5dbfa0800000000000000
+      internalID: -5783363615841918207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boogie_woogie_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 47
+        width: 20
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f22559bf214f5610800000000000000
+      internalID: 1612078864850559734
       vertices: []
       indices: 
       edges: []
@@ -125,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ff3d6d34087fa144e9ec77a42398563f
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bar_counter_0: 1139472117740561074
+      boogie_woogie_0: 905052867648754174
+      boogie_woogie_1: 6614599188398037979
+      boogie_woogie_2: 8056642771120791370
+      boogie_woogie_3: -5783363615841918207
+      boogie_woogie_4: 1612078864850559734
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
