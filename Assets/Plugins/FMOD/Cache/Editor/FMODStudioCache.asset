@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8474287987811625863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Door Close
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Door Close
+  Guid:
+    Data1: 1082340852
+    Data2: 1249229758
+    Data3: -947142471
+    Data4: 168038274
+  Banks:
+  - {fileID: -2234244000250981571}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7789340958019403637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +108,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-4841790409575347988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Door open
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Door open
+  Guid:
+    Data1: -1063964812
+    Data2: 1135220546
+    Data3: -1683376962
+    Data4: 1005083470
+  Banks:
+  - {fileID: -2234244000250981571}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4149989247457602886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Power Up Stage 2
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Power Up Stage 2
+  Guid:
+    Data1: -1291396280
+    Data2: 1187575367
+    Data3: 2064465304
+    Data4: 720769280
+  Banks:
+  - {fileID: -2234244000250981571}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2234244000250981571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,9 +177,117 @@ MonoBehaviour:
   Path: FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639269272928402502
+  lastModified: 639269128626829262
   FileSizes: []
   Exists: 1
+--- !u!114 &-1563632108759428030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Cured and Blessed
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Cured and Blessed
+  Guid:
+    Data1: 2105656619
+    Data2: 1224634365
+    Data3: 68011187
+    Data4: -206355796
+  Banks:
+  - {fileID: -2234244000250981571}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1313096521842278227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Power Up Stage 1
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Power Up Stage 1
+  Guid:
+    Data1: 730887482
+    Data2: 1081631060
+    Data3: -386721910
+    Data4: -198415147
+  Banks:
+  - {fileID: -2234244000250981571}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1220849801182545992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Power Up Stage 3
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Power Up Stage 3
+  Guid:
+    Data1: 1102750748
+    Data2: 1220687372
+    Data3: 2058555010
+    Data4: -1142211169
+  Banks:
+  - {fileID: -2234244000250981571}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-419380780752612408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sipping
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Sipping
+  Guid:
+    Data1: -476047262
+    Data2: 1078682040
+    Data3: 381916292
+    Data4: 810554680
+  Banks:
+  - {fileID: -2234244000250981571}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-209823613154697957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +303,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/DJ's songs.bank
   Name: DJ's songs
   StudioPath: bank:/DJ's songs
-  lastModified: 639269272928395456
+  lastModified: 639269128626321306
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -138,13 +327,20 @@ MonoBehaviour:
   - {fileID: 2770920797852513336}
   - {fileID: -7165763003316055872}
   - {fileID: -7709156765354656203}
+  - {fileID: -1220849801182545992}
+  - {fileID: -1563632108759428030}
+  - {fileID: -1313096521842278227}
+  - {fileID: -4149989247457602886}
+  - {fileID: -419380780752612408}
+  - {fileID: -4841790409575347988}
+  - {fileID: -8474287987811625863}
   EditorParameters: []
   MasterBanks:
   - {fileID: 452137639078437665}
   StringsBanks:
   - {fileID: 2236189881235249238}
   cacheVersion: 131861
-  cacheTime: 639269272928402502
+  cacheTime: 639269128626829262
   SerializableEventsDict:
   - key: event:/Main Disco Theme
     index: 0
@@ -152,6 +348,20 @@ MonoBehaviour:
     index: 1
   - key: event:/Talking
     index: 2
+  - key: event:/Power Up Stage 3
+    index: 3
+  - key: event:/Cured and Blessed
+    index: 4
+  - key: event:/Power Up Stage 1
+    index: 5
+  - key: event:/Power Up Stage 2
+    index: 6
+  - key: event:/Sipping
+    index: 7
+  - key: event:/Door open
+    index: 8
+  - key: event:/Door Close
+    index: 9
 --- !u!114 &452137639078437665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +377,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639269272928397419
+  lastModified: 639269128626493380
   FileSizes: []
   Exists: 1
 --- !u!114 &745511274482140889
@@ -209,10 +419,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639269272928398068
+  lastModified: 639269128626656945
   FileSizes:
   - Name: 
-    Value: 1240
+    Value: 1538
   Exists: 1
 --- !u!114 &2770920797852513336
 MonoBehaviour:
