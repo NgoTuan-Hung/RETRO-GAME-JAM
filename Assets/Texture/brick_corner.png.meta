@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0422a4cb728e456408d51b0c25322863
+guid: f4b6a6475e4d01abf8dafb766cf1abba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6920721915148027202
-    second: electric_box_0
+      213: -2194697108120431457
+    second: brick_corner_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: electric_box_0
+      name: brick_corner_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 10
-        height: 14
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eba3752f518a4ff90800000000000000
-      internalID: -6920721915148027202
+      spriteID: f9497e0bb9eda81e0800000000000000
+      internalID: -2194697108120431457
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      electric_box_0: -6920721915148027202
+      brick_corner_0: -2194697108120431457
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

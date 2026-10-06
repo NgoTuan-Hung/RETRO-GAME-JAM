@@ -208,7 +208,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Sound Effects.bank
   Name: Sound Effects
   StudioPath: bank:/Sound Effects
-  lastModified: 639268318744322026
+  lastModified: 639268918114130029
   FileSizes: []
   Exists: 1
 --- !u!114 &-528355512410992319
@@ -276,10 +276,37 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 2236189881235249238}
   cacheVersion: 131861
-  cacheTime: 639268318744322026
+  cacheTime: 639268918114130029
   SerializableEventsDict:
-  - key: event:/New Event
+  - key: event:/One Footstep
     index: 0
+  - key: event:/Footstep
+    index: 1
+  - key: event:/Power Ups/Power Up Stage 2
+    index: 2
+  - key: event:/Power Ups/Power Up Stage 1
+    index: 3
+  - key: event:/Doors/Door Close
+    index: 4
+  - key: 'event:/Talkings/Talking Mixed - 0003 - Audio - Talking 3-Audio [2026-10-02
+      230824]'
+    index: 5
+  - key: event:/Talkings/Talking Mixed - 0001 - Audio - Talking 1-Audio
+    index: 6
+  - key: event:/Cured Mixed
+    index: 7
+  - key: event:/Power Ups/Power Up Stage 3
+    index: 8
+  - key: 'event:/Talkings/Talking Mixed - 0002 - Audio - Talking 2-Audio 13 [2026-10-02
+      230834]'
+    index: 9
+  - key: event:/Doors/Door Open
+    index: 10
+  - key: 'event:/Talkings/Talking Mixed - 0004 - Audio - Talking 4-Audio [2026-10-02
+      230824]'
+    index: 11
+  - key: event:/Sip
+    index: 12
 --- !u!114 &452137639078437665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +322,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639268318743396981
+  lastModified: 639268918114123173
   FileSizes: []
   Exists: 1
 --- !u!114 &1526292381135391616
@@ -394,7 +421,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639268318743406997
+  lastModified: 639268918114124254
   FileSizes:
   - Name: 
     Value: 1518
