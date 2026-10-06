@@ -23922,7 +23922,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 32, y: 32}
-    newSize: {x: 34, y: 34}
+    newSize: {x: 32, y: 32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -23969,6 +23969,7 @@ GameObject:
   - component: {fileID: 1482116388}
   - component: {fileID: 1482116390}
   - component: {fileID: 1482116389}
+  - component: {fileID: 1482116391}
   m_Layer: 0
   m_Name: DJ
   m_TagString: Untagged
@@ -24146,6 +24147,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1482116391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482116385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1efddcedc6d61a34bdc87cc5286fed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.DJ.DJAudioController
+  musicEvent:
+    Guid:
+      Data1: -1832616750
+      Data2: 1165594585
+      Data3: 858885030
+      Data4: -1639573809
+    Path: event:/Main Disco Theme
+  playerTransform: {fileID: 1201309556}
+  maxDistance: 300
+  proximityParamName: Proximity from Basement or Attic Entrance to the Attic and
+    Basement
 --- !u!1 &1561966938
 GameObject:
   m_ObjectHideFlags: 0
@@ -25339,7 +25363,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 32, y: 32}
-    newSize: {x: 34, y: 34}
+    newSize: {x: 32, y: 32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
