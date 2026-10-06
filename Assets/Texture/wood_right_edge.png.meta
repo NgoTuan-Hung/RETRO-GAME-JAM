@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9c7f376f95f981141aba27920e7f5013
+guid: f179ebb6ab08e589a89d24ed7f4ac32c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2339032837426595097
-    second: bartender_0
+      213: 8340905319517020938
+    second: wood_right_edge_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bartender_0
+      name: wood_right_edge_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7eab63fe6061a8fd0800000000000000
-      internalID: -2339032837426595097
+      spriteID: a036af23239d0c370800000000000000
+      internalID: 8340905319517020938
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a89b8c5d79d987a1da1772613f4a7142
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -133,11 +133,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      bartender_0: -2339032837426595097
+      wood_right_edge_0: 8340905319517020938
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

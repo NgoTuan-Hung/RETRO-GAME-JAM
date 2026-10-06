@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dd2a154bd427f67328fa846538a75a7b
+guid: b6d804ce271ffde6e9d696ace670b946
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6983010729792366028
-    second: wood_corner_0
+      213: -5238365743714904093
+    second: brick_right_edge_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wood_corner_0
+      name: brick_right_edge_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 43a1cf32dbc571f90800000000000000
-      internalID: -6983010729792366028
+      spriteID: 3e75c423c169d47b0800000000000000
+      internalID: -5238365743714904093
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      wood_corner_0: -6983010729792366028
+      brick_right_edge_0: -5238365743714904093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
