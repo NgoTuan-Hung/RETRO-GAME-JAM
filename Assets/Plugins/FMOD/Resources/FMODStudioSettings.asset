@@ -552,7 +552,8 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - Sound Effects
+  - DJ's songs
+  - SFX
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

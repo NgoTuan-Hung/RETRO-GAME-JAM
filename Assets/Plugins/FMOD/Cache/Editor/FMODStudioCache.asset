@@ -1,6 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8644598043112307509
+--- !u!114 &-7789340958019403637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Footsteps/IsWalking
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: IsWalking
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1317187927
+    data2: 294071861
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-7709156765354656203
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,24 +34,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Doors/Door Open
+  m_Name: event:/Talking
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Doors/Door Open
+  Path: event:/Talking
   Guid:
-    Data1: -1674260515
-    Data2: 1260709647
-    Data3: 1104913340
-    Data4: -1577695432
+    Data1: -1151390041
+    Data2: 1222199400
+    Data3: 2131726009
+    Data4: -824403474
   Banks:
-  - {fileID: -2510970380831499688}
+  - {fileID: -2234244000250981571}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 745511274482140889}
   MinDistance: 1
   MaxDistance: 20
-  Length: 977
---- !u!114 &-7166303678072589678
+  Length: 0
+--- !u!114 &-7165763003316055872
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,163 +62,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Sip
+  m_Name: event:/Footsteps
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Sip
+  Path: event:/Footsteps
   Guid:
-    Data1: -1495837954
-    Data2: 1202641753
-    Data3: -241672044
-    Data4: -1779249963
+    Data1: -138974702
+    Data2: 1197016486
+    Data3: 2070701953
+    Data4: 108332429
   Banks:
-  - {fileID: -2510970380831499688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1905
---- !u!114 &-6659564404178157707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Doors/Door Close
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Doors/Door Close
-  Guid:
-    Data1: 1338827390
-    Data2: 1131535117
-    Data3: -331223890
-    Data4: -1980081900
-  Banks:
-  - {fileID: -2510970380831499688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1099
---- !u!114 &-6541642279294872351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 'event:/Talkings/Talking Mixed - 0002 - Audio - Talking 2-Audio 13 [2026-10-02
-    230834]'
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: 'event:/Talkings/Talking Mixed - 0002 - Audio - Talking 2-Audio 13 [2026-10-02
-    230834]'
-  Guid:
-    Data1: 749165771
-    Data2: 1245525007
-    Data3: -1840227940
-    Data4: 651661157
-  Banks:
-  - {fileID: -2510970380831499688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2000
---- !u!114 &-6384870118345773302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 'event:/Talkings/Talking Mixed - 0003 - Audio - Talking 3-Audio [2026-10-02
-    230824]'
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: 'event:/Talkings/Talking Mixed - 0003 - Audio - Talking 3-Audio [2026-10-02
-    230824]'
-  Guid:
-    Data1: 1136047759
-    Data2: 1219868972
-    Data3: 822534568
-    Data4: -636203262
-  Banks:
-  - {fileID: -2510970380831499688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2000
---- !u!114 &-5395541888338370918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Power Ups/Power Up Stage 1
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Power Ups/Power Up Stage 1
-  Guid:
-    Data1: 1176769319
-    Data2: 1273113542
-    Data3: -1223354223
-    Data4: -1965151460
-  Banks:
-  - {fileID: -2510970380831499688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 781
---- !u!114 &-3724003426401299578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/One Footstep
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/One Footstep
-  Guid:
-    Data1: -1325430453
-    Data2: 1332597578
-    Data3: -2021300803
-    Data4: -749657483
-  Banks:
-  - {fileID: 452137639078437665}
+  - {fileID: -2234244000250981571}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 8915156392978898088}
+  - {fileID: -7789340958019403637}
   MinDistance: 1
   MaxDistance: 20
-  Length: 375
---- !u!114 &-2510970380831499688
+  Length: 0
+--- !u!114 &-2234244000250981571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,15 +91,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Sound Effects.bank
+  m_Name: bank:/SFX.bank
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: FMOD/Desktop/Sound Effects.bank
-  Name: Sound Effects
-  StudioPath: bank:/Sound Effects
-  lastModified: 639268918114130029
+  Path: FMOD/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 639269163153537951
   FileSizes: []
   Exists: 1
---- !u!114 &-528355512410992319
+--- !u!114 &-209823613154697957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,26 +108,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 'event:/Talkings/Talking Mixed - 0004 - Audio - Talking 4-Audio [2026-10-02
-    230824]'
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: 'event:/Talkings/Talking Mixed - 0004 - Audio - Talking 4-Audio [2026-10-02
-    230824]'
-  Guid:
-    Data1: -400285199
-    Data2: 1174156175
-    Data3: -1895106916
-    Data4: 2135271350
-  Banks:
-  - {fileID: -2510970380831499688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2000
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/DJ's songs.bank
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
+  Path: FMOD/Desktop/DJ's songs.bank
+  Name: DJ's songs
+  StudioPath: bank:/DJ's songs
+  lastModified: 639269163153310484
+  FileSizes: []
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,28 +132,19 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 2236189881235249238}
   - {fileID: 452137639078437665}
-  - {fileID: -2510970380831499688}
+  - {fileID: -209823613154697957}
+  - {fileID: -2234244000250981571}
   EditorEvents:
-  - {fileID: -3724003426401299578}
-  - {fileID: 5604664812343062964}
-  - {fileID: 1620708277131814748}
-  - {fileID: -5395541888338370918}
-  - {fileID: -6659564404178157707}
-  - {fileID: -6384870118345773302}
-  - {fileID: 1526292381135391616}
-  - {fileID: 7658298114021430119}
-  - {fileID: 1727525679558011452}
-  - {fileID: -6541642279294872351}
-  - {fileID: -8644598043112307509}
-  - {fileID: -528355512410992319}
-  - {fileID: -7166303678072589678}
+  - {fileID: 2770920797852513336}
+  - {fileID: -7165763003316055872}
+  - {fileID: -7709156765354656203}
   EditorParameters: []
   MasterBanks:
   - {fileID: 452137639078437665}
   StringsBanks:
   - {fileID: 2236189881235249238}
   cacheVersion: 131861
-  cacheTime: 639268918114130029
+  cacheTime: 639269163153537951
   SerializableEventsDict:
   - key: event:/One Footstep
     index: 0
@@ -322,10 +190,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639268918114123173
+  lastModified: 639269163152776671
   FileSizes: []
   Exists: 1
---- !u!114 &1526292381135391616
+--- !u!114 &745511274482140889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -334,78 +202,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Talkings/Talking Mixed - 0001 - Audio - Talking 1-Audio
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Talkings/Talking Mixed - 0001 - Audio - Talking 1-Audio
-  Guid:
-    Data1: -1750773616
-    Data2: 1296314244
-    Data3: 340225421
-    Data4: 871460733
-  Banks:
-  - {fileID: -2510970380831499688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2000
---- !u!114 &1620708277131814748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Power Ups/Power Up Stage 2
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Power Ups/Power Up Stage 2
-  Guid:
-    Data1: 1996223265
-    Data2: 1301250379
-    Data3: 812039302
-    Data4: -592059254
-  Banks:
-  - {fileID: -2510970380831499688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 781
---- !u!114 &1727525679558011452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Power Ups/Power Up Stage 3
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Power Ups/Power Up Stage 3
-  Guid:
-    Data1: 1564124573
-    Data2: 1227883043
-    Data3: 2058033539
-    Data4: -851075772
-  Banks:
-  - {fileID: -2510970380831499688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 781
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Talking/IsTalking
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: IsTalking
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1321657492
+    data2: 1087354894
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &2236189881235249238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,12 +232,12 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639268918114124254
+  lastModified: 639269163152776671
   FileSizes:
   - Name: 
-    Value: 1518
+    Value: 1240
   Exists: 1
---- !u!114 &5604664812343062964
+--- !u!114 &2770920797852513336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -436,24 +247,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Footstep
+  m_Name: event:/Main Disco Theme
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Footstep
+  Path: event:/Main Disco Theme
   Guid:
-    Data1: 1563295003
-    Data2: 1193594590
-    Data3: 2135024284
-    Data4: 94427544
+    Data1: -1832616750
+    Data2: 1165594585
+    Data3: 858885030
+    Data4: -1639573809
   Banks:
-  - {fileID: -2510970380831499688}
-  IsStream: 0
+  - {fileID: -209823613154697957}
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
-  Parameters: []
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 5957592595656234236}
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
---- !u!114 &7658298114021430119
+  Length: 152922
+--- !u!114 &5957592595656234236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -462,21 +274,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Cured Mixed
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Cured Mixed
-  Guid:
-    Data1: 1758813340
-    Data2: 1088258689
-    Data3: -1633532534
-    Data4: -1391109267
-  Banks:
-  - {fileID: -2510970380831499688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2500
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Main Disco Theme/Proximity from Basement or Attic Entrance to
+    the Attic and Basement
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Proximity from Basement or Attic Entrance to the Attic and Basement
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 933091171
+    data2: 1284214158
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &8915156392978898088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Footsteps/Proximity from Basement or Attic Entrance to the Attic
+    and Basement
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Proximity from Basement or Attic Entrance to the Attic and Basement
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 933091171
+    data2: 1284214158
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
