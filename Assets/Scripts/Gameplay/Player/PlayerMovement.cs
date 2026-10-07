@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 5f;
     private Animator animator;
+    private float movementMagnitude;
 
     private void Awake()
     {
@@ -31,10 +32,20 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb2d.linearVelocity = inputReader.MovementValue * moveSpeed;
+        movementMagnitude = inputReader.MovementValue.magnitude;
+        if (movementMagnitude > 0)
+        {
+            PlayerFootstepsAudioController.Instance.TurnOnFootstepsAudio();
+        }
+        else
+        {
+            PlayerFootstepsAudioController.Instance.TurnOffFootstepsAudio();
+        }
+
         if (inputReader.MovementValue.x != 0)
         {
             transform.localScale = new(inputReader.MovementValue.x < 0 ? -1 : 1, 1, 1);
         }
-        animator.SetFloat("Speed", Mathf.Abs(inputReader.MovementValue.magnitude));
+        animator.SetFloat("Speed", Mathf.Abs(movementMagnitude));
     }
 }
