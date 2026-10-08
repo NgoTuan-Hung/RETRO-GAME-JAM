@@ -48681,7 +48681,7 @@ Transform:
   m_GameObject: {fileID: 718085173}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -143.37798, y: -218.1, z: 0}
+  m_LocalPosition: {x: 159.2, y: -248.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48804,6 +48804,7 @@ GameObject:
   - component: {fileID: 1201309560}
   - component: {fileID: 1201309562}
   - component: {fileID: 1201309561}
+  - component: {fileID: 1201309563}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -49008,6 +49009,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c212a581d736ddc1b06ee828cb083a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Player.InputReader
+--- !u!114 &1201309563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201309555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d025b3c564b6954684bd41512903f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTalk
 --- !u!1 &1300089641
 GameObject:
   m_ObjectHideFlags: 0
@@ -50854,6 +50867,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1762867486}
   - component: {fileID: 1762867487}
+  - component: {fileID: 1762867488}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -50891,6 +50905,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerTransform: {fileID: 1201309556}
   djTransform: {fileID: 1482116387}
+--- !u!114 &1762867488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762867485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762004166a807cc4b86c32093d947335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogSystem
 --- !u!1 &1989555568
 GameObject:
   m_ObjectHideFlags: 0
