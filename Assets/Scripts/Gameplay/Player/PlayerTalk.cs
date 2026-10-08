@@ -25,7 +25,8 @@ public class PlayerTalk : MonoBehaviour
     {
         if (UnityEngine.InputSystem.Keyboard.current.tKey.wasPressedThisFrame)
         {
-            dialogSystem.ShowDialog("Player", "Hello World!");
+            string chatText = "Hello World!";
+            dialogSystem.ShowDialog("Player", chatText);
         }
     }
 }
