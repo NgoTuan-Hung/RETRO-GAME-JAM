@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dwhrlckeaxwlx"
+
+[deps]
+
+files=["res://dialog/dialog.Listener.translation", "res://dialog/dialog.ID.translation", "res://dialog/dialog.Previous.translation", "res://dialog/dialog.Condition.translation", "res://dialog/dialog.Dialog.translation", "res://dialog/dialog.Reusable.translation"]
+
+source_file="res://dialog/dialog.csv"
+dest_files=["res://dialog/dialog.Listener.translation", "res://dialog/dialog.ID.translation", "res://dialog/dialog.Previous.translation", "res://dialog/dialog.Condition.translation", "res://dialog/dialog.Dialog.translation", "res://dialog/dialog.Reusable.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bv5t05pwo5u62"
+path="res://.godot/imported/One Footstep.wav-03134c707ba7295e6c4cff3760fb942a.sample"
+
+[deps]
+
+source_file="res://sound/Sound Effects/One Footstep.wav"
+dest_files=["res://.godot/imported/One Footstep.wav-03134c707ba7295e6c4cff3760fb942a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

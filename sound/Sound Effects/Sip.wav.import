@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bbq1g6oljhdfk"
+path="res://.godot/imported/Sip.wav-0c791a0dc6f81b0a95231da3b572fe3d.sample"
+
+[deps]
+
+source_file="res://sound/Sound Effects/Sip.wav"
+dest_files=["res://.godot/imported/Sip.wav-0c791a0dc6f81b0a95231da3b572fe3d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

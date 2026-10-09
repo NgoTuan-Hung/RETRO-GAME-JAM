@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dxs16g0jqc6j3"
+path="res://.godot/imported/Talking Mixed - 0002 - Audio - Talking 2-Audio 13 [2026-10-02 230834].wav-8f3916f756e470c950fc3b1cdccf1436.sample"
+
+[deps]
+
+source_file="res://sound/Sound Effects/Talking Mixed - 0002 - Audio - Talking 2-Audio 13 [2026-10-02 230834].wav"
+dest_files=["res://.godot/imported/Talking Mixed - 0002 - Audio - Talking 2-Audio 13 [2026-10-02 230834].wav-8f3916f756e470c950fc3b1cdccf1436.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

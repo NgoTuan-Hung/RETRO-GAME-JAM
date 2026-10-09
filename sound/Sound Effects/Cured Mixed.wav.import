@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://fecy7e6fv8tc"
+path="res://.godot/imported/Cured Mixed.wav-26369f2116818e78ae239df505d59c0a.sample"
+
+[deps]
+
+source_file="res://sound/Sound Effects/Cured Mixed.wav"
+dest_files=["res://.godot/imported/Cured Mixed.wav-26369f2116818e78ae239df505d59c0a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

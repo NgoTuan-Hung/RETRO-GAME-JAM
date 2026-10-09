@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://6nv40nd8erka"
+path="res://.godot/imported/Talking Mixed - 0004 - Audio - Talking 4-Audio [2026-10-02 230824].wav-e5841df41702a5725aa79f62d52f9859.sample"
+
+[deps]
+
+source_file="res://sound/Sound Effects/Talking Mixed - 0004 - Audio - Talking 4-Audio [2026-10-02 230824].wav"
+dest_files=["res://.godot/imported/Talking Mixed - 0004 - Audio - Talking 4-Audio [2026-10-02 230824].wav-e5841df41702a5725aa79f62d52f9859.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
