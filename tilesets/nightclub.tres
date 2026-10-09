@@ -1,0 +1,22 @@
+[gd_resource type="TileSet" format=3 uid="uid://b6e4028ippvls"]
+
+[ext_resource type="Texture2D" uid="uid://kbxgmxpqchcw" path="res://art/tiles/wood.png" id="1_csefw"]
+[ext_resource type="Texture2D" uid="uid://bdltod4o02vgm" path="res://art/tiles/wood_left_edge.png" id="2_pr8kl"]
+[ext_resource type="Texture2D" uid="uid://cnsu4vqes5rdl" path="res://art/tiles/wood_right_edge.png" id="3_3bfaq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ih6ni"]
+texture = ExtResource("1_csefw")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ces1j"]
+texture = ExtResource("2_pr8kl")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g82xi"]
+texture = ExtResource("3_3bfaq")
+0:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_ih6ni")
+sources/1 = SubResource("TileSetAtlasSource_ces1j")
+sources/2 = SubResource("TileSetAtlasSource_g82xi")
