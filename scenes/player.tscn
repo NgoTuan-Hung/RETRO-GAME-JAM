@@ -57,10 +57,10 @@ _data = {
 &"walk": SubResource("Animation_qlg0r")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yf5fn"]
-radius = 6.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_latbj"]
+radius = 7.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fooir"]
 size = Vector2(8, 31)
 
 [node name="Player" type="CharacterBody2D" unique_id=537207385]
@@ -75,11 +75,15 @@ texture = ExtResource("2_qhqgy")
 hframes = 4
 vframes = 2
 
-[node name="Footprint" type="CollisionShape2D" parent="." unique_id=126455878]
-shape = SubResource("CircleShape2D_yf5fn")
-
-[node name="Body" type="CollisionShape2D" parent="." unique_id=1555115348]
-position = Vector2(0, -15)
-shape = SubResource("RectangleShape2D_g4v7s")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=730960444]
+
+[node name="Footprint" type="CollisionShape2D" parent="." unique_id=1156458799]
+shape = SubResource("CircleShape2D_latbj")
+
+[node name="Body2" type="Area2D" parent="." unique_id=950561579]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body2" unique_id=127104049]
+position = Vector2(0, -15.5)
+shape = SubResource("RectangleShape2D_fooir")
