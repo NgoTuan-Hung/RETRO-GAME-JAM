@@ -61,6 +61,7 @@ _data = {
 radius = 5.0
 
 [node name="Player" type="CharacterBody2D" unique_id=537207385]
+y_sort_enabled = true
 script = ExtResource("1_g2els")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2013551757]

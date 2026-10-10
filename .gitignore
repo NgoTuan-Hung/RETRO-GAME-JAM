@@ -1,3 +1,22 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# VS Code / IDE
+.vscode/
+
+# Legacy Unity / Build ignores
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+Packages/
+*.csproj
+*.sln
+*.slnx
+
+# Local migration notes & old code
+old-scripts/
