@@ -58,10 +58,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_latbj"]
-radius = 7.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fooir"]
-size = Vector2(8, 31)
+radius = 5.0
 
 [node name="Player" type="CharacterBody2D" unique_id=537207385]
 script = ExtResource("1_g2els")
@@ -79,11 +76,3 @@ vframes = 2
 
 [node name="Footprint" type="CollisionShape2D" parent="." unique_id=1156458799]
 shape = SubResource("CircleShape2D_latbj")
-
-[node name="Body2" type="Area2D" parent="." unique_id=950561579]
-collision_layer = 8
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body2" unique_id=127104049]
-position = Vector2(0, -15.5)
-shape = SubResource("RectangleShape2D_fooir")
