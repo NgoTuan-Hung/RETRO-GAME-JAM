@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="NPCSpriteSet" format=3 uid="uid://dny8j81rvcyiu"]
+
+[ext_resource type="Texture2D" uid="uid://ivin0phfto0c" path="res://art/characters/npc3.png" id="1_pimk3"]
+[ext_resource type="Texture2D" uid="uid://b8h0v58lhne01" path="res://art/characters/npc3_possessed.png" id="2_m4s6p"]
+[ext_resource type="Script" uid="uid://bkxfi6vslmucc" path="res://scripts/NPCSpriteSet.gd" id="3_4xhkd"]
+
+[resource]
+script = ExtResource("3_4xhkd")
+normal_sheet = ExtResource("1_pimk3")
+possessed_sheet = ExtResource("2_m4s6p")
+metadata/_custom_type_script = "uid://bkxfi6vslmucc"
