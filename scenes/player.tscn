@@ -77,3 +77,19 @@ vframes = 2
 
 [node name="Footprint" type="CollisionShape2D" parent="." unique_id=1156458799]
 shape = SubResource("CircleShape2D_latbj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=94864839]
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="CanvasLayer" unique_id=138115018]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -58.0
+offset_right = 63.0
+offset_bottom = -18.0
+grow_vertical = 0
+joystick_mode = 1
+joystick_size = 48.0
+tip_size = 32.0
+visibility_mode = 1
