@@ -3,11 +3,11 @@
 [ext_resource type="TileSet" uid="uid://b6e4028ippvls" path="res://tilesets/nightclub.tres" id="1_xxoyl"]
 [ext_resource type="PackedScene" uid="uid://mippdc68bakj" path="res://scenes/player.tscn" id="2_41w1w"]
 [ext_resource type="PackedScene" uid="uid://cas02m27tyfyj" path="res://scenes/npc_1.tscn" id="3_fooir"]
-[ext_resource type="Texture2D" uid="uid://d18usok8m0e6i" path="res://art/characters/ghost.png" id="4_ghost"]
-[ext_resource type="Script" uid="uid://3d4fnxtfw8t8" path="res://scripts/common/movement.gd" id="5_movement"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ghost"]
-radius = 5.0
+[ext_resource type="PackedScene" uid="uid://behujelmie5hu" path="res://scenes/ghost.tscn" id="4_s3ugl"]
+[ext_resource type="Script" uid="uid://u6cakprawxd4" path="res://scripts/pathfinding/pathfinding_grid_debugger.gd" id="6_debugger"]
+[ext_resource type="Resource" uid="uid://bamf7bg00oh7h" path="res://data/pathfinding_grid_data.tres" id="7_grid_data"]
+[ext_resource type="Script" uid="uid://ddd5qttbt7snl" path="res://scripts/manager/game_manager.gd" id="8_p2vvp"]
+[ext_resource type="Script" uid="uid://qgw7bgvl7j81" path="res://scripts/pathfinding/pathfinding_manager.gd" id="9_manager"]
 
 [node name="NightClub" type="Node2D" unique_id=108550898]
 
@@ -25,25 +25,25 @@ use_kinematic_bodies = true
 position = Vector2(766, 367)
 
 [node name="Player" parent="Walls" unique_id=537207385 instance=ExtResource("2_41w1w")]
-position = Vector2(640, 368)
+position = Vector2(640, 352)
 
-[node name="Ghost" type="CharacterBody2D" parent="." unique_id=691163836]
-y_sort_enabled = true
-position = Vector2(600, 368)
+[node name="Ghost" parent="." unique_id=250339475 instance=ExtResource("4_s3ugl")]
+position = Vector2(432, 520)
 
-[node name="Sprite2D" type="Sprite2D" parent="Ghost" unique_id=393601633]
-texture = ExtResource("4_ghost")
-offset = Vector2(0, -16)
-hframes = 2
-vframes = 3
+[node name="Ghost2" parent="." unique_id=1001260168 instance=ExtResource("4_s3ugl")]
+position = Vector2(840, 504)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ghost" unique_id=1085947225]
-shape = SubResource("CircleShape2D_ghost")
+[node name="PathfindingGridDebugger" type="Node2D" parent="." unique_id=778899001]
+visible = false
+script = ExtResource("6_debugger")
+grid_data = ExtResource("7_grid_data")
+goal_point = Vector2i(31, 19)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Ghost" unique_id=1982079470]
+[node name="PathfindingManager" type="Node" parent="." unique_id=778899002]
+script = ExtResource("9_manager")
+grid_data = ExtResource("7_grid_data")
 
-[node name="Movement" type="Node" parent="Ghost" unique_id=163963975]
-script = ExtResource("5_movement")
-metadata/_custom_type_script = "uid://3d4fnxtfw8t8"
-
-[node name="AnimationTree" type="AnimationTree" parent="Ghost" unique_id=1018135662]
+[node name="GameManager" type="Node" parent="." unique_id=1904689696 node_paths=PackedStringArray("player")]
+script = ExtResource("8_p2vvp")
+player = NodePath("../Walls/Player")
+metadata/_custom_type_script = "uid://ddd5qttbt7snl"
