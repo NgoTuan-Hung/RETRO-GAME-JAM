@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://behujelmie5hu"]
+
+[ext_resource type="Script" uid="uid://ch6j615lu5h3v" path="res://scripts/common/node_hub.gd" id="1_veat2"]
+[ext_resource type="Texture2D" uid="uid://d18usok8m0e6i" path="res://art/characters/ghost.png" id="2_5mfnq"]
+[ext_resource type="Script" uid="uid://3d4fnxtfw8t8" path="res://scripts/common/movement.gd" id="3_lv6vd"]
+[ext_resource type="Script" uid="uid://cy8yqc1djbkl1" path="res://scripts/npc/ghost_controller.gd" id="4_sv5gc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ghost"]
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_irnpy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_uawus"]
+resource_name = "dancing"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_ky6jx"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_ve77s"]
+resource_name = "walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uawus"]
+_data = {
+&"RESET": SubResource("Animation_irnpy"),
+&"dancing": SubResource("Animation_uawus"),
+&"idle": SubResource("Animation_ky6jx"),
+&"walk": SubResource("Animation_ve77s")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_irnpy"]
+animation = &"dancing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ky6jx"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uawus"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_irnpy"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_irnpy"]
+states/Start/position = Vector2(236, 106)
+states/dancing/node = SubResource("AnimationNodeAnimation_irnpy")
+states/dancing/position = Vector2(388, 160)
+states/idle/node = SubResource("AnimationNodeAnimation_ky6jx")
+states/idle/position = Vector2(388, 45)
+states/walk/node = SubResource("AnimationNodeAnimation_uawus")
+states/walk/position = Vector2(393, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_irnpy")]
+
+[node name="Ghost" type="CharacterBody2D" unique_id=250339475]
+y_sort_enabled = true
+script = ExtResource("1_veat2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=17550733]
+texture = ExtResource("2_5mfnq")
+offset = Vector2(0, -16)
+hframes = 2
+vframes = 3
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1404214691]
+shape = SubResource("CircleShape2D_ghost")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1274549001]
+libraries/ = SubResource("AnimationLibrary_uawus")
+
+[node name="Movement" type="Node" parent="." unique_id=354259105]
+script = ExtResource("3_lv6vd")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1005401377]
+tree_root = SubResource("AnimationNodeStateMachine_irnpy")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="GhostController" type="Node" parent="." unique_id=1655696606 node_paths=PackedStringArray("target")]
+script = ExtResource("4_sv5gc")
+target = NodePath("")

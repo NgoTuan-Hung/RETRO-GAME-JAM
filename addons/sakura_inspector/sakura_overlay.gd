@@ -6,7 +6,7 @@ var tex: Texture2D
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	# top_level = true để không bị layout của container cha can thiệp kích thước/vị trí
+	# top_level = true so parent container layout doesn't override size/position
 	top_level = true
 	z_index = 1000
 	tex = load("res://addons/sakura_inspector/sakura_petal.png")
@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 		visible = false
 		return
 
-	# Đồng bộ vị trí và kích thước toàn cục theo Inspector
+	# Synchronize global position and size to match Inspector
 	visible = true
 	global_position = inspector.global_position
 	size = inspector.size
