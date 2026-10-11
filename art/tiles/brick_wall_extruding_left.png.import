@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6gbpvxrlrj6a"
-path="res://.godot/imported/brick_right_edge.png-b8075a15bb8f7cc82f9a5411d0dad5f9.ctex"
+uid="uid://c7qcw7h5ixgcx"
+path="res://.godot/imported/brick_wall_extruding_left.png-29692440d1867c10c3cc83d25a01a4ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/brick_right_edge.png"
-dest_files=["res://.godot/imported/brick_right_edge.png-b8075a15bb8f7cc82f9a5411d0dad5f9.ctex"]
+source_file="res://art/tiles/brick_wall_extruding_left.png"
+dest_files=["res://.godot/imported/brick_wall_extruding_left.png-29692440d1867c10c3cc83d25a01a4ff.ctex"]
 
 [params]
 

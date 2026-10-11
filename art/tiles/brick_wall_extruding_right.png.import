@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr1cg35krqtvu"
-path="res://.godot/imported/brick_top_right_concave.png-fbdd6d6acccd44200db1a3e348174f0f.ctex"
+uid="uid://d0qui6yn4wpw1"
+path="res://.godot/imported/brick_wall_extruding_right.png-8acfd15eb386e6fc32afd2ce348d9b02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/brick_top_right_concave.png"
-dest_files=["res://.godot/imported/brick_top_right_concave.png-fbdd6d6acccd44200db1a3e348174f0f.ctex"]
+source_file="res://art/tiles/brick_wall_extruding_right.png"
+dest_files=["res://.godot/imported/brick_wall_extruding_right.png-8acfd15eb386e6fc32afd2ce348d9b02.ctex"]
 
 [params]
 

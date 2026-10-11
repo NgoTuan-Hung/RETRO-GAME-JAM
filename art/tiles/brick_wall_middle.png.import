@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtfe1sp3ma7om"
-path="res://.godot/imported/brick_bottom_right_convex.png-87f4651a1c651fce1f4f5bda5f8d0beb.ctex"
+uid="uid://bj7tf28tjme84"
+path="res://.godot/imported/brick_wall_middle.png-c7126aa4cb0d71a1dc8167689e2a500b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/brick_bottom_right_convex.png"
-dest_files=["res://.godot/imported/brick_bottom_right_convex.png-87f4651a1c651fce1f4f5bda5f8d0beb.ctex"]
+source_file="res://art/tiles/brick_wall_middle.png"
+dest_files=["res://.godot/imported/brick_wall_middle.png-c7126aa4cb0d71a1dc8167689e2a500b.ctex"]
 
 [params]
 

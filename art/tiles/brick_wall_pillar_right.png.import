@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkesehqkpx8h6"
-path="res://.godot/imported/brick2_top_left_convex.png-b5528d82b646bddf39abf141d2e31152.ctex"
+uid="uid://c177y3hfd1yju"
+path="res://.godot/imported/brick_wall_pillar_right.png-68b772dbb7ee5f755bea2a8c9c689903.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/brick2_top_left_convex.png"
-dest_files=["res://.godot/imported/brick2_top_left_convex.png-b5528d82b646bddf39abf141d2e31152.ctex"]
+source_file="res://art/tiles/brick_wall_pillar_right.png"
+dest_files=["res://.godot/imported/brick_wall_pillar_right.png-68b772dbb7ee5f755bea2a8c9c689903.ctex"]
 
 [params]
 

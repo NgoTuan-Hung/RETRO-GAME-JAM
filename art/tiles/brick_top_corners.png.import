@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4n4gtea4c5fa"
-path="res://.godot/imported/brick2_bottom_edge.png-dd4eb08b984deef9295082287313e808.ctex"
+uid="uid://bpxuqf3vvhux3"
+path="res://.godot/imported/brick_top_corners.png-9f15ea93419cd8e08cb471bae6613164.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/brick2_bottom_edge.png"
-dest_files=["res://.godot/imported/brick2_bottom_edge.png-dd4eb08b984deef9295082287313e808.ctex"]
+source_file="res://art/tiles/brick_top_corners.png"
+dest_files=["res://.godot/imported/brick_top_corners.png-9f15ea93419cd8e08cb471bae6613164.ctex"]
 
 [params]
 
