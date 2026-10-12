@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpo50v5gwr023"
-path="res://.godot/imported/concrete_3.png-69cca0993f36e8cd1e6c54c4dbbe1721.ctex"
+uid="uid://86h4li7odpqm"
+path="res://.godot/imported/brick_cracked_1.png-093edcb00c6625d3fcf0b65e6b807b96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/concrete_3.png"
-dest_files=["res://.godot/imported/concrete_3.png-69cca0993f36e8cd1e6c54c4dbbe1721.ctex"]
+source_file="res://art/tiles/brick_cracked_1.png"
+dest_files=["res://.godot/imported/brick_cracked_1.png-093edcb00c6625d3fcf0b65e6b807b96.ctex"]
 
 [params]
 

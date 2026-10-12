@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://cfvm1bjwf2uch" path="res://art/tiles/brick_wall_right.png" id="13_vniqe"]
 [ext_resource type="Texture2D" uid="uid://bpxuqf3vvhux3" path="res://art/tiles/brick_top_corners.png" id="14_pwsvd"]
 [ext_resource type="Texture2D" uid="uid://d0qui6yn4wpw1" path="res://art/tiles/brick_wall_extruding_right.png" id="14_qydsx"]
+[ext_resource type="Texture2D" uid="uid://cuc4p87s4gwa" path="res://art/tiles/concrete.png" id="15_bv1df"]
+[ext_resource type="Texture2D" uid="uid://86h4li7odpqm" path="res://art/tiles/brick_cracked_1.png" id="16_qydsx"]
+[ext_resource type="Texture2D" uid="uid://cig2es7bptqry" path="res://art/tiles/brick_cracked_2.png" id="17_74q8u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ih6ni"]
 texture = ExtResource("1_csefw")
@@ -87,6 +90,21 @@ texture = ExtResource("14_qydsx")
 0:0/0 = 0
 0:1/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iiq26"]
+texture = ExtResource("15_bv1df")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y0f1h"]
+texture = ExtResource("16_qydsx")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_420tl"]
+texture = ExtResource("17_74q8u")
+0:0/0 = 0
+
 [resource]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
@@ -109,3 +127,6 @@ sources/25 = SubResource("TileSetAtlasSource_74q8u")
 sources/26 = SubResource("TileSetAtlasSource_vijsh")
 sources/27 = SubResource("TileSetAtlasSource_bq0pj")
 sources/28 = SubResource("TileSetAtlasSource_n7twn")
+sources/3 = SubResource("TileSetAtlasSource_iiq26")
+sources/4 = SubResource("TileSetAtlasSource_y0f1h")
+sources/5 = SubResource("TileSetAtlasSource_420tl")
