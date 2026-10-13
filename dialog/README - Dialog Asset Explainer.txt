@@ -6,13 +6,13 @@ You walk up to someone in the game and click to talk. The game looks at a spread
 
 Each row in the spreadsheet is one thing someone can say. It has:
 
-    Who's talking
-    Who they're talking to
-    A unique name for that line
-    What line has to come before it (if anything)
-    Whether you need to know something first
-    The actual words
-    Whether you can say it again
+	Who's talking
+	Who they're talking to
+	A unique name for that line
+	What line has to come before it (if anything)
+	Whether you need to know something first
+	The actual words
+	Whether you can say it again
 
 Three Kinds of Lines
 
@@ -26,9 +26,9 @@ How It Picks What to Say
 
 The game looks for lines that:
 
-    Match who you're talking to
+	Match who you're talking to
     Either start fresh OR follow what was just said
-    You have the right knowledge for (or don't need any)
+	You have the right knowledge for (or don't need any)
 
 Then it sorts them so lines you've never seen come first. If you've seen everything, it shows reusable lines (hints, greetings).
 

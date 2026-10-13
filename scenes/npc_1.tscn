@@ -77,11 +77,11 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
 radius = 5.0
 
-[node name="NPC1" type="CharacterBody2D" unique_id=1391010846]
+[node name="NPC" type="CharacterBody2D" unique_id=1391010846]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=277158856]
-position = Vector2(0, -15)
 texture = ExtResource("1_0u0ms")
+offset = Vector2(0, -15)
 hframes = 4
 vframes = 3
 

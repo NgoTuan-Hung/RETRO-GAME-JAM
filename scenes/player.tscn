@@ -68,8 +68,8 @@ script = ExtResource("1_g2els")
 libraries/ = SubResource("AnimationLibrary_tuyoq")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=798437691]
-position = Vector2(0, -15)
 texture = ExtResource("2_qhqgy")
+offset = Vector2(0, -15)
 hframes = 4
 vframes = 2
 
