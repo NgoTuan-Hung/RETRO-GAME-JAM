@@ -23,7 +23,7 @@ use_kinematic_bodies = true
 [node name="NPC1" parent="Walls" unique_id=1391010846 instance=ExtResource("3_fooir")]
 position = Vector2(766, 367)
 
-[node name="Player" parent="Walls" unique_id=537207385 instance=ExtResource("2_41w1w")]
+[node name="Player" parent="Walls" unique_id=185241265 instance=ExtResource("2_41w1w")]
 position = Vector2(640, 352)
 
 [node name="PathfindingGridDebugger" type="Node2D" parent="." unique_id=778899001]

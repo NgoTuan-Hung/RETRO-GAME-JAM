@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cofa812t87v75" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dvlspc7sph7lv" path="res://art/characters/player.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://bg2gfca1jqap2" path="res://Unity Assets/Plugins/FMOD/images/AddIcon.png" id="3_qhqgy"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001
@@ -60,27 +61,28 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_latbj"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody2D" unique_id=537207385]
+[node name="Player" type="CharacterBody2D" unique_id=185241265]
 y_sort_enabled = true
 script = ExtResource("1_g2els")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2013551757]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=194688728]
 libraries/ = SubResource("AnimationLibrary_tuyoq")
 
-[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=798437691]
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=473188047]
 texture = ExtResource("2_qhqgy")
 offset = Vector2(0, -15)
 hframes = 4
 vframes = 2
+frame = 4
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=730960444]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1112519380]
 
-[node name="Footprint" type="CollisionShape2D" parent="." unique_id=1156458799]
+[node name="Footprint" type="CollisionShape2D" parent="." unique_id=2121528895]
 shape = SubResource("CircleShape2D_latbj")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=94864839]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1182953613]
 
-[node name="VirtualJoystick" type="VirtualJoystick" parent="CanvasLayer" unique_id=138115018]
+[node name="VirtualJoystick" type="VirtualJoystick" parent="CanvasLayer" unique_id=849301022]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -92,3 +94,8 @@ grow_vertical = 0
 joystick_mode = 1
 joystick_size = 72.0
 visibility_mode = 1
+
+[node name="Crosshair" type="Sprite2D" parent="." unique_id=1117556158]
+visible = false
+top_level = true
+texture = ExtResource("3_qhqgy")
