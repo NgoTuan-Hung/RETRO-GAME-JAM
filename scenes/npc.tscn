@@ -85,7 +85,7 @@ script = ExtResource("1_abqhh")
 position = Vector2(0, -15)
 texture = ExtResource("2_rv78h")
 hframes = 4
-vframes = 3
+vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=294965641]
 libraries/ = SubResource("AnimationLibrary_vc0qi")

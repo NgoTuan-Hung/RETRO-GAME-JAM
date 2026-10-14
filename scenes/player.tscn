@@ -72,8 +72,7 @@ libraries/ = SubResource("AnimationLibrary_tuyoq")
 texture = ExtResource("2_qhqgy")
 offset = Vector2(0, -15)
 hframes = 4
-vframes = 2
-frame = 4
+vframes = 4
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1112519380]
 
