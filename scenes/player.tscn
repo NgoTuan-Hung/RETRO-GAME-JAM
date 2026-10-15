@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cofa812t87v75" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dvlspc7sph7lv" path="res://art/characters/player.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://ivf2xasbtvqr" path="res://icon.svg" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bg2gfca1jqap2" path="res://Unity Assets/Plugins/FMOD/images/AddIcon.png" id="3_qhqgy"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
@@ -92,6 +93,12 @@ offset_bottom = -25.0
 grow_vertical = 0
 joystick_mode = 1
 joystick_size = 72.0
+visibility_mode = 1
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=551494673]
+position = Vector2(463, 145)
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("3_dqkch")
 visibility_mode = 1
 
 [node name="Crosshair" type="Sprite2D" parent="." unique_id=1117556158]
