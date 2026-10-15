@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b3vge44k7xybo"]
+
+[ext_resource type="Script" uid="uid://b3k6lqp35b3nl" path="res://scripts/hud.gd" id="1_qpvh6"]
+
+[node name="Hud" type="CanvasLayer" unique_id=2063601038]
+script = ExtResource("1_qpvh6")
+metadata/_edit_group_ = true
+
+[node name="GameTimer" type="Timer" parent="." unique_id=638107667]
+wait_time = 3.75
+autostart = true
+
+[node name="TopBar" type="HBoxContainer" parent="." unique_id=2007642090]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_constants/separation = 4
+
+[node name="Resistance" type="HBoxContainer" parent="TopBar" unique_id=1988242554]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="ResistanceLabel" type="Label" parent="TopBar/Resistance" unique_id=1152218773]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Resistance"
+
+[node name="Inventory" type="HBoxContainer" parent="TopBar" unique_id=1109866467]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="InventoryLabel" type="Label" parent="TopBar/Inventory" unique_id=1394239491]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Inventory"
+
+[node name="Clock" type="Label" parent="TopBar" unique_id=185904554]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 12
+text = "8:00 pm"
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

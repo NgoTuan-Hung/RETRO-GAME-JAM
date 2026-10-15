@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://ukojxq88ombu"]
+
+[ext_resource type="Texture2D" uid="uid://b76iyq6wqbl76" path="res://art/objects/dj_booth.png" id="1_20sv7"]
+[ext_resource type="Script" uid="uid://c12rvr2fn13fi" path="res://scripts/dj_booth.gd" id="1_qelut"]
+[ext_resource type="AudioStream" uid="uid://cd10sas5kohh4" path="res://sound/Finished Tracks/Necrisco Mix.wav" id="3_mar51"]
+
+[sub_resource type="Animation" id="Animation_20sv7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_q2wpq"]
+resource_name = "blink"
+length = 0.6666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qelut"]
+_data = {
+&"RESET": SubResource("Animation_20sv7"),
+&"blink": SubResource("Animation_q2wpq")
+}
+
+[node name="DJ Booth" type="StaticBody2D" unique_id=1518973068]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_qelut")
+metadata/_edit_group_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1021021371]
+polygon = PackedVector2Array(-13, -4, -16, 0, 16, 0, 13, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1099779361]
+texture = ExtResource("1_20sv7")
+offset = Vector2(0, -8)
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1554571137]
+libraries/ = SubResource("AnimationLibrary_qelut")
+autoplay = &"blink"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=595856962]
+stream = ExtResource("3_mar51")
+volume_db = 10.0
+autoplay = true
+max_distance = 600.0
+attenuation = 2.0

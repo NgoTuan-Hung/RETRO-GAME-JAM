@@ -20,6 +20,22 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_tuyoq"]
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 9, 12]
+}
+
 [sub_resource type="Animation" id="Animation_dqkch"]
 resource_name = "idle"
 loop_mode = 1
@@ -34,6 +50,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
 }
 
 [sub_resource type="Animation" id="Animation_qlg0r"]
@@ -55,12 +87,17 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tuyoq"]
 _data = {
 &"RESET": SubResource("Animation_qhqgy"),
+&"drink": SubResource("Animation_tuyoq"),
 &"idle": SubResource("Animation_dqkch"),
+&"spray": SubResource("Animation_fjrip"),
 &"walk": SubResource("Animation_qlg0r")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_latbj"]
 radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 80.0
 
 [node name="Player" type="CharacterBody2D" unique_id=185241265]
 y_sort_enabled = true
@@ -105,3 +142,10 @@ visibility_mode = 1
 visible = false
 top_level = true
 texture = ExtResource("3_qhqgy")
+
+[node name="TalkArea" type="Area2D" parent="." unique_id=594668936]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkArea" unique_id=1245259267]
+shape = SubResource("CircleShape2D_g4v7s")
