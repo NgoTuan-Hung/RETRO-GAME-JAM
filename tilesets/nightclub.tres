@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cig2es7bptqry" path="res://art/tiles/brick_cracked_2.png" id="17_74q8u"]
 [ext_resource type="Texture2D" uid="uid://d3ngrctjvmqqw" path="res://art/tiles/brick_wall_pillar_left_topped.png" id="18_vijsh"]
 [ext_resource type="Texture2D" uid="uid://5j8urmv8mth1" path="res://art/tiles/brick_wall_pillar_right_topped.png" id="19_bq0pj"]
+[ext_resource type="Texture2D" uid="uid://d8es4hcygag3" path="res://art/objects/bar_counter.png" id="20_bq0pj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ih6ni"]
 texture = ExtResource("1_csefw")
@@ -155,6 +156,12 @@ texture = ExtResource("19_bq0pj")
 0:0/0/texture_origin = Vector2i(0, 16)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(2, -8, 8, -8, 8, 8, 2, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pwsvd"]
+texture = ExtResource("20_bq0pj")
+0:0/size_in_atlas = Vector2i(4, 1)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 4, 32, 4, 32, 8, -32, 8)
+
 [resource]
 tile_layout = 2
 occlusion_layer_0/light_mask = 1
@@ -184,3 +191,4 @@ sources/4 = SubResource("TileSetAtlasSource_y0f1h")
 sources/5 = SubResource("TileSetAtlasSource_420tl")
 sources/6 = SubResource("TileSetAtlasSource_fq64n")
 sources/7 = SubResource("TileSetAtlasSource_vniqe")
+sources/8 = SubResource("TileSetAtlasSource_pwsvd")

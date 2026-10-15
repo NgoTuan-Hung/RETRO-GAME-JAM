@@ -61,6 +61,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_latbj"]
 radius = 5.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 80.0
+
 [node name="Player" type="CharacterBody2D" unique_id=185241265]
 y_sort_enabled = true
 script = ExtResource("1_g2els")
@@ -98,3 +101,10 @@ visibility_mode = 1
 visible = false
 top_level = true
 texture = ExtResource("3_qhqgy")
+
+[node name="TalkArea" type="Area2D" parent="." unique_id=594668936]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkArea" unique_id=1245259267]
+shape = SubResource("CircleShape2D_g4v7s")
