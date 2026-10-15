@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ukojxq88ombu"]
 
 [ext_resource type="Texture2D" uid="uid://b76iyq6wqbl76" path="res://art/objects/dj_booth.png" id="1_20sv7"]
+[ext_resource type="Script" uid="uid://c12rvr2fn13fi" path="res://scripts/dj_booth.gd" id="1_qelut"]
+[ext_resource type="AudioStream" uid="uid://cd10sas5kohh4" path="res://sound/Finished Tracks/Necrisco Mix.wav" id="3_mar51"]
 
 [sub_resource type="Animation" id="Animation_20sv7"]
 length = 0.001
@@ -40,8 +42,10 @@ _data = {
 &"blink": SubResource("Animation_q2wpq")
 }
 
-[node name="DJ Booth" type="RigidBody2D" unique_id=128739819]
-gravity_scale = 0.0
+[node name="DJ Booth" type="StaticBody2D" unique_id=1518973068]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_qelut")
+metadata/_edit_group_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1021021371]
 polygon = PackedVector2Array(-13, -4, -16, 0, 16, 0, 13, -4)
@@ -54,3 +58,10 @@ vframes = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1554571137]
 libraries/ = SubResource("AnimationLibrary_qelut")
 autoplay = &"blink"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=595856962]
+stream = ExtResource("3_mar51")
+volume_db = 10.0
+autoplay = true
+max_distance = 600.0
+attenuation = 2.0

@@ -19,5 +19,10 @@ func _on_game_timer_timeout() -> void:
 	gameTime += 1
 	var hour = floor(gameTime/60)
 	var minutes = gameTime - (hour * 60)
-	var timeString = "%d:%02d pm" % [8 + hour, minutes]
+	var meridiem = "pm"
+	if hour > 3 :
+		meridiem = "am"
+		if hour > 4 :
+			hour -= 12
+	var timeString = "%d:%02d %s" % [8 + hour, minutes, meridiem]
 	$TopBar/Clock.text = timeString
