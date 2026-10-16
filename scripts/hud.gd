@@ -28,3 +28,7 @@ func _on_game_timer_timeout() -> void:
 	var timeString = "%d:%02d %s" % [8 + hour, minutes, meridiem]
 	on_game_time_changed.emit(hour)
 	$TopBar/Clock.text = timeString
+
+func update_boogie_woogie_energy(current_val: int, max_val: int) -> void:
+	%EnergyBar.max_value = max_val
+	%EnergyBar.value = current_val

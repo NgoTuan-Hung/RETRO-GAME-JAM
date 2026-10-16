@@ -22,6 +22,7 @@ func _ready() -> void:
 	GameManager.instance.hud.on_game_time_changed.connect(_on_time_changed)
 	# Get tick duration from the game timer
 	wait_time = GameManager.instance.hud.get_node("GameTimer").wait_time
+	sync_energy_ui()
 	
 func _on_time_changed(current_hours: int) -> void:
 	generation_rate = base_generation_rate + current_hours * hourly_addition
@@ -32,6 +33,8 @@ func _on_time_changed(current_hours: int) -> void:
 	handle_appearance()
 	if (can_disappear):
 		handle_disappearance()
+	
+	sync_energy_ui()
 
 func handle_appearance() -> void:
 	if filled == capacity:
@@ -55,3 +58,6 @@ func handle_disappearance() -> void:
 	if filled < 1:
 		node_hub.visible = false
 		can_disappear = false
+
+func sync_energy_ui() -> void:
+	GameManager.instance.hud.update_boogie_woogie_energy(filled, capacity)
