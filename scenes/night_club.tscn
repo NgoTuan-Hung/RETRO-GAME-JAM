@@ -11,7 +11,9 @@
 [ext_resource type="Script" uid="uid://qgw7bgvl7j81" path="res://scripts/pathfinding/pathfinding_manager.gd" id="9_manager"]
 [ext_resource type="Texture2D" uid="uid://by1ko8o4b10s8" path="res://art/characters/bartender.png" id="10_ky6jx"]
 [ext_resource type="Texture2D" uid="uid://djlfyxwcn2e56" path="res://art/characters/dj.png" id="11_uawus"]
+[ext_resource type="Script" uid="uid://ch6j615lu5h3v" path="res://scripts/common/node_hub.gd" id="12_gyjyx"]
 [ext_resource type="Texture2D" uid="uid://hx4wsnbufpho" path="res://art/characters/boogie_woogie.png" id="12_ve77s"]
+[ext_resource type="Script" uid="uid://bxpyxpx8reyyn" path="res://scripts/npc/boogie_woogie_controller.gd" id="14_sto6n"]
 
 [sub_resource type="Animation" id="Animation_uawus"]
 length = 0.001
@@ -81,9 +83,10 @@ goal_point = Vector2i(31, 19)
 script = ExtResource("9_manager")
 grid_data = ExtResource("7_grid_data")
 
-[node name="GameManager" type="Node" parent="." unique_id=1904689696 node_paths=PackedStringArray("player")]
+[node name="GameManager" type="Node" parent="." unique_id=1904689696 node_paths=PackedStringArray("player", "hud")]
 script = ExtResource("8_p2vvp")
 player = NodePath("../Player")
+hud = NodePath("../Hud")
 metadata/_custom_type_script = "uid://ddd5qttbt7snl"
 
 [node name="DJ Booth" parent="." unique_id=577911889 instance=ExtResource("7_s3ugl")]
@@ -109,8 +112,11 @@ hframes = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DJ" unique_id=712301660]
 libraries/ = SubResource("AnimationLibrary_axcwr")
 
-[node name="Boogie Woogie" type="CharacterBody2D" parent="." unique_id=1333711715]
+[node name="Boogie Woogie" type="CharacterBody2D" parent="." unique_id=637826013]
+visible = false
 position = Vector2(855, 588)
+script = ExtResource("12_gyjyx")
+metadata/_custom_type_script = "uid://ch6j615lu5h3v"
 
 [node name="Sprite2D" type="Sprite2D" parent="Boogie Woogie" unique_id=1123267039]
 texture = ExtResource("12_ve77s")
@@ -120,3 +126,7 @@ vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boogie Woogie" unique_id=1859000826]
 libraries/ = SubResource("AnimationLibrary_axcwr")
+
+[node name="BoogieWoogieController" type="Node" parent="Boogie Woogie" unique_id=432693334]
+script = ExtResource("14_sto6n")
+metadata/_custom_type_script = "uid://bxpyxpx8reyyn"

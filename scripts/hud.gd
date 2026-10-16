@@ -2,6 +2,7 @@ extends CanvasLayer
 
 const gameMinutes : int = 900
 var gameTime : int = 0
+signal on_game_time_changed(current_hours: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,4 +26,5 @@ func _on_game_timer_timeout() -> void:
 		if hour > 4 :
 			hour -= 12
 	var timeString = "%d:%02d %s" % [8 + hour, minutes, meridiem]
+	on_game_time_changed.emit(hour)
 	$TopBar/Clock.text = timeString
