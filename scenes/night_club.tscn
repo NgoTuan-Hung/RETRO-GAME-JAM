@@ -9,6 +9,47 @@
 [ext_resource type="Script" uid="uid://ddd5qttbt7snl" path="res://scripts/manager/game_manager.gd" id="8_p2vvp"]
 [ext_resource type="PackedScene" uid="uid://b3vge44k7xybo" path="res://scenes/HUD.tscn" id="9_irnpy"]
 [ext_resource type="Script" uid="uid://qgw7bgvl7j81" path="res://scripts/pathfinding/pathfinding_manager.gd" id="9_manager"]
+[ext_resource type="Texture2D" uid="uid://by1ko8o4b10s8" path="res://art/characters/bartender.png" id="10_ky6jx"]
+[ext_resource type="Texture2D" uid="uid://djlfyxwcn2e56" path="res://art/characters/dj.png" id="11_uawus"]
+[ext_resource type="Texture2D" uid="uid://hx4wsnbufpho" path="res://art/characters/boogie_woogie.png" id="12_ve77s"]
+
+[sub_resource type="Animation" id="Animation_uawus"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ve77s"]
+resource_name = "dance"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_axcwr"]
+_data = {
+&"RESET": SubResource("Animation_uawus"),
+&"dance": SubResource("Animation_ve77s")
+}
 
 [node name="NightClub" type="Node2D" unique_id=108550898]
 y_sort_enabled = true
@@ -49,3 +90,33 @@ metadata/_custom_type_script = "uid://ddd5qttbt7snl"
 position = Vector2(752, 320)
 
 [node name="Hud" parent="." unique_id=1331255990 instance=ExtResource("9_irnpy")]
+
+[node name="Bartender" type="CharacterBody2D" parent="." unique_id=59097742]
+position = Vector2(440, 442)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bartender" unique_id=1633740831]
+texture = ExtResource("10_ky6jx")
+offset = Vector2(0, -15)
+
+[node name="DJ" type="CharacterBody2D" parent="." unique_id=1359370560]
+position = Vector2(788, 313)
+
+[node name="Sprite2D" type="Sprite2D" parent="DJ" unique_id=1424387951]
+texture = ExtResource("11_uawus")
+offset = Vector2(0, -15)
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DJ" unique_id=712301660]
+libraries/ = SubResource("AnimationLibrary_axcwr")
+
+[node name="Boogie Woogie" type="CharacterBody2D" parent="." unique_id=1333711715]
+position = Vector2(855, 588)
+
+[node name="Sprite2D" type="Sprite2D" parent="Boogie Woogie" unique_id=1123267039]
+texture = ExtResource("12_ve77s")
+offset = Vector2(0, -24)
+hframes = 4
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Boogie Woogie" unique_id=1859000826]
+libraries/ = SubResource("AnimationLibrary_axcwr")
