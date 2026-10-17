@@ -73,3 +73,5 @@ position = Vector2(813, 356)
 
 [node name="NPC5" parent="." unique_id=368203562 instance=ExtResource("8_irnpy")]
 position = Vector2(732, 395)
+
+[connection signal="on_game_time_changed" from="Hud" to="Boogie Woogie" method="_on_hud_on_game_time_changed"]

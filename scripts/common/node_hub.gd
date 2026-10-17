@@ -19,3 +19,7 @@ var playback: AnimationNodeStateMachinePlayback:
 func _ready() -> void:
 	if anim_tree and playback == null:
 		playback = anim_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+
+
+func _on_hud_on_game_time_changed(current_hours: int) -> void:
+	print("Tick!")
