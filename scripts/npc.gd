@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+## The [NPCSpriteSet] defining this NPC's appearance.
+##
+## Drag a Spriteset from [code]res://resources/NPCSpriteSets[/code] into the
+## Spriteset property in the Inspector to give this NPC a specific skin.
+## Or leave it blank to allow the scence to select a random skin on _ready().
 @export var spriteset: NPCSpriteSet
 
 const SPEED = 300.0

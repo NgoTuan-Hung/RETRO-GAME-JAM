@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://p8qhmo6entdx"]
+
+[ext_resource type="Texture2D" uid="uid://by1ko8o4b10s8" path="res://art/characters/bartender.png" id="1_6awep"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 8.0
+
+[node name="Bartender" type="CharacterBody2D" unique_id=253101363]
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=148999431]
+texture = ExtResource("1_6awep")
+offset = Vector2(0, -15)
+
+[node name="Footprint" type="CollisionShape2D" parent="." unique_id=1087389886]
+shape = SubResource("CircleShape2D_g4v7s")

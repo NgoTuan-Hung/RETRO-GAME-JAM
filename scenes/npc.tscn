@@ -81,6 +81,7 @@ radius = 5.0
 [node name="NPC1" type="CharacterBody2D" unique_id=1391010846]
 collision_layer = 9
 script = ExtResource("1_abqhh")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=277158856]
 position = Vector2(0, -15)
