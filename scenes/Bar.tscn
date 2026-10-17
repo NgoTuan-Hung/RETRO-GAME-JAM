@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cqad4q36q2u5q"]
+
+[ext_resource type="Texture2D" uid="uid://d8es4hcygag3" path="res://art/objects/bar_counter.png" id="1_yt2bf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(64, 4)
+
+[node name="Bar" type="StaticBody2D" unique_id=212838228]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1386516428]
+texture = ExtResource("1_yt2bf")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1710555677]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_g4v7s")

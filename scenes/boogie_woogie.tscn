@@ -33,7 +33,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_e1d8e"]
 resource_name = "appear"
-length = 3.7500000000000004
+length = 3.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

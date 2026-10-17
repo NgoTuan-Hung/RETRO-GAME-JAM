@@ -47,9 +47,6 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("1_qelut")
 metadata/_edit_group_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1021021371]
-polygon = PackedVector2Array(-13, -4, -16, 0, 16, 0, 13, -4)
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1099779361]
 texture = ExtResource("1_20sv7")
 offset = Vector2(0, -8)
@@ -65,3 +62,6 @@ volume_db = 10.0
 autoplay = true
 max_distance = 600.0
 attenuation = 2.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1021021371]
+polygon = PackedVector2Array(-13, -4, -16, 0, 16, 0, 13, -4)
