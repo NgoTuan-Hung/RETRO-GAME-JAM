@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cofa812t87v75" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dvlspc7sph7lv" path="res://art/characters/player.png" id="2_qhqgy"]
-[ext_resource type="Texture2D" uid="uid://ivf2xasbtvqr" path="res://icon.svg" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bg2gfca1jqap2" path="res://Unity Assets/Plugins/FMOD/images/AddIcon.png" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://dalcll37hhqd4" path="res://art/ui/drink.png" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://dqi66mejlmj2t" path="res://art/ui/spray.png" id="4_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://c3uypqfoao2uq" path="res://art/ui/aim.png" id="5_fjrip"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.033333335
@@ -132,10 +134,69 @@ joystick_mode = 1
 joystick_size = 72.0
 visibility_mode = 1
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=551494673]
-position = Vector2(463, 145)
+[node name="Drink" type="Control" parent="CanvasLayer" unique_id=1577988403]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -8.0
+offset_right = 15.0
+offset_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/Drink" unique_id=551494673]
+position = Vector2(-46.999996, 0)
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("3_tuyoq")
+action = "drink"
+visibility_mode = 1
+
+[node name="Spray" type="Control" parent="CanvasLayer" unique_id=1505413367]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = 54.0
+offset_right = -25.0
+offset_bottom = 106.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/Spray" unique_id=788831499]
+position = Vector2(0.99999803, -4)
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("4_tuyoq")
+action = "spray"
+visibility_mode = 1
+
+[node name="Aim" type="Control" parent="CanvasLayer" unique_id=1216560168]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = 19.0
+offset_right = -83.0
+offset_bottom = 71.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/Aim" unique_id=706707431]
+position = Vector2(-1.3333263, 1.3333334)
 scale = Vector2(0.25, 0.25)
-texture_normal = ExtResource("3_dqkch")
+texture_normal = ExtResource("5_fjrip")
+action = "aim"
 visibility_mode = 1
 
 [node name="Crosshair" type="Sprite2D" parent="." unique_id=1117556158]
