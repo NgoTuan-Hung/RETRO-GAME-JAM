@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://2ny7bvksahx1" path="res://scenes/dj.tscn" id="11_axcwr"]
 [ext_resource type="PackedScene" uid="uid://cm51lqi1frfb" path="res://scenes/boogie_woogie.tscn" id="12_gyjyx"]
 [ext_resource type="PackedScene" uid="uid://dfgr4d475up1k" path="res://scenes/boiler.tscn" id="13_axcwr"]
+[ext_resource type="PackedScene" uid="uid://cqad4q36q2u5q" path="res://scenes/bar.tscn" id="13_gyjyx"]
 
 [node name="NightClub" type="Node2D" unique_id=108550898]
 y_sort_enabled = true
@@ -29,7 +30,7 @@ tile_set = ExtResource("1_xxoyl")
 use_kinematic_bodies = true
 
 [node name="Player" parent="." unique_id=185241265 instance=ExtResource("2_41w1w")]
-position = Vector2(640, 352)
+position = Vector2(640, 360)
 
 [node name="PathfindingGridDebugger" type="Node2D" parent="." unique_id=778899001]
 visible = false
@@ -66,6 +67,9 @@ position = Vector2(752, 320)
 
 [node name="Boiler" parent="Fixtures and Furnishings" unique_id=209904696 instance=ExtResource("13_axcwr")]
 position = Vector2(512, 492)
+
+[node name="Bar" parent="Fixtures and Furnishings" unique_id=212838228 instance=ExtResource("13_gyjyx")]
+position = Vector2(432, 440)
 
 [node name="Dancers" type="Node2D" parent="." unique_id=586539468]
 y_sort_enabled = true
