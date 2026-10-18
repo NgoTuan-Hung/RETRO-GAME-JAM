@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://2ny7bvksahx1"]
 
 [ext_resource type="Texture2D" uid="uid://djlfyxwcn2e56" path="res://art/characters/dj.png" id="1_jdsn2"]
+[ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="1_r6ukl"]
 
 [sub_resource type="Animation" id="Animation_uawus"]
 length = 0.5
@@ -47,6 +48,11 @@ radius = 8.0
 [node name="DJ" type="CharacterBody2D" unique_id=1208091697]
 collision_layer = 9
 metadata/_edit_group_ = true
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1520266250]
+modulate = Color(1, 1, 1, 0.3529412)
+y_sort_enabled = true
+texture = ExtResource("1_r6ukl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=342199606]
 texture = ExtResource("1_jdsn2")

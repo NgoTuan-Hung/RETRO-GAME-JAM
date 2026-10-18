@@ -1,11 +1,13 @@
 [gd_resource type="TileSet" format=3 uid="uid://b6e4028ippvls"]
 
 [ext_resource type="Texture2D" uid="uid://kbxgmxpqchcw" path="res://art/tiles/wood.png" id="1_csefw"]
-[ext_resource type="Texture2D" uid="uid://dirxm54sosgld" path="res://art/tiles/wood_left_edge.png" id="2_pr8kl"]
-[ext_resource type="Texture2D" uid="uid://b7etfongurm57" path="res://art/tiles/wood_right_edge.png" id="3_3bfaq"]
+[ext_resource type="Texture2D" uid="uid://rb3ugv3xtc6w" path="res://art/tiles/wood_right_shadow.png" id="5_5u5jb"]
 [ext_resource type="Texture2D" uid="uid://b1itl7rawq2kf" path="res://art/tiles/brick_top.png" id="5_bv1df"]
+[ext_resource type="Texture2D" uid="uid://cr3tf8mewif23" path="res://art/tiles/wood_corners_shadow.png" id="5_y0f1h"]
 [ext_resource type="Texture2D" uid="uid://b77lmcqlpoqwx" path="res://art/tiles/brick_left_side.png" id="6_bq0pj"]
+[ext_resource type="Texture2D" uid="uid://cs00smbcixlnr" path="res://art/tiles/wood_left_shadow.png" id="6_vniqe"]
 [ext_resource type="Texture2D" uid="uid://cveymal1i05h4" path="res://art/tiles/brick_right_side.png" id="7_n7twn"]
+[ext_resource type="Texture2D" uid="uid://dvstu16t0hrd2" path="res://art/tiles/wood_bottom_shadow.png" id="8_420tl"]
 [ext_resource type="Texture2D" uid="uid://b8yyxfgnl1irn" path="res://art/tiles/brick_wall_left.png" id="10_420tl"]
 [ext_resource type="Texture2D" uid="uid://bj7tf28tjme84" path="res://art/tiles/brick_wall_middle.png" id="11_fq64n"]
 [ext_resource type="Texture2D" uid="uid://c35ja2epy5fqo" path="res://art/tiles/brick_wall_pillar_left.png" id="11_y4tnp"]
@@ -17,9 +19,15 @@
 [ext_resource type="Texture2D" uid="uid://cuc4p87s4gwa" path="res://art/tiles/concrete.png" id="15_bv1df"]
 [ext_resource type="Texture2D" uid="uid://86h4li7odpqm" path="res://art/tiles/brick_cracked_1.png" id="16_qydsx"]
 [ext_resource type="Texture2D" uid="uid://cig2es7bptqry" path="res://art/tiles/brick_cracked_2.png" id="17_74q8u"]
+[ext_resource type="Texture2D" uid="uid://ek400vrb4efw" path="res://art/tiles/concrete_right_shadow.png" id="18_ah0tn"]
 [ext_resource type="Texture2D" uid="uid://d3ngrctjvmqqw" path="res://art/tiles/brick_wall_pillar_left_topped.png" id="18_vijsh"]
+[ext_resource type="Texture2D" uid="uid://cocyewx5larq0" path="res://art/tiles/concrete_top_left_shadow.png" id="19_57a3k"]
 [ext_resource type="Texture2D" uid="uid://5j8urmv8mth1" path="res://art/tiles/brick_wall_pillar_right_topped.png" id="19_bq0pj"]
 [ext_resource type="Texture2D" uid="uid://d8es4hcygag3" path="res://art/objects/bar_counter.png" id="20_bq0pj"]
+[ext_resource type="Texture2D" uid="uid://ikcog1y6gj8e" path="res://art/tiles/concrete_left_shadow.png" id="20_kcrwt"]
+[ext_resource type="Texture2D" uid="uid://dg0dv4lxsnbad" path="res://art/tiles/concrete_top_shadow.png" id="21_wj78j"]
+[ext_resource type="Texture2D" uid="uid://nqw64pt6k1gv" path="res://art/tiles/concrete_top_right_shadow.png" id="22_vslx1"]
+[ext_resource type="Texture2D" uid="uid://beqrkcvaeker6" path="res://art/tiles/wood_top_shadow.png" id="23_pwsvd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ih6ni"]
 texture = ExtResource("1_csefw")
@@ -27,13 +35,24 @@ texture = ExtResource("1_csefw")
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ces1j"]
-texture = ExtResource("2_pr8kl")
-0:0/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5u5jb"]
 texture = ExtResource("5_bv1df")
 0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kcrwt"]
+texture = ExtResource("5_5u5jb")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wj78j"]
+texture = ExtResource("6_vniqe")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ah0tn"]
+texture = ExtResource("5_y0f1h")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b80ny"]
 texture = ExtResource("6_bq0pj")
@@ -47,8 +66,8 @@ texture = ExtResource("7_n7twn")
 texture = ExtResource("5_bv1df")
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g82xi"]
-texture = ExtResource("3_3bfaq")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_57a3k"]
+texture = ExtResource("8_420tl")
 0:0/0 = 0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qydsx"]
@@ -72,6 +91,10 @@ texture = ExtResource("11_fq64n")
 0:0/0/texture_origin = Vector2i(0, 8)
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_74q8u")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 4, 8, 4, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jeld8"]
+texture = ExtResource("15_bv1df")
+0:0/0 = 0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vijsh"]
 polygon = PackedVector2Array(-8, 4, 8, 4, 8, 8, -8, 8)
@@ -127,12 +150,25 @@ texture = ExtResource("14_qydsx")
 0:0/0/texture_origin = Vector2i(0, 8)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 4, 8, 4, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iiq26"]
-texture = ExtResource("15_bv1df")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4s1d6"]
+texture = ExtResource("18_ah0tn")
 0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wl20g"]
+texture = ExtResource("19_57a3k")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_envxr"]
+texture = ExtResource("20_kcrwt")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_80k80"]
+texture = ExtResource("21_wj78j")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_os47h"]
+texture = ExtResource("22_vslx1")
+0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y0f1h"]
 texture = ExtResource("16_qydsx")
@@ -162,6 +198,10 @@ texture = ExtResource("20_bq0pj")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 4, 32, 4, 32, 8, -32, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vslx1"]
+texture = ExtResource("23_pwsvd")
+0:0/0 = 0
+
 [resource]
 tile_layout = 2
 occlusion_layer_0/light_mask = 1
@@ -172,8 +212,6 @@ terrain_set_0/terrain_0/color = Color(0.1623725, 0.57510555, 0.7155425, 1)
 terrain_set_0/terrain_1/name = "Walls"
 terrain_set_0/terrain_1/color = Color(0.97238, 0.5328895, 0.82233953, 1)
 sources/12 = SubResource("TileSetAtlasSource_5u5jb")
-sources/2 = SubResource("TileSetAtlasSource_g82xi")
-sources/1 = SubResource("TileSetAtlasSource_ces1j")
 sources/0 = SubResource("TileSetAtlasSource_ih6ni")
 sources/16 = SubResource("TileSetAtlasSource_b80ny")
 sources/17 = SubResource("TileSetAtlasSource_06y4s")
@@ -186,9 +224,19 @@ sources/25 = SubResource("TileSetAtlasSource_74q8u")
 sources/26 = SubResource("TileSetAtlasSource_vijsh")
 sources/27 = SubResource("TileSetAtlasSource_bq0pj")
 sources/28 = SubResource("TileSetAtlasSource_n7twn")
-sources/3 = SubResource("TileSetAtlasSource_iiq26")
 sources/4 = SubResource("TileSetAtlasSource_y0f1h")
 sources/5 = SubResource("TileSetAtlasSource_420tl")
 sources/6 = SubResource("TileSetAtlasSource_fq64n")
 sources/7 = SubResource("TileSetAtlasSource_vniqe")
 sources/8 = SubResource("TileSetAtlasSource_pwsvd")
+sources/9 = SubResource("TileSetAtlasSource_vslx1")
+sources/13 = SubResource("TileSetAtlasSource_kcrwt")
+sources/14 = SubResource("TileSetAtlasSource_wj78j")
+sources/15 = SubResource("TileSetAtlasSource_ah0tn")
+sources/19 = SubResource("TileSetAtlasSource_57a3k")
+sources/22 = SubResource("TileSetAtlasSource_jeld8")
+sources/29 = SubResource("TileSetAtlasSource_4s1d6")
+sources/30 = SubResource("TileSetAtlasSource_wl20g")
+sources/31 = SubResource("TileSetAtlasSource_envxr")
+sources/32 = SubResource("TileSetAtlasSource_80k80")
+sources/33 = SubResource("TileSetAtlasSource_os47h")

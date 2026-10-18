@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cm51lqi1frfb"]
 
 [ext_resource type="Script" uid="uid://ch6j615lu5h3v" path="res://scripts/common/node_hub.gd" id="1_e1d8e"]
+[ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="2_dk01f"]
 [ext_resource type="Texture2D" uid="uid://hx4wsnbufpho" path="res://art/characters/boogie_woogie.png" id="2_vdhvc"]
 [ext_resource type="Script" uid="uid://bxpyxpx8reyyn" path="res://scripts/npc/boogie_woogie_controller.gd" id="3_dk01f"]
 
@@ -135,6 +136,11 @@ light_mask = 9
 script = ExtResource("1_e1d8e")
 metadata/_custom_type_script = "uid://ch6j615lu5h3v"
 metadata/_edit_group_ = true
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1530515056]
+modulate = Color(1, 1, 1, 0.3529412)
+scale = Vector2(1.5, 0.75)
+texture = ExtResource("2_dk01f")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1819961307]
 texture = ExtResource("2_vdhvc")

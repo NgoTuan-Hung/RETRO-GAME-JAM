@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dalcll37hhqd4" path="res://art/ui/drink.png" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dqi66mejlmj2t" path="res://art/ui/spray.png" id="4_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://c3uypqfoao2uq" path="res://art/ui/aim.png" id="5_fjrip"]
+[ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="7_fjrip"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.033333335
@@ -108,6 +109,11 @@ script = ExtResource("1_g2els")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=194688728]
 libraries/ = SubResource("AnimationLibrary_tuyoq")
 
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1924839095]
+modulate = Color(1, 1, 1, 0.3529412)
+scale = Vector2(1.25, 0.75)
+texture = ExtResource("7_fjrip")
+
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=473188047]
 texture = ExtResource("2_qhqgy")
 offset = Vector2(0, -15)
@@ -136,66 +142,69 @@ visibility_mode = 1
 
 [node name="Drink" type="Control" parent="CanvasLayer" unique_id=1577988403]
 layout_mode = 3
-anchors_preset = 6
+anchors_preset = 3
 anchor_left = 1.0
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -37.0
-offset_top = -8.0
-offset_right = 15.0
-offset_bottom = 44.0
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -52.0
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
 scale = Vector2(0.75, 0.75)
+mouse_filter = 2
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/Drink" unique_id=551494673]
-position = Vector2(-46.999996, 0)
-scale = Vector2(0.2, 0.2)
+texture_filter = 2
+position = Vector2(-38.666664, -42.66667)
+scale = Vector2(0.175, 0.175)
 texture_normal = ExtResource("3_tuyoq")
 action = "drink"
 visibility_mode = 1
 
 [node name="Spray" type="Control" parent="CanvasLayer" unique_id=1505413367]
 layout_mode = 3
-anchors_preset = 6
+anchors_preset = 3
 anchor_left = 1.0
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -77.0
-offset_top = 54.0
-offset_right = -25.0
-offset_bottom = 106.0
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -52.0
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
+mouse_filter = 2
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/Spray" unique_id=788831499]
-position = Vector2(0.99999803, -4)
-scale = Vector2(0.2, 0.2)
+texture_filter = 2
+position = Vector2(11.999998, -1)
+scale = Vector2(0.15, 0.15)
 texture_normal = ExtResource("4_tuyoq")
 action = "spray"
 visibility_mode = 1
 
 [node name="Aim" type="Control" parent="CanvasLayer" unique_id=1216560168]
 layout_mode = 3
-anchors_preset = 6
+anchors_preset = 3
 anchor_left = 1.0
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -135.0
-offset_top = 19.0
-offset_right = -83.0
-offset_bottom = 71.0
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -87.0
+offset_right = -54.0
+offset_bottom = -35.0
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
 scale = Vector2(0.75, 0.75)
+mouse_filter = 1
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/Aim" unique_id=706707431]
-position = Vector2(-1.3333263, 1.3333334)
-scale = Vector2(0.25, 0.25)
+texture_filter = 2
+position = Vector2(18.666672, 58.66667)
+scale = Vector2(0.175, 0.175)
 texture_normal = ExtResource("5_fjrip")
+passby_press = true
 action = "aim"
 visibility_mode = 1
 
@@ -209,4 +218,5 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TalkArea" unique_id=1245259267]
+visible = false
 shape = SubResource("CircleShape2D_g4v7s")

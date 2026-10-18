@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dfgr4d475up1k"]
 
 [ext_resource type="Texture2D" uid="uid://davojism8p0g0" path="res://art/objects/boiler.png" id="1_4fi60"]
+[ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="2_dmjqd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 12)
@@ -8,6 +9,11 @@ size = Vector2(32, 12)
 [node name="Boiler" type="StaticBody2D" unique_id=209904696]
 collision_layer = 9
 metadata/_edit_group_ = true
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=940541129]
+modulate = Color(1, 1, 1, 0.3529412)
+scale = Vector2(2.25, 1)
+texture = ExtResource("2_dmjqd")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=775173228]
 texture = ExtResource("1_4fi60")

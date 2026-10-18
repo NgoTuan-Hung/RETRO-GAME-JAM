@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b76iyq6wqbl76" path="res://art/objects/dj_booth.png" id="1_20sv7"]
 [ext_resource type="Script" uid="uid://c12rvr2fn13fi" path="res://scripts/dj_booth.gd" id="1_qelut"]
+[ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="2_mar51"]
 [ext_resource type="AudioStream" uid="uid://cd10sas5kohh4" path="res://sound/Finished Tracks/Necrisco Mix.wav" id="3_mar51"]
 
 [sub_resource type="Animation" id="Animation_20sv7"]
@@ -46,6 +47,12 @@ _data = {
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_qelut")
 metadata/_edit_group_ = true
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=696027204]
+modulate = Color(1, 1, 1, 0.3529412)
+y_sort_enabled = true
+scale = Vector2(2, 1)
+texture = ExtResource("2_mar51")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1099779361]
 texture = ExtResource("1_20sv7")

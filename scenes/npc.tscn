@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://damuwp2y0g6ke"]
 
 [ext_resource type="Script" uid="uid://c0csepnhkt3p1" path="res://scripts/npc.gd" id="1_abqhh"]
+[ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="2_7n8xq"]
 [ext_resource type="Texture2D" uid="uid://ct8e64erptoha" path="res://art/characters/npc1.png" id="2_rv78h"]
 
 [sub_resource type="Animation" id="Animation_gw7q4"]
@@ -82,6 +83,11 @@ radius = 5.0
 collision_layer = 9
 script = ExtResource("1_abqhh")
 metadata/_edit_group_ = true
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1342205383]
+modulate = Color(1, 1, 1, 0.3529412)
+scale = Vector2(1.25, 0.75)
+texture = ExtResource("2_7n8xq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=277158856]
 position = Vector2(0, -15)
