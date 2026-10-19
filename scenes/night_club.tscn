@@ -57,6 +57,7 @@ position = Vector2(440, 456)
 position = Vector2(752, 305)
 
 [node name="Boogie Woogie" parent="." unique_id=1200191038 instance=ExtResource("12_gyjyx")]
+visible = false
 position = Vector2(855, 588)
 
 [node name="Fixtures and Furnishings" type="Node2D" parent="." unique_id=911789443]
