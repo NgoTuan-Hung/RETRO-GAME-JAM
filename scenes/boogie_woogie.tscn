@@ -138,7 +138,7 @@ metadata/_custom_type_script = "uid://ch6j615lu5h3v"
 metadata/_edit_group_ = true
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1530515056]
-modulate = Color(1, 1, 1, 0.3529412)
+modulate = Color(1, 1, 1, 0.29411766)
 scale = Vector2(1.5, 0.75)
 texture = ExtResource("2_dk01f")
 

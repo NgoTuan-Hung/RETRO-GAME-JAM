@@ -85,7 +85,7 @@ script = ExtResource("1_abqhh")
 metadata/_edit_group_ = true
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1342205383]
-modulate = Color(1, 1, 1, 0.3529412)
+modulate = Color(1, 1, 1, 0.27450982)
 scale = Vector2(1.25, 0.75)
 texture = ExtResource("2_7n8xq")
 

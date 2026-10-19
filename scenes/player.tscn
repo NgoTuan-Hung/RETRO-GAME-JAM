@@ -110,7 +110,7 @@ script = ExtResource("1_g2els")
 libraries/ = SubResource("AnimationLibrary_tuyoq")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1924839095]
-modulate = Color(1, 1, 1, 0.3529412)
+modulate = Color(1, 1, 1, 0.23529412)
 scale = Vector2(1.25, 0.75)
 texture = ExtResource("7_fjrip")
 

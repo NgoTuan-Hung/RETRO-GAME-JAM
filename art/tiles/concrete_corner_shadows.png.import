@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nqw64pt6k1gv"
-path="res://.godot/imported/concrete_top_right_shadow.png-71ff9efbd2a85e30875a4429be8b352f.ctex"
+uid="uid://b520m5rwbf61"
+path="res://.godot/imported/concrete_corner_shadows.png-735e320f637507c1789005e604098b44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/concrete_top_right_shadow.png"
-dest_files=["res://.godot/imported/concrete_top_right_shadow.png-71ff9efbd2a85e30875a4429be8b352f.ctex"]
+source_file="res://art/tiles/concrete_corner_shadows.png"
+dest_files=["res://.godot/imported/concrete_corner_shadows.png-735e320f637507c1789005e604098b44.ctex"]
 
 [params]
 
