@@ -1,5 +1,5 @@
-class_name BoogieWoogieController
-extends Node
+class_name BoogieWoogie
+extends CharacterBody2D
 
 const hourly_addition = 1
 const disco_bonus = 3
@@ -13,7 +13,6 @@ var base_generation_rate: int = 1
 var generation_rate: int = base_generation_rate
 var can_disappear: bool = false
 
-@onready var node_hub: NodeHub = get_parent() as NodeHub
 var wait_time: float
 var disappear_tween: Tween
 
@@ -38,7 +37,7 @@ func _on_time_changed(current_hours: int) -> void:
 
 func handle_appearance() -> void:
 	if filled == capacity:
-		node_hub.visible = true
+		visible = true
 		# TODO: turn off collision
 		# Manifestation cost starts on the next tick, not right after appearing
 		wait_one_minute_before_disappearance()
@@ -56,7 +55,7 @@ func handle_disappearance() -> void:
 	filled -= manifestation_cost
 
 	if filled < 1:
-		node_hub.visible = false
+		visible = false
 		can_disappear = false
 
 func sync_energy_ui() -> void:
