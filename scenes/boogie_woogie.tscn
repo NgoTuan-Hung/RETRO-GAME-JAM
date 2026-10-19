@@ -129,6 +129,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 5.0
 
 [node name="Boogie Woogie" type="CharacterBody2D" unique_id=522989833]
 light_mask = 9
@@ -152,3 +153,4 @@ autoplay = &"dance"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=785803040]
 shape = SubResource("CircleShape2D_g4v7s")
+disabled = true

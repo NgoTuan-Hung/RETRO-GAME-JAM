@@ -52,6 +52,12 @@ signal path_calculated(success: bool, message: String)
 		show_path = value
 		queue_redraw()
 
+## Border width for grid cells (-1.0 = adaptive 1-pixel screen hairline, crisp at any cell size or zoom level).
+@export var cell_border_width: float = -1.0:
+	set(value):
+		cell_border_width = value
+		queue_redraw()
+
 @export var auto_update_path: bool = true
 
 @export_group("Physics Scan")
@@ -248,58 +254,93 @@ func _draw() -> void:
 	var reg_size := grid_data.region_size
 	var c_size := grid_data.cell_size
 	var origin := grid_data.world_offset
+	var min_cell := minf(c_size.x, c_size.y)
 
-	# Outer boundary box
 	var total_size := Vector2(reg_size) * c_size
 	var top_left := origin + Vector2(reg_pos) * c_size
-	draw_rect(Rect2(top_left, total_size), Color(0.2, 0.8, 1.0, 0.9), false, 2.0)
 
-	# Walkable wireframes
+	# Adaptive line thickness:
+	# Default (-1.0) renders a 1-pixel screen hairline at any zoom level.
+	# This ensures cells never get drowned out at 1x1 while staying crisp at 16x16.
+	var wire_stroke := cell_border_width
+
+	# Walkable wireframes / Grid lines
+	# Drawn with draw_multiline for optimal performance (0 ms) and no edge overlapping.
 	if show_walkable_wireframes:
-		var wire_color := Color(1.0, 1.0, 1.0, 0.1)
-		for x in range(reg_pos.x, reg_pos.x + reg_size.x):
-			for y in range(reg_pos.y, reg_pos.y + reg_size.y):
-				var cell := Vector2i(x, y)
-				if not grid_data.is_blocked(cell):
-					var cell_top_left := origin + Vector2(cell) * c_size
-					draw_rect(Rect2(cell_top_left, c_size), wire_color, false, 1.0)
+		var wire_color := Color(1.0, 1.0, 1.0, 0.15)
+		var grid_lines := PackedVector2Array()
+		# Vertical lines
+		for x in range(reg_size.x + 1):
+			var px := top_left.x + x * c_size.x
+			grid_lines.append(Vector2(px, top_left.y))
+			grid_lines.append(Vector2(px, top_left.y + total_size.y))
+		# Horizontal lines
+		for y in range(reg_size.y + 1):
+			var py := top_left.y + y * c_size.y
+			grid_lines.append(Vector2(top_left.x, py))
+			grid_lines.append(Vector2(top_left.x + total_size.x, py))
+		draw_multiline(grid_lines, wire_color, wire_stroke)
 
 	# Obstacles
 	if show_obstacles:
 		var obs_fill := Color(0.9, 0.15, 0.15, 0.65)
 		var obs_wire := Color(1.0, 0.2, 0.2, 0.9)
+		var use_compact := min_cell <= 4.0
+		var obs_stroke := wire_stroke if wire_stroke >= 0.0 else (-1.0 if use_compact else 1.0)
+
 		for cell in grid_data.blocked_cells:
-			var cell_rect := Rect2(origin + Vector2(cell) * c_size + c_size * 0.05, c_size * 0.9)
-			draw_rect(cell_rect, obs_fill, true)
-			draw_rect(cell_rect, obs_wire, false, 1.0)
+			var cell_pos := origin + Vector2(cell) * c_size
+			if use_compact:
+				var cell_rect := Rect2(cell_pos, c_size)
+				draw_rect(cell_rect, obs_fill, true)
+				if min_cell >= 2.0 or wire_stroke >= 0.0:
+					draw_rect(cell_rect, obs_wire, false, obs_stroke)
+			else:
+				var inset := c_size * 0.05
+				var cell_rect := Rect2(cell_pos + inset, c_size - inset * 2.0)
+				draw_rect(cell_rect, obs_fill, true)
+				draw_rect(cell_rect, obs_wire, false, obs_stroke)
+
+	# Outer boundary box
+	var boundary_width := -1.0 if min_cell <= 4.0 else 2.0
+	draw_rect(Rect2(top_left, total_size), Color(0.2, 0.8, 1.0, 0.9), false, boundary_width)
 
 	# Start Point
 	if grid_data.is_in_bounds(start_point):
 		var start_rect := Rect2(origin + Vector2(start_point) * c_size, c_size)
 		draw_rect(start_rect, Color(0.1, 0.95, 0.2, 0.85), true)
-		draw_rect(start_rect, Color.WHITE, false, 2.0)
+		var start_stroke := -1.0 if min_cell <= 4.0 else 2.0
+		draw_rect(start_rect, Color.WHITE, false, start_stroke)
 
 	# Goal Point
 	if grid_data.is_in_bounds(goal_point):
 		var goal_rect := Rect2(origin + Vector2(goal_point) * c_size, c_size)
 		draw_rect(goal_rect, Color(0.1, 0.6, 1.0, 0.85), true)
-		draw_rect(goal_rect, Color.WHITE, false, 2.0)
+		var goal_stroke := -1.0 if min_cell <= 4.0 else 2.0
+		draw_rect(goal_rect, Color.WHITE, false, goal_stroke)
 
 	# Path
 	if show_path and not current_path.is_empty():
 		var path_color := Color(1.0, 0.85, 0.0, 1.0)
 		var pt_color := Color(1.0, 0.95, 0.2, 1.0)
+		var path_line_w := -1.0 if min_cell <= 2.0 else clampf(min_cell * 0.15, 1.0, 2.5)
 
 		# Draw line segments
 		for i in range(current_path.size() - 1):
 			var p1 := origin + current_path[i]
 			var p2 := origin + current_path[i + 1]
-			draw_line(p1, p2, path_color, 2.5)
+			draw_line(p1, p2, path_color, path_line_w)
 
 		# Draw node points
-		for pt in current_path:
-			var center := origin + pt
-			draw_circle(center, minf(c_size.x, c_size.y) * 0.25, pt_color)
+		if min_cell >= 4.0:
+			var pt_radius := clampf(min_cell * 0.25, 1.0, 4.0)
+			for pt in current_path:
+				var center := origin + pt
+				draw_circle(center, pt_radius, pt_color)
+		elif min_cell > 1.0:
+			for pt in current_path:
+				var center := origin + pt
+				draw_circle(center, min_cell * 0.25, pt_color)
 
 	# Box Dragging Preview in Editor
 	if is_box_dragging:
@@ -313,8 +354,10 @@ func _draw() -> void:
 		var fill := Color(1.0, 0.2, 0.2, 0.4) if box_mode_add else Color(1.0, 0.9, 0.2, 0.4)
 		var outline := Color(1.0, 0.3, 0.3, 0.95) if box_mode_add else Color(1.0, 0.95, 0.3, 0.95)
 		draw_rect(Rect2(box_pos, box_size), fill, true)
-		draw_rect(Rect2(box_pos, box_size), outline, false, 2.0)
+		var box_stroke := -1.0 if min_cell <= 4.0 else 2.0
+		draw_rect(Rect2(box_pos, box_size), outline, false, box_stroke)
 	elif grid_data.is_in_bounds(hovered_cell):
 		# Hovered cell indicator
 		var h_rect := Rect2(origin + Vector2(hovered_cell) * c_size, c_size)
-		draw_rect(h_rect, Color(1.0, 1.0, 1.0, 0.5), false, 1.5)
+		var h_stroke := -1.0 if min_cell <= 4.0 else 1.5
+		draw_rect(h_rect, Color(1.0, 1.0, 1.0, 0.5), false, h_stroke)

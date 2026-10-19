@@ -20,3 +20,8 @@ Packages/
 
 # Local migration notes & old code
 old-scripts/
+
+# Godot source engine folders
+/doc/
+/modules/
+/platform/
