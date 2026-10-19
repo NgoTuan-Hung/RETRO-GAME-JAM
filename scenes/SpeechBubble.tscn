@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://d0ug4i1n6m6uf"]
+
+[ext_resource type="Script" uid="uid://d5a4bdq71t2e" path="res://scenes/speech_bubble.gd" id="1_2gmo7"]
+
+[node name="SpeechBubble" type="Node2D" unique_id=1427983324]
+script = ExtResource("1_2gmo7")
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=280737502]
+one_shot = true
+
+[node name="Anchor" type="Node2D" parent="." unique_id=779138081]
+
+[node name="ColorRect" type="ColorRect" parent="Anchor" unique_id=890560564]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 1, 0.24705882)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Anchor" unique_id=511926982]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
+bbcode_enabled = true
+text = "Hello World"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
