@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://ch6j615lu5h3v" path="res://scripts/common/node_hub.gd" id="1_veat2"]
 [ext_resource type="Texture2D" uid="uid://d18usok8m0e6i" path="res://art/characters/ghost.png" id="2_5mfnq"]
 [ext_resource type="Script" uid="uid://3d4fnxtfw8t8" path="res://scripts/common/movement.gd" id="3_lv6vd"]
-[ext_resource type="Script" uid="uid://cy8yqc1djbkl1" path="res://scripts/npc/ghost_controller.gd" id="4_sv5gc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ghost"]
 radius = 5.0
@@ -99,16 +98,16 @@ states/walk/node = SubResource("AnimationNodeAnimation_uawus")
 states/walk/position = Vector2(393, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_irnpy")]
 
-[node name="Ghost" type="CharacterBody2D" unique_id=250339475]
-y_sort_enabled = true
+[node name="Ghost" type="CharacterBody2D" unique_id=1931025887]
 script = ExtResource("1_veat2")
+metadata/_custom_type_script = "uid://codaddmuuvoad"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=17550733]
 texture = ExtResource("2_5mfnq")
 offset = Vector2(0, -16)
 hframes = 2
 vframes = 3
-frame = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1404214691]
 shape = SubResource("CircleShape2D_ghost")
@@ -122,7 +121,3 @@ script = ExtResource("3_lv6vd")
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1005401377]
 tree_root = SubResource("AnimationNodeStateMachine_irnpy")
 anim_player = NodePath("../AnimationPlayer")
-
-[node name="GhostController" type="Node" parent="." unique_id=1655696606 node_paths=PackedStringArray("target")]
-script = ExtResource("4_sv5gc")
-target = NodePath("")

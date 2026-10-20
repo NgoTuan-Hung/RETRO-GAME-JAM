@@ -1,5 +1,5 @@
-class_name GhostController
-extends Node
+class_name Ghost
+extends CharacterBody2D
 
 ## Controls Ghost NPC behavior, pathfinding to Target using PathfindingManager.
 ## Communicates with movement and physics components through its parent NodeHub.

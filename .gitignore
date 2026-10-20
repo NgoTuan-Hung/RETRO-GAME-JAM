@@ -2,6 +2,10 @@
 .godot/
 /android/
 
+# Office / LibreOffice lock files
+.~lock.*#
+~$*
+
 # VS Code / IDE
 .vscode/
 

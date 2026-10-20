@@ -129,7 +129,9 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
-radius = 5.0
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnb1k"]
 
 [node name="Boogie Woogie" type="CharacterBody2D" unique_id=522989833]
 light_mask = 9
@@ -154,3 +156,9 @@ autoplay = &"dance"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=785803040]
 shape = SubResource("CircleShape2D_g4v7s")
 disabled = true
+
+[node name="PushArea" type="Area2D" parent="." unique_id=105611985]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PushArea" unique_id=878227195]
+shape = SubResource("CircleShape2D_cnb1k")

@@ -25,6 +25,9 @@ var direction_this_physics_tick: Vector2
 var current_path_index: int = 0
 @export var min_distance_for_index_change: float = 0.5
 
+@onready var push_area: Area2D = $PushArea
+@export var push_force: float = 60
+
 func _ready() -> void:
 	# call the on time changed function every tick in the hud
 	GameManager.instance.hud.on_game_time_changed.connect(_on_time_changed)
@@ -43,6 +46,8 @@ func _physics_process(delta: float) -> void:
 	if can_move:
 		calculate_direction_this_physics_tick()
 		handle_movement(direction_this_physics_tick)
+
+	push_overlapping_characters(delta)
 	
 func _on_time_changed(current_hours: int) -> void:
 	generation_rate = base_generation_rate + current_hours * hourly_addition
@@ -130,4 +135,14 @@ func calculate_direction_this_physics_tick() -> void:
 		direction_this_physics_tick = Vector2.ZERO
 	else:
 		direction_this_physics_tick = path_to_dj[current_path_index] - global_position
+#endregion
+
+#region Shoving Logic
+## Push characters that go near the boogie woogie
+func push_overlapping_characters(delta: float) -> void:
+	for body in push_area.get_overlapping_bodies():
+		if body.is_in_group("pushable") and body != self: # Only characters in the pushable group can be shoved
+			var push_dir = (body.global_position - global_position).normalized()
+			
+			body.move_and_collide(push_dir * push_force * delta)
 #endregion

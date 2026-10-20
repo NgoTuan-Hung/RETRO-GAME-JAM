@@ -27,6 +27,10 @@ window/stretch/scale=3.0
 
 enabled=PackedStringArray("res://addons/pathfinding_tool/plugin.cfg")
 
+[global_group]
+
+pushable="Entities which are pushable by the Boogie Woogie"
+
 [gui]
 
 theme/custom_font="uid://dt6g5i215k8ut"
