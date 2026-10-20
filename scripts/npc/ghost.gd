@@ -6,34 +6,30 @@ extends CharacterBody2D
 
 @export var target: Node2D
 @export var pathfinding_interval: float = 0.5
-@export var next_checkpoint_min_dist: float = 8.0
-
-## Reference to parent NodeHub
-@onready var hub: NodeHub = get_parent() as NodeHub
+@export var min_distance_for_index_change: float = 1.5
 
 var path_to_target: PackedVector2Array = PackedVector2Array()
 var current_checkpoint_index: int = 0
 var time_since_last_pathfinding: float = 0.0
 var wait_for_next_pathfinding: bool = false
-var this_frame_direction: Vector2 = Vector2.ZERO
+var direction_this_physics_tick: Vector2 = Vector2.ZERO
+
+@onready var animation: AnimationPlayer = $AnimationPlayer
+@export var speed: float = 40
 
 func _ready() -> void:
-	if target == null:
-		target = GameManager.instance.player
+	target = GameManager.instance.get_a_random_target_for_ghost()
 
 	# Stagger initial path search
 	time_since_last_pathfinding = randf_range(0.0, pathfinding_interval)
 
 func _process(delta: float) -> void:
-	if target == null or hub == null:
-		return
-
 	# Path following logic
 	if not path_to_target.is_empty() and not wait_for_next_pathfinding:
 		select_next_checkpoint_on_path()
 		decide_where_to_go_next()
 	else:
-		this_frame_direction = Vector2.ZERO
+		direction_this_physics_tick = Vector2.ZERO
 
 	# Periodic path recalculation
 	time_since_last_pathfinding += delta
@@ -41,28 +37,41 @@ func _process(delta: float) -> void:
 		time_since_last_pathfinding = 0.0
 		update_path()
 
-	# Apply direction to Movement component via Hub
-	if hub.movement:
-		hub.movement.set_movement_value(this_frame_direction)
+	handle_movement(direction_this_physics_tick)
+
+func handle_movement(direction: Vector2) -> void:
+	if direction:
+		velocity = direction.normalized() * speed
+		animation.play("walk")
+	else:
+		velocity = Vector2.ZERO
+		# if not moving — play the idle animation
+		animation.play("idle")
+
+	# if moving left — flip the sprite horizontally
+	if velocity.x:
+		$Sprite2D.flip_h = velocity.x < 0
+
+	move_and_slide()
 
 func decide_where_to_go_next() -> void:
 	if current_checkpoint_index >= path_to_target.size():
-		this_frame_direction = Vector2.ZERO
+		direction_this_physics_tick = Vector2.ZERO
 		return
 
 	var next_position := path_to_target[current_checkpoint_index]
-	var diff := next_position - hub.global_position
+	var diff := next_position - global_position
 	if diff.length_squared() > 1.0:
-		this_frame_direction = diff.normalized()
+		direction_this_physics_tick = diff.normalized()
 	else:
-		this_frame_direction = Vector2.ZERO
+		direction_this_physics_tick = Vector2.ZERO
 
 func select_next_checkpoint_on_path() -> void:
 	if current_checkpoint_index >= path_to_target.size():
 		return
 
-	var dist := hub.global_position.distance_to(path_to_target[current_checkpoint_index])
-	if dist < next_checkpoint_min_dist:
+	var dist := global_position.distance_to(path_to_target[current_checkpoint_index])
+	if dist < min_distance_for_index_change:
 		if current_checkpoint_index < path_to_target.size() - 1:
 			current_checkpoint_index += 1
 
@@ -73,7 +82,7 @@ func decide_waiting_or_not() -> void:
 		wait_for_next_pathfinding = false
 
 func update_path() -> void:
-	if target == null or hub == null:
+	if target == null:
 		return
 
 	# Query PathfindingManager singleton or autoload
@@ -83,7 +92,7 @@ func update_path() -> void:
 		manager = get_tree().root.find_child("PathfindingManager", true, false) as PathfindingManager
 
 	if manager:
-		path_to_target = manager.find_path(hub.global_position, target.global_position)
+		path_to_target = manager.find_path(global_position, target.global_position)
 	else:
 		push_warning("[GhostController] PathfindingManager not found in scene tree!")
 		path_to_target.clear()

@@ -24,3 +24,4 @@ func _ready() -> void:
 		spriteset= load(spritesetfolder + npcspritesetnames.pick_random())
 	$Sprite2D.texture = spriteset.normal_sheet
 	$AnimationPlayer.play("dance")
+	GameManager.instance.register_as_ghost_target(self) # Register as a ghost target so it can be picked by the ghost

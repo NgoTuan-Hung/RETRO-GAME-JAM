@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://behujelmie5hu"]
 
-[ext_resource type="Script" uid="uid://ch6j615lu5h3v" path="res://scripts/common/node_hub.gd" id="1_veat2"]
+[ext_resource type="Script" uid="uid://codaddmuuvoad" path="res://scripts/npc/ghost.gd" id="1_l5lq6"]
 [ext_resource type="Texture2D" uid="uid://d18usok8m0e6i" path="res://art/characters/ghost.png" id="2_5mfnq"]
-[ext_resource type="Script" uid="uid://3d4fnxtfw8t8" path="res://scripts/common/movement.gd" id="3_lv6vd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ghost"]
-radius = 5.0
+radius = 1.0
 
 [sub_resource type="Animation" id="Animation_irnpy"]
 length = 0.001
@@ -76,30 +75,8 @@ _data = {
 &"walk": SubResource("Animation_ve77s")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_irnpy"]
-animation = &"dancing"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ky6jx"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uawus"]
-animation = &"walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_irnpy"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_irnpy"]
-states/Start/position = Vector2(236, 106)
-states/dancing/node = SubResource("AnimationNodeAnimation_irnpy")
-states/dancing/position = Vector2(388, 160)
-states/idle/node = SubResource("AnimationNodeAnimation_ky6jx")
-states/idle/position = Vector2(388, 45)
-states/walk/node = SubResource("AnimationNodeAnimation_uawus")
-states/walk/position = Vector2(393, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_irnpy")]
-
-[node name="Ghost" type="CharacterBody2D" unique_id=1931025887]
-script = ExtResource("1_veat2")
+[node name="Ghost" type="CharacterBody2D" unique_id=1450866531]
+script = ExtResource("1_l5lq6")
 metadata/_custom_type_script = "uid://codaddmuuvoad"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=17550733]
@@ -114,10 +91,4 @@ shape = SubResource("CircleShape2D_ghost")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1274549001]
 libraries/ = SubResource("AnimationLibrary_uawus")
-
-[node name="Movement" type="Node" parent="." unique_id=354259105]
-script = ExtResource("3_lv6vd")
-
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1005401377]
-tree_root = SubResource("AnimationNodeStateMachine_irnpy")
-anim_player = NodePath("../AnimationPlayer")
+autoplay = &"idle"

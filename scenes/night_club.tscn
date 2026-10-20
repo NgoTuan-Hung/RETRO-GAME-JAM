@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://u6cakprawxd4" path="res://scripts/pathfinding/pathfinding_grid_debugger.gd" id="6_debugger"]
 [ext_resource type="Resource" uid="uid://bamf7bg00oh7h" path="res://data/pathfinding_grid_data.tres" id="7_grid_data"]
 [ext_resource type="PackedScene" uid="uid://ukojxq88ombu" path="res://scenes/dj_booth.tscn" id="7_s3ugl"]
+[ext_resource type="PackedScene" uid="uid://behujelmie5hu" path="res://scenes/ghost.tscn" id="7_sto6n"]
 [ext_resource type="PackedScene" uid="uid://damuwp2y0g6ke" path="res://scenes/npc.tscn" id="8_irnpy"]
 [ext_resource type="Script" uid="uid://ddd5qttbt7snl" path="res://scripts/manager/game_manager.gd" id="8_p2vvp"]
 [ext_resource type="PackedScene" uid="uid://b3vge44k7xybo" path="res://scenes/HUD.tscn" id="9_irnpy"]
@@ -50,6 +51,7 @@ script = ExtResource("8_p2vvp")
 player = NodePath("../Player")
 hud = NodePath("../Hud")
 giving_track_point = NodePath("../GivingTrackPoint")
+ghost_scene = ExtResource("7_sto6n")
 metadata/_custom_type_script = "uid://ddd5qttbt7snl"
 
 [node name="Hud" parent="." unique_id=1331255990 instance=ExtResource("9_irnpy")]
@@ -65,7 +67,6 @@ visible = false
 position = Vector2(855, 588)
 speed = 50.0
 min_distance_for_index_change = 1.5
-push_force = 60.0
 
 [node name="Fixtures and Furnishings" type="Node2D" parent="." unique_id=911789443]
 y_sort_enabled = true

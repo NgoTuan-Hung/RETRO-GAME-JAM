@@ -8,7 +8,10 @@ const manifestation_cost = 5
 const summoning_cost = 5
 
 var capacity: int = 25
-var filled: int = 0
+var filled: int = 0:
+	set(value):
+		filled = clamp(value, 0, capacity) # Clamp between 0 and capacity
+		sync_energy_ui()
 var base_generation_rate: int = 1
 var generation_rate: int = base_generation_rate
 var can_disappear: bool = false
@@ -28,6 +31,8 @@ var current_path_index: int = 0
 @onready var push_area: Area2D = $PushArea
 @export var push_force: float = 60
 
+var summon_chance_per_frame: float = 0.01 # Has some chance of spawning a ghost every frame
+
 func _ready() -> void:
 	# call the on time changed function every tick in the hud
 	GameManager.instance.hud.on_game_time_changed.connect(_on_time_changed)
@@ -41,6 +46,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if can_move:
 		select_next_checkpoint_on_path()
+		try_summon_ghost()
 
 func _physics_process(delta: float) -> void:
 	if can_move:
@@ -53,13 +59,11 @@ func _on_time_changed(current_hours: int) -> void:
 	generation_rate = base_generation_rate + current_hours * hourly_addition
 
 	if filled < capacity:
-		filled = clamp(filled + generation_rate, 0, capacity) # Clamp to capacity
+		filled += generation_rate
 
 	if (can_disappear):
 		handle_disappearance()
 	handle_appearance()
-	
-	sync_energy_ui()
 
 func handle_appearance() -> void:
 	if filled == capacity:
@@ -83,7 +87,7 @@ func wait_one_minute_before_disappearance() -> void:
 
 
 func handle_disappearance() -> void:
-	filled = clamp(filled - manifestation_cost, 0, capacity) # Cannot go below 0
+	filled -= manifestation_cost
 
 	if filled < 1:
 		can_move = false
@@ -146,3 +150,11 @@ func push_overlapping_characters(delta: float) -> void:
 			
 			body.move_and_collide(push_dir * push_force * delta)
 #endregion
+
+func try_summon_ghost() -> void:
+	if filled >= summoning_cost:
+		if randf() < summon_chance_per_frame:
+			var ghost = GameManager.instance.ghost_scene.instantiate()
+			ghost.global_position = global_position + Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized() * 2
+			get_tree().current_scene.add_child(ghost)
+			filled -= summoning_cost
