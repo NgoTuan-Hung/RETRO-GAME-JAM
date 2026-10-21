@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d0ug4i1n6m6uf"]
+
+[ext_resource type="Script" uid="uid://d5a4bdq71t2e" path="res://scripts/speech_bubble.gd" id="1_a8ruc"]
+[ext_resource type="Texture2D" uid="uid://jbhwmq0j3wru" path="res://art/ui/speech_bubble.png" id="2_e1pub"]
+[ext_resource type="FontFile" uid="uid://dqua7llg2n12s" path="res://fonts/cairopixel/Cairopixel.otf" id="3_a8jen"]
+
+[node name="SpeechBubble" type="MarginContainer" unique_id=930794729]
+custom_maximum_size = Vector2(150, -1)
+offset_right = 58.0
+offset_bottom = 32.0
+script = ExtResource("1_a8ruc")
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=280737502]
+one_shot = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=696022259]
+modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 2
+texture = ExtResource("2_e1pub")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=739208388]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=944376878]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_a8jen")
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

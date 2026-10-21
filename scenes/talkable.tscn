@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://gxnapxeayqe"]
+
+[ext_resource type="Script" uid="uid://c1qmt12pbhdwe" path="res://scripts/talkable.gd" id="1_yxfox"]
+[ext_resource type="Texture2D" uid="uid://jbhwmq0j3wru" path="res://art/ui/speech_bubble.png" id="2_yxfox"]
+[ext_resource type="FontFile" uid="uid://dqua7llg2n12s" path="res://fonts/cairopixel/Cairopixel.otf" id="3_1qc16"]
+
+[node name="Talkable" type="Node2D" unique_id=1944153148]
+script = ExtResource("1_yxfox")
+metadata/_edit_group_ = true
+
+[node name="SpeechBubble" type="MarginContainer" parent="." unique_id=930794729]
+custom_maximum_size = Vector2(150, -1)
+offset_right = 65.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Timer" type="Timer" parent="SpeechBubble" unique_id=280737502]
+one_shot = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SpeechBubble" unique_id=696022259]
+modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 2
+texture = ExtResource("2_yxfox")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="SpeechBubble" unique_id=739208388]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="SpeechBubble/MarginContainer" unique_id=944376878]
+custom_maximum_size = Vector2(256, -1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1qc16")
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3
+
+[connection signal="timeout" from="SpeechBubble/Timer" to="." method="_on_timer_timeout"]

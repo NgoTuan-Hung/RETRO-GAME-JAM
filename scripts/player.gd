@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $PlayerSprite
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
+signal say_text(text : String)
+
 var is_aiming: bool = false
 
 enum State { NORMAL, DRINK, SPRAY }
@@ -11,6 +13,9 @@ var current_state: State = State.NORMAL
 var current_speed: float
 var normal_speed: float = 100
 
+func _ready() -> void :
+	pass
+	
 func _physics_process(delta: float) -> void:
 	handle_drink_input()
 	handle_aim_and_spray_input()
@@ -81,3 +86,9 @@ func spray_holy_water() -> void:
 	await get_tree().create_timer(0.5).timeout
 
 	current_state = State.NORMAL
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Talk"):
+		for body in $TalkArea.get_overlapping_bodies():
+			print(body.name)
+		$Talkable.say_text("Hello World!")
