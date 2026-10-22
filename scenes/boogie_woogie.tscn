@@ -9,7 +9,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Visual/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,7 +21,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:modulate:a")
+tracks/1/path = NodePath("Visual/Sprite2D:modulate:a")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -37,7 +37,7 @@ length = 3.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate:a")
+tracks/0/path = NodePath("Visual/Sprite2D:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -49,7 +49,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/path = NodePath("Visual/Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -65,7 +65,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Visual/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -81,7 +81,7 @@ length = 1.875
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate:a")
+tracks/0/path = NodePath("Visual/Sprite2D:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -93,7 +93,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/path = NodePath("Visual/Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -103,13 +103,28 @@ tracks/1/keys = {
 "values": [7, 8, 7, 8, 7, 8, 7, 8]
 }
 
+[sub_resource type="Animation" id="Animation_ssy4u"]
+resource_name = "summon"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 0]
+}
+
 [sub_resource type="Animation" id="Animation_dk01f"]
 resource_name = "walk"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Visual/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -125,6 +140,7 @@ _data = {
 &"appear": SubResource("Animation_e1d8e"),
 &"dance": SubResource("Animation_ve77s"),
 &"fade": SubResource("Animation_vdhvc"),
+&"summon": SubResource("Animation_ssy4u"),
 &"walk": SubResource("Animation_dk01f")
 }
 
@@ -132,6 +148,20 @@ _data = {
 radius = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cnb1k"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e1d8e"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_e1d8e"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ah0tn"]
+gradient = SubResource("Gradient_e1d8e")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [node name="Boogie Woogie" type="CharacterBody2D" unique_id=522989833]
 light_mask = 9
@@ -142,12 +172,6 @@ metadata/_edit_group_ = true
 modulate = Color(1, 1, 1, 0.29411766)
 scale = Vector2(1.5, 0.75)
 texture = ExtResource("2_dk01f")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1819961307]
-texture = ExtResource("2_vdhvc")
-offset = Vector2(0, -24)
-hframes = 4
-vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1058746715]
 libraries/ = SubResource("AnimationLibrary_axcwr")
@@ -162,3 +186,18 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PushArea" unique_id=878227195]
 shape = SubResource("CircleShape2D_cnb1k")
+
+[node name="Visual" type="Node2D" parent="." unique_id=1315659674]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual" unique_id=1819961307]
+texture = ExtResource("2_vdhvc")
+offset = Vector2(0, -24)
+hframes = 4
+vframes = 3
+
+[node name="SummonAura" type="Sprite2D" parent="Visual" unique_id=79704776]
+visible = false
+modulate = Color(0, 1, 1, 1)
+material = SubResource("CanvasItemMaterial_e1d8e")
+position = Vector2(11, -34)
+texture = SubResource("GradientTexture2D_ah0tn")

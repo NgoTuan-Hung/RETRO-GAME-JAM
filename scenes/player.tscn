@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cofa812t87v75" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dvlspc7sph7lv" path="res://art/characters/player.png" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://gxnapxeayqe" path="res://scenes/talkable.tscn" id="2_smehm"]
 [ext_resource type="Texture2D" uid="uid://bg2gfca1jqap2" path="res://Unity Assets/Plugins/FMOD/images/AddIcon.png" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dalcll37hhqd4" path="res://art/ui/drink.png" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dqi66mejlmj2t" path="res://art/ui/spray.png" id="4_tuyoq"]
@@ -105,6 +106,10 @@ radius = 80.0
 [node name="Player" type="CharacterBody2D" unique_id=185241265]
 y_sort_enabled = true
 script = ExtResource("1_g2els")
+metadata/_edit_group_ = true
+
+[node name="Talkable" parent="." unique_id=1944153148 instance=ExtResource("2_smehm")]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=194688728]
 libraries/ = SubResource("AnimationLibrary_tuyoq")

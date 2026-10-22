@@ -12,10 +12,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("Talk"):
-		print("Hello!")
-
 func _on_game_timer_timeout() -> void:
 	gameTime += 1
 	var hour = floor(gameTime/60)
