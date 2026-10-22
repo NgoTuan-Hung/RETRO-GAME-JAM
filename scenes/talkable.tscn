@@ -20,7 +20,7 @@ theme_override_constants/margin_bottom = 4
 [node name="Timer" type="Timer" parent="SpeechBubble" unique_id=280737502]
 one_shot = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="SpeechBubble" unique_id=696022259]
+[node name="Bubble" type="NinePatchRect" parent="SpeechBubble" unique_id=696022259]
 modulate = Color(1, 1, 1, 0.5019608)
 layout_mode = 2
 texture = ExtResource("2_yxfox")
@@ -36,7 +36,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Label" type="Label" parent="SpeechBubble/MarginContainer" unique_id=944376878]
+[node name="Speech" type="Label" parent="SpeechBubble/MarginContainer" unique_id=944376878]
 custom_maximum_size = Vector2(256, -1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1qc16")
