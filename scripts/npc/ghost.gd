@@ -2,7 +2,6 @@ class_name Ghost
 extends CharacterBody2D
 
 ## Controls Ghost NPC behavior, pathfinding to Target using PathfindingManager.
-## Communicates with movement and physics components through its parent NodeHub.
 
 @export var target: Node2D
 @export var pathfinding_interval: float = 0.5
@@ -17,6 +16,9 @@ var direction_this_physics_tick: Vector2 = Vector2.ZERO
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @export var speed: float = 40
 
+@onready var sprite: Sprite2D = $Sprite2D
+var appeared: bool = false
+
 func _ready() -> void:
 	target = GameManager.instance.get_a_random_target_for_ghost()
 
@@ -24,6 +26,9 @@ func _ready() -> void:
 	time_since_last_pathfinding = randf_range(0.0, pathfinding_interval)
 
 func _process(delta: float) -> void:
+	if !appeared:
+		return
+
 	# Path following logic
 	if not path_to_target.is_empty() and not wait_for_next_pathfinding:
 		select_next_checkpoint_on_path()
@@ -36,6 +41,10 @@ func _process(delta: float) -> void:
 	if time_since_last_pathfinding >= pathfinding_interval:
 		time_since_last_pathfinding = 0.0
 		update_path()
+
+func _physics_process(delta: float) -> void:
+	if !appeared:
+		return
 
 	handle_movement(direction_this_physics_tick)
 
@@ -99,3 +108,15 @@ func update_path() -> void:
 
 	decide_waiting_or_not()
 	current_checkpoint_index = 0
+
+## Play the appearance effect using shader
+func appear() -> void:
+	# Need to make change on the copy of the material
+	# Else editing one would affect others
+	sprite.material = sprite.material.duplicate()
+	var mat = sprite.material as ShaderMaterial
+	mat.set_shader_parameter("progress", 0.0)
+	var tween = create_tween()
+	tween.tween_property(mat, "shader_parameter/progress", 1.0, 1.0) # play the effect for 1s
+	await tween.finished
+	appeared = true
