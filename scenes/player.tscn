@@ -112,6 +112,7 @@ metadata/_edit_vertical_guides_ = [1159.0]
 
 [node name="Talkable" parent="." unique_id=1944153148 instance=ExtResource("2_smehm")]
 visible = false
+z_index = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=194688728]
 libraries/ = SubResource("AnimationLibrary_tuyoq")

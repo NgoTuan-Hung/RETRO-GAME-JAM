@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $PlayerSprite
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
-signal say_text(text : String)
+signal talked(talkable: Talkable)
 
 var is_aiming: bool = false
 
@@ -89,6 +89,10 @@ func spray_holy_water() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Talk"):
-		for body in $TalkArea.get_overlapping_bodies():
-			print(body.name)
-		$Talkable.say_text("Hello World!")
+		talk()
+
+func talk() -> void :
+	for body in $TalkArea.get_overlapping_bodies():
+		print(body.name)
+	$Talkable.say_text("Hello World! I just wanted to take a few seconds to say how happy I am to be here playing this game.")
+	talked.emit()
