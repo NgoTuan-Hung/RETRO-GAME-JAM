@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dalcll37hhqd4" path="res://art/ui/drink.png" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dqi66mejlmj2t" path="res://art/ui/spray.png" id="4_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://c3uypqfoao2uq" path="res://art/ui/aim.png" id="5_fjrip"]
+[ext_resource type="Texture2D" uid="uid://ivf2xasbtvqr" path="res://icon.svg" id="6_ur7pv"]
 [ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="7_fjrip"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
@@ -105,8 +106,9 @@ radius = 80.0
 
 [node name="Player" type="CharacterBody2D" unique_id=185241265]
 y_sort_enabled = true
+position = Vector2(21, -30)
 script = ExtResource("1_g2els")
-metadata/_edit_group_ = true
+metadata/_edit_vertical_guides_ = [1159.0]
 
 [node name="Talkable" parent="." unique_id=1944153148 instance=ExtResource("2_smehm")]
 visible = false
@@ -165,6 +167,28 @@ position = Vector2(-38.666664, -42.66667)
 scale = Vector2(0.175, 0.175)
 texture_normal = ExtResource("3_tuyoq")
 action = "drink"
+visibility_mode = 1
+
+[node name="talk" type="Control" parent="CanvasLayer" unique_id=1711302095]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -52.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+mouse_filter = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/talk" unique_id=1938384034]
+texture_filter = 2
+position = Vector2(32, -78.66667)
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("6_ur7pv")
+action = "Talk"
 visibility_mode = 1
 
 [node name="Spray" type="Control" parent="CanvasLayer" unique_id=1505413367]
