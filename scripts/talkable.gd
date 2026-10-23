@@ -14,7 +14,7 @@ const punctuation_time := 0.2				# static typed float
 
 # How long does the speech bubble stay visible once displayed
 const linger_time_per_character := 0.05		# static typed float
-const minimum_linger_time := 3.0			# static typed float
+const minimum_linger_time := 2.0			# static typed float
 var linger_time := 0.0						# static typed float
 var lingering := false
 
@@ -33,27 +33,46 @@ func _process(delta: float) -> void:
 	pass
 
 func say_text(text : String) -> void :
+	$SpeechBubble/MarginContainer/Speech.text = ""
 	speech = text
+	linger_time = 0.0
 	lingering = false
 	visible = true
-	display_next_letter()
+	_display_next_letter()
 
-func display_next_letter() -> void :
-	$SpeechBubble/MarginContainer/Speech.text += get_next_letter()
-	position.x = -($SpeechBubble.size.x / 2)
-	position.y = -($SpeechBubble.size.y + offset)
-	$SpeechBubble/Timer.start(0.1)
+func _display_next_letter() -> void :
+	var next_letter = _get_next_letter()
+	var pause_time := 0.0
+	$SpeechBubble/MarginContainer/Speech.text += next_letter
+	_adjust_size()
 
-func get_next_letter() -> String :
+	match next_letter:
+		" ", "\n" :
+			pause_time = space_time
+
+		".", ",", "!", "?", ";", ":", "-":
+			pause_time = punctuation_time
+
+		_:
+			pause_time = letter_time
+
+	linger_time += linger_time_per_character
+	$SpeechBubble/Timer.start(pause_time)
+
+func _get_next_letter() -> String :
 	var n := len($SpeechBubble/MarginContainer/Speech.text)
 	return speech[n]
+
+func _adjust_size() -> void :
+	position.x = -($SpeechBubble.size.x / 2)
+	position.y = -($SpeechBubble.size.y + offset)
 
 func _on_timer_timeout() -> void:
 	if lingering:
 		visible = false
 		return
 	if len($SpeechBubble/MarginContainer/Speech.text) < len(speech):
-		display_next_letter()
+		_display_next_letter()
 	else:
 		lingering = true
-		$SpeechBubble/Timer.start(2)
+		$SpeechBubble/Timer.start(max(linger_time, minimum_linger_time))

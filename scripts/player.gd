@@ -94,5 +94,5 @@ func _unhandled_input(event: InputEvent) -> void:
 func talk() -> void :
 	for body in $TalkArea.get_overlapping_bodies():
 		print(body.name)
-	$Talkable.say_text("Hello World!")
+	$Talkable.say_text("Hello World! I just wanted to take a few seconds to say how happy I am to be here playing this game.")
 	talked.emit()
