@@ -20,3 +20,14 @@ func register_as_ghost_target(target: Node2D) -> void:
 ## Self-explanatory
 func get_a_random_target_for_ghost() -> Node2D:
 	return ghost_targets.pick_random()
+
+func get_next_target_for_ghost() -> Node2D:
+	for target in ghost_targets:
+		if target is Player:
+			continue
+		elif target is NPC:
+			if target.current_state == NPC.State.POSSESSED || target.current_state == NPC.State.BEING_POSSESSED:
+				continue
+			else: return target
+
+	return null

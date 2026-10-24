@@ -37,6 +37,9 @@ var summon_chance_per_frame: float = 0.01 # Has some chance of spawning a ghost 
 enum State { NORMAL, APPEAR, DISAPPEAR, SUMMON, HIBERNATE }
 var current_state: State = State.HIBERNATE # Invisible at the start
 
+var initial_position
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+
 func _ready() -> void:
 	# call the on time changed function every tick in the hud
 	GameManager.instance.hud.on_game_time_changed.connect(_on_time_changed)
@@ -45,6 +48,7 @@ func _ready() -> void:
 	
 	sync_energy_ui()
 	construct_path_to_dj()
+	initial_position = global_position
 
 func _process(delta: float) -> void:
 	if current_state == State.NORMAL:
@@ -55,8 +59,7 @@ func _physics_process(delta: float) -> void:
 	if current_state == State.NORMAL:
 		calculate_direction_this_physics_tick()
 		handle_movement(direction_this_physics_tick)
-
-	push_overlapping_characters(delta)
+		push_overlapping_characters(delta)
 	
 func _on_time_changed(current_hours: int) -> void:
 	generation_rate = base_generation_rate + current_hours * hourly_addition
@@ -75,7 +78,8 @@ func handle_appearance() -> void:
 		else: return
 		visible = true
 		animation.play("appear")
-		# TODO: turn off collision
+		global_position = initial_position # Reset his position to the basement upon appearing
+		collision_shape.disabled = false
 		# Manifestation cost starts on the next tick, not right after appearing
 		wait_one_minute_before_disappearance()
 
@@ -102,6 +106,7 @@ func handle_disappearance() -> void:
 		else: return
 		can_disappear = false
 		animation.play("fade")
+		collision_shape.disabled = true
 		await animation.animation_finished # Wait for the animation to finish
 		visible = false
 

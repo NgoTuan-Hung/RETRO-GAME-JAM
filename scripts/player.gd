@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @onready var crosshair: Sprite2D = $Crosshair

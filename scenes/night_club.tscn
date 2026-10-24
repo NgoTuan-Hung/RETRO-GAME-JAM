@@ -101,4 +101,7 @@ position = Vector2(732, 395)
 [node name="GivingTrackPoint" type="Node2D" parent="." unique_id=138867216]
 position = Vector2(789, 309)
 
+[node name="Node2D" type="Node2D" parent="." unique_id=1010396977]
+position = Vector2(742, 396)
+
 [connection signal="on_game_time_changed" from="Hud" to="Boogie Woogie" method="_on_hud_on_game_time_changed"]
