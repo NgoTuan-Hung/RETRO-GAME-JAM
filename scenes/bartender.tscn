@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="1_1nruu"]
 [ext_resource type="Texture2D" uid="uid://by1ko8o4b10s8" path="res://art/characters/bartender.png" id="1_6awep"]
+[ext_resource type="PackedScene" uid="uid://gxnapxeayqe" path="res://scenes/talkable.tscn" id="1_cnd4h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
 radius = 8.0
@@ -9,6 +10,9 @@ radius = 8.0
 [node name="Bartender" type="CharacterBody2D" unique_id=253101363]
 collision_layer = 9
 metadata/_edit_group_ = true
+
+[node name="Talkable" parent="." unique_id=1944153148 instance=ExtResource("1_cnd4h")]
+character_id = "bartender"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=2119468835]
 modulate = Color(1, 1, 1, 0.23529412)

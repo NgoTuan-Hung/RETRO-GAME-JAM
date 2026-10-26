@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://2ny7bvksahx1" path="res://scenes/dj.tscn" id="11_axcwr"]
 [ext_resource type="PackedScene" uid="uid://cm51lqi1frfb" path="res://scenes/boogie_woogie.tscn" id="12_gyjyx"]
 [ext_resource type="PackedScene" uid="uid://dfgr4d475up1k" path="res://scenes/boiler.tscn" id="13_axcwr"]
-[ext_resource type="PackedScene" uid="uid://cqad4q36q2u5q" path="res://scenes/Bar.tscn" id="13_gyjyx"]
+[ext_resource type="PackedScene" uid="uid://cqad4q36q2u5q" path="res://scenes/bar.tscn" id="13_gyjyx"]
 
 [node name="NightClub" type="Node2D" unique_id=108550898]
 y_sort_enabled = true

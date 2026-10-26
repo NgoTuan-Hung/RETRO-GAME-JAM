@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dqua7llg2n12s" path="res://fonts/cairopixel/Cairopixel.otf" id="3_1qc16"]
 
 [node name="Talkable" type="Node2D" unique_id=1944153148]
+visible = false
 script = ExtResource("1_yxfox")
 metadata/_edit_group_ = true
 

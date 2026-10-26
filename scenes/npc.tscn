@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://damuwp2y0g6ke"]
 
 [ext_resource type="Script" uid="uid://c0csepnhkt3p1" path="res://scripts/npc.gd" id="1_abqhh"]
+[ext_resource type="PackedScene" uid="uid://gxnapxeayqe" path="res://scenes/talkable.tscn" id="2_4wlns"]
 [ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="2_7n8xq"]
 [ext_resource type="Texture2D" uid="uid://ct8e64erptoha" path="res://art/characters/npc1.png" id="2_rv78h"]
 
@@ -99,6 +100,9 @@ radius = 5.0
 collision_layer = 9
 script = ExtResource("1_abqhh")
 metadata/_edit_group_ = true
+
+[node name="Talkable" parent="." unique_id=1944153148 instance=ExtResource("2_4wlns")]
+character_id = "dancer"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1342205383]
 modulate = Color(1, 1, 1, 0.27450982)

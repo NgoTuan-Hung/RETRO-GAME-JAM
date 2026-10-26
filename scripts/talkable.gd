@@ -2,6 +2,11 @@ extends Node2D
 class_name Talkable
 
 @export var offset := 32					# display height above character
+@export var character_id : String
+
+
+signal get_Dialogue(speaker : Talkable, listener : Talkable)
+signal used_dialog(dialogue_id : String)
 
 signal speech_bubble_clicked
 signal speech_bubble_complete
@@ -26,7 +31,8 @@ var speech := ""			# static typed String - text to display
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if character_id == "" :
+		character_id = "dancer"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://2ny7bvksahx1"]
 
+[ext_resource type="PackedScene" uid="uid://gxnapxeayqe" path="res://scenes/talkable.tscn" id="1_4hs61"]
 [ext_resource type="Texture2D" uid="uid://djlfyxwcn2e56" path="res://art/characters/dj.png" id="1_jdsn2"]
 [ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="1_r6ukl"]
 
@@ -48,6 +49,9 @@ radius = 8.0
 [node name="DJ" type="CharacterBody2D" unique_id=1208091697]
 collision_layer = 9
 metadata/_edit_group_ = true
+
+[node name="Talkable" parent="." unique_id=1944153148 instance=ExtResource("1_4hs61")]
+character_id = "dj"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1520266250]
 modulate = Color(1, 1, 1, 0.3529412)

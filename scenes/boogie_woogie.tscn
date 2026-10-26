@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhq7uuafi5s30" path="res://scripts/npc/boogie_woogie.gd" id="1_e1d8e"]
 [ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="2_dk01f"]
+[ext_resource type="PackedScene" uid="uid://gxnapxeayqe" path="res://scenes/talkable.tscn" id="2_ssy4u"]
 [ext_resource type="Texture2D" uid="uid://hx4wsnbufpho" path="res://art/characters/boogie_woogie.png" id="2_vdhvc"]
 
 [sub_resource type="Animation" id="Animation_uawus"]
@@ -167,6 +168,9 @@ fill_to = Vector2(0.5, 0)
 light_mask = 9
 script = ExtResource("1_e1d8e")
 metadata/_edit_group_ = true
+
+[node name="Talkable" parent="." unique_id=1944153148 instance=ExtResource("2_ssy4u")]
+character_id = "boogie_woogie"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1530515056]
 modulate = Color(1, 1, 1, 0.29411766)

@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $PlayerSprite
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
+const SIGHT_MASK := 1 << 1
+
 signal talked(talkable: Talkable)
 
 var is_aiming: bool = false
@@ -93,7 +95,29 @@ func _unhandled_input(event: InputEvent) -> void:
 		talk()
 
 func talk() -> void :
+	var closest : Node2D = null
+	var distance : float = INF
 	for body in $TalkArea.get_overlapping_bodies():
-		print(body.name)
-	$Talkable.say_text("Hello World! I just wanted to take a few seconds to say how happy I am to be here playing this game.")
+		if body == self:
+			continue
+		if has_line_of_sight(self, body) :
+			print(body.name)
+			var d := self.global_position.distance_to(body.global_position)
+			if d < distance :
+				closest = body
+				distance = d
+	$Talkable.say_text("Hello World!")
+	if closest :
+		print("closest = " + closest.name + " : distance : " + str(distance))
 	talked.emit()
+
+func has_line_of_sight(from: Node2D, to: Node2D) -> bool :
+	var space_state = get_world_2d().direct_space_state
+	# use global coordinates, not local to node
+	var query = PhysicsRayQueryParameters2D.create(from.global_position, to.global_position)
+	query.collision_mask = SIGHT_MASK
+	query.exclude = [from.get_rid, to.get_rid]
+	var result = space_state.intersect_ray(query)
+	if len(result) == 0 :
+		return true
+	return false
