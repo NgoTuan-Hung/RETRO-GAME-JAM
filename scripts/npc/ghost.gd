@@ -125,11 +125,14 @@ func appear() -> void:
 		current_state = State.NORMAL
 	
 
-## Switch target if the current one is already possessed
+## Switch target if the current one is being possessed by another ghost or is already possessed.
 func update_target() -> void:
 	if target && (target.current_state == NPC.State.POSSESSED || (target.current_state == NPC.State.BEING_POSSESSED && target.possessed_by != self)):
 		target = GameManager.instance.get_next_target_for_ghost()
-	
+
+## Possess the target if in range and not already possessed. If the target is out of range, abort possession.
+## TODO: Handle the case where the target we are trying to possess go out of range.
+## TODO: Handle the case where we are possessing a target and the player spray holy water on us.
 func possess_if_in_range() -> void:
 	var distance_to_target = global_position.distance_to(target.global_position)
 	

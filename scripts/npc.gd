@@ -33,6 +33,10 @@ func _ready() -> void:
 	$AnimationPlayer.play("dance")
 	GameManager.instance.register_as_ghost_target(self) # Register as a ghost target so it can be picked by the ghost
 
+## Starts the possession process for this NPC, making it switch to the "being possessed" state and play the corresponding animation. 
+## The possession lasts for the specified duration, during which the NPC's sprite alternates between its normal and possessed appearances.
+## The speed of the sprite switching accelerates over time, and a shaking effect is applied towards the end of the possession duration.
+## TODO: Handle the case where the player sprays holy water on the ghost while it is possessing this NPC.
 func start_possession(duration: float, possessed_by: Node2D) -> void:
 	if current_state == State.NORMAL:
 		current_state = State.BEING_POSSESSED
@@ -57,9 +61,11 @@ func start_possession(duration: float, possessed_by: Node2D) -> void:
 		var progress: float = clamp(elapsed / duration, 0.0, 1.0)
 
 		# Quad In easing (progress^2) to accelerate towards the end
+		# If you want to see some visualization, check this out: https://easings.net/#easeInQuad
 		var eased_progress: float = progress * progress
 		var current_interval: float = lerp(initial_interval, final_interval, eased_progress)
 
+		# Some shaking effect towards the end of the possession duration
 		if progress > 0.6:
 			var shake_strength: float = lerp(0.0, 2.5, (progress - 0.6) / 0.4)
 			sprite.offset = original_offset + Vector2(
