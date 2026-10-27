@@ -4,7 +4,6 @@ class_name Talkable
 @export var offset := 32					# display height above character
 @export var character_id : String
 
-
 signal get_Dialogue(speaker : Talkable, listener : Talkable)
 signal used_dialog(dialogue_id : String)
 
