@@ -4,8 +4,8 @@ class_name Talkable
 @export var offset := 32					# display height above character
 @export var character_id : String
 
-signal get_Dialogue(speaker : Talkable, listener : Talkable)
-signal used_dialog(dialogue_id : String)
+signal get_dialogue_options(speaker : Talkable, listener : Talkable)
+signal used_dialog_option(dialogue_id : String)
 
 signal speech_bubble_clicked
 signal speech_bubble_complete
@@ -81,3 +81,12 @@ func _on_timer_timeout() -> void:
 	else:
 		lingering = true
 		$SpeechBubble/Timer.start(max(linger_time, minimum_linger_time))
+
+func talk_to(speaker: Talkable, listener: Talkable) -> void :
+	get_dialogue_options.emit(speaker, listener)
+
+func use_dialogue_options(dialogue_options : Dictionary) -> void :
+	pass
+
+func show_dialogue_options(dialogue_options : Dictionary) -> void :
+	pass

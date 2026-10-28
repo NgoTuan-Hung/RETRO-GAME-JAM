@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var crosshair: Sprite2D = $Crosshair
 @onready var sprite: Sprite2D = $PlayerSprite
 @onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var my_talkable : Talkable = $Talkable
 
 const SIGHT_MASK := 1 << 1
 
