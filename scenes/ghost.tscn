@@ -85,6 +85,7 @@ _data = {
 }
 
 [node name="Ghost" type="CharacterBody2D" unique_id=1450866531]
+motion_mode = 1
 script = ExtResource("1_l5lq6")
 metadata/_custom_type_script = "uid://codaddmuuvoad"
 

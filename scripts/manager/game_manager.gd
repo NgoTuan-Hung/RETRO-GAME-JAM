@@ -8,6 +8,7 @@ static var instance: GameManager
 
 @export var ghost_scene: PackedScene
 var ghost_targets: Array[Node2D] = []
+@export var dancer_walkable_area_scene: DancerWalkableArea
 
 func _enter_tree() -> void:
 	instance = self
@@ -26,7 +27,7 @@ func get_next_target_for_ghost() -> Node2D:
 		if target is Player:
 			continue
 		elif target is NPC:
-			if target.current_state == NPC.State.POSSESSED || target.current_state == NPC.State.BEING_POSSESSED:
+			if target.possessed || target.current_state == NPC.State.BEING_POSSESSED:
 				continue
 			else: return target
 

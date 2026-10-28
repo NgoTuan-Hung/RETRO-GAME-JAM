@@ -107,6 +107,7 @@ radius = 80.0
 [node name="Player" type="CharacterBody2D" unique_id=185241265]
 y_sort_enabled = true
 collision_layer = 9
+motion_mode = 1
 script = ExtResource("1_g2els")
 metadata/_edit_vertical_guides_ = [1159.0]
 metadata/_edit_group_ = true

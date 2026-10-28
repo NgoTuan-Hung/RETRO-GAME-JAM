@@ -14,7 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://2ny7bvksahx1" path="res://scenes/dj.tscn" id="11_axcwr"]
 [ext_resource type="PackedScene" uid="uid://cm51lqi1frfb" path="res://scenes/boogie_woogie.tscn" id="12_gyjyx"]
 [ext_resource type="PackedScene" uid="uid://dfgr4d475up1k" path="res://scenes/boiler.tscn" id="13_axcwr"]
-[ext_resource type="PackedScene" uid="uid://cqad4q36q2u5q" path="res://scenes/bar.tscn" id="13_gyjyx"]
+[ext_resource type="PackedScene" uid="uid://cqad4q36q2u5q" path="res://scenes/Bar.tscn" id="13_gyjyx"]
+[ext_resource type="Script" uid="uid://b2f1vqeexvcre" path="res://scripts/dancer_walkable_area.gd" id="16_nwef2"]
 
 [node name="NightClub" type="Node2D" unique_id=108550898]
 y_sort_enabled = true
@@ -46,18 +47,19 @@ show_walkable_wireframes = true
 script = ExtResource("9_manager")
 grid_data = ExtResource("7_grid_data")
 
-[node name="GameManager" type="Node" parent="." unique_id=1904689696 node_paths=PackedStringArray("player", "hud", "giving_track_point")]
+[node name="GameManager" type="Node" parent="." unique_id=1904689696 node_paths=PackedStringArray("player", "hud", "giving_track_point", "dancer_walkable_area_scene")]
 script = ExtResource("8_p2vvp")
 player = NodePath("../Player")
 hud = NodePath("../Hud")
-giving_track_point = NodePath("../GivingTrackPoint")
+giving_track_point = NodePath("../Others/GivingTrackPoint")
 ghost_scene = ExtResource("7_sto6n")
+dancer_walkable_area_scene = NodePath("../Others/DancerWalkableArea")
 metadata/_custom_type_script = "uid://ddd5qttbt7snl"
 
 [node name="Hud" parent="." unique_id=1331255990 instance=ExtResource("9_irnpy")]
 
 [node name="Bartender" parent="." unique_id=253101363 instance=ExtResource("10_ve77s")]
-position = Vector2(440, 456)
+position = Vector2(432, 432)
 
 [node name="DJ" parent="." unique_id=1208091697 instance=ExtResource("11_axcwr")]
 position = Vector2(752, 305)
@@ -98,10 +100,18 @@ position = Vector2(813, 356)
 [node name="NPC5" parent="Dancers" unique_id=368203562 groups=["pushable"] instance=ExtResource("8_irnpy")]
 position = Vector2(732, 395)
 
-[node name="GivingTrackPoint" type="Node2D" parent="." unique_id=138867216]
-position = Vector2(789, 309)
-
-[node name="Node2D" type="Node2D" parent="." unique_id=1010396977]
+[node name="Others" type="Node2D" parent="." unique_id=1010396977]
 position = Vector2(742, 396)
+
+[node name="GivingTrackPoint" type="Node2D" parent="Others" unique_id=138867216]
+position = Vector2(47, -87)
+
+[node name="DancerWalkableArea" type="ReferenceRect" parent="Others" unique_id=1282697630]
+offset_left = -370.0
+offset_top = -104.0
+offset_right = 150.0
+offset_bottom = 76.0
+script = ExtResource("16_nwef2")
+metadata/_custom_type_script = "uid://b2f1vqeexvcre"
 
 [connection signal="on_game_time_changed" from="Hud" to="Boogie Woogie" method="_on_hud_on_game_time_changed"]

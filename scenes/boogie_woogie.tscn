@@ -166,6 +166,7 @@ fill_to = Vector2(0.5, 0)
 
 [node name="Boogie Woogie" type="CharacterBody2D" unique_id=522989833]
 light_mask = 9
+motion_mode = 1
 script = ExtResource("1_e1d8e")
 metadata/_edit_group_ = true
 
