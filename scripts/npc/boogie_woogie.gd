@@ -183,10 +183,9 @@ func try_summon_ghost() -> void:
 		else: return
 
 func place_a_ghost_near_me() -> void:
-	var ghost = GameManager.instance.ghost_scene.instantiate() # get the ghost_scene from game manager and instantiate it
+	var ghost = GameManager.instance.get_a_ghost() 
 	# place the ghost in a random direction 30 unit away from me
 	ghost.global_position = global_position + Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized() * 30
-	get_tree().current_scene.add_child(ghost)
 	ghost.appear()
 
 func show_summon_aura() -> void:

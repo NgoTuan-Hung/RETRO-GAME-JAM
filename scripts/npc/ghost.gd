@@ -18,9 +18,15 @@ var direction_this_physics_tick: Vector2 = Vector2.ZERO
 
 @onready var sprite: Sprite2D = $Sprite2D
 @export var possession_range: float = 10 # The minimum range in which the ghost is allowed to posses dancers
+@export var npc_possession_time: float = 2
 
 enum State { NORMAL, APPEAR, DISAPPEAR, POSSESS }
 var current_state: State = State.APPEAR # Also initial state
+
+var chase_time: float = 0 # The ammount of time since we start chasing after the player if he is not in our possession range
+@export var max_chase_time: float = 10 # The maximum ammount of time we are allowed to chase after the player if he is not in our possession range
+@export var resistance_drained_persec: float = 10 # Resistance drained from the player per second
+var time_since_last_drain: float = 0 # The ammount of time since the last drain ticked
 
 func _ready() -> void:
 	target = GameManager.instance.get_a_random_target_for_ghost()
@@ -38,7 +44,7 @@ func _process(delta: float) -> void:
 		direction_this_physics_tick = Vector2.ZERO
 		return
 
-	possess_if_in_range()
+	possess_if_in_range(delta)
 
 	# Path following logic
 	if not path_to_target.is_empty() and not wait_for_next_pathfinding:
@@ -127,22 +133,64 @@ func appear() -> void:
 
 ## Switch target if the current one is being possessed by another ghost or is already possessed.
 func update_target() -> void:
-	if target && (target.possessed || (target.current_state == NPC.State.BEING_POSSESSED && target.possessed_by != self)):
-		target = GameManager.instance.get_next_target_for_ghost()
+	if target:
+		if target is NPC && (target.possessed || (target.current_state == NPC.State.BEING_POSSESSED && target.possessed_by != self)):
+			target = GameManager.instance.get_next_target_for_ghost()
+		elif target is Player && chase_time > max_chase_time:
+			target = GameManager.instance.get_next_target_for_ghost(true)
 
-## Possess the target if in range and not already possessed. If the target is out of range, abort possession.
-## TODO: Handle the case where the target we are trying to possess go out of range.
+
+## Possess the target if in range (and not already possessed if it's NPC). If the target is out of range, abort possession.
+## If the current target is NPC, possession will immobilize the target for the duration of npc_possession_time.
+## If the current target is Player, possession will tick one per sec if the player is in possession_range of the ghost,
+## , the ammount of resistance subtracted from the player is determined by resistance_drained_persec.
 ## TODO: Handle the case where we are possessing a target and the player spray holy water on us.
-func possess_if_in_range() -> void:
+func possess_if_in_range(delta: float) -> void:
 	var distance_to_target = global_position.distance_to(target.global_position)
-	
-	if distance_to_target < possession_range && current_state == State.NORMAL:
-		current_state = State.POSSESS
-		animation.play("possess")
 
-		await target.start_possession(2, self)
-		if current_state == State.POSSESS:
+	if target is NPC:
+		if distance_to_target < possession_range && current_state == State.NORMAL:
+			current_state = State.POSSESS
+			animation.play("possess")
+
+			await target.start_possession(npc_possession_time, self)
+			if current_state == State.POSSESS:
+				current_state = State.NORMAL
+				temporary_disable()
+		## Also abort if out of possession range
+		elif distance_to_target > possession_range && current_state == State.POSSESS:
 			current_state = State.NORMAL
-	## Also abort if out of possession range
-	elif distance_to_target > possession_range && current_state == State.POSSESS:
-		current_state = State.NORMAL
+	elif target is Player:
+		chase_time += delta
+		if distance_to_target < possession_range:
+			if current_state == State.NORMAL:
+				current_state = State.POSSESS
+				animation.play("possess")
+			elif current_state == State.POSSESS:
+				if time_since_last_drain > 1:
+					time_since_last_drain = 0
+					target.reduce_resistance(resistance_drained_persec)
+
+				time_since_last_drain += delta
+			chase_time = 0
+		elif distance_to_target > possession_range && current_state == State.POSSESS:
+			current_state = State.NORMAL
+			animation.play("idle")
+			time_since_last_drain = 0
+			
+
+## Make the ghost invisible after the possession of a NPC by turning off visibility, collision.
+func temporary_disable() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
+	visible = false
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.disabled = true
+
+## Make the ghost visible again
+func enable() -> void:
+	process_mode = Node.PROCESS_MODE_INHERIT
+	visible = true
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.disabled = false

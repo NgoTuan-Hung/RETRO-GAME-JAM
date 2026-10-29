@@ -9,6 +9,11 @@ extends CharacterBody2D
 const SIGHT_MASK := 1 << 1
 
 signal talked(talkable: Talkable)
+signal resistance_changed(current_value: float, max_value: float)
+signal resistance_depleted()
+
+@export var max_resistance: float = 100.0
+@export var current_resistance: float = 100.0
 
 var is_aiming: bool = false
 
@@ -17,8 +22,9 @@ var current_state: State = State.NORMAL
 var current_speed: float
 var normal_speed: float = 100
 
-func _ready() -> void :
-	pass
+func _ready() -> void:
+	sync_resistance_ui.call_deferred()
+	GameManager.instance.register_as_ghost_target(self)
 	
 func _physics_process(delta: float) -> void:
 	handle_drink_input()
@@ -122,3 +128,27 @@ func has_line_of_sight(from: Node2D, to: Node2D) -> bool :
 	if len(result) == 0 :
 		return true
 	return false
+
+#region Resistance Meter Handlers
+func sync_resistance_ui() -> void:
+	resistance_changed.emit(current_resistance, max_resistance)
+	GameManager.instance.hud.update_resistance(current_resistance, max_resistance)
+
+func reduce_resistance(amount: float) -> void:
+	if current_resistance <= 0.0:
+		return
+	current_resistance = max(0.0, current_resistance - amount)
+	sync_resistance_ui()
+	if current_resistance <= 0.0:
+		resistance_depleted.emit()
+
+func restore_resistance(amount: float) -> void:
+	current_resistance = min(max_resistance, current_resistance + amount)
+	sync_resistance_ui()
+
+func set_resistance(value: float) -> void:
+	current_resistance = clamp(value, 0.0, max_resistance)
+	sync_resistance_ui()
+	if current_resistance <= 0.0:
+		resistance_depleted.emit()
+#endregion

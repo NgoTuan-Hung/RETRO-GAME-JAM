@@ -103,7 +103,7 @@ func start_possession(duration: float, possessed_by: Node2D) -> void:
 	var initial_interval: float = 0.28  # Initial interval (slow)
 	var final_interval: float = 0.03    # Final interval (very fast)
 
-	var original_offset: Vector2 = sprite.offset
+	var original_offset: Vector2 = sprite.position
 
 	while elapsed < duration:
 		# Toggle between normal and possessed sprites
@@ -120,7 +120,7 @@ func start_possession(duration: float, possessed_by: Node2D) -> void:
 		# Some shaking effect towards the end of the possession duration
 		if progress > 0.6:
 			var shake_strength: float = lerp(0.0, 2.5, (progress - 0.6) / 0.4)
-			sprite.offset = original_offset + Vector2(
+			sprite.position = original_offset + Vector2(
 				randf_range(-shake_strength, shake_strength),
 				randf_range(-shake_strength, shake_strength)
 			)
@@ -129,6 +129,7 @@ func start_possession(duration: float, possessed_by: Node2D) -> void:
 		elapsed += current_interval
 
 	sprite.texture = spriteset.possessed_sheet
+	sprite.position = original_offset
 	if current_state == State.BEING_POSSESSED:
 		current_state = State.NORMAL
 		possessed = true
@@ -180,7 +181,9 @@ func calculate_direction_this_physics_tick() -> void:
 		direction_this_physics_tick = Vector2.ZERO
 	else:
 		direction_this_physics_tick = path_to_destination[current_path_index] - global_position
+#endregion
 
+#region Steering
 ## If stuck (not moving for too long), steer towards a random angle to get unstuck
 func decide_steering_or_not(delta: float) -> void:
 	if global_position.distance_to(previous_position) < resting_distance:
@@ -207,6 +210,7 @@ func steering_counter(delta: float) -> void:
 		time_since_last_steering = 0
 #endregion
 
+#region Decision Maker
 ## Start dancing
 func start_dancing() -> void:
 	current_state = State.DANCE
@@ -234,3 +238,4 @@ func dancing_timer() -> void:
 	await get_tree().create_timer(randf_range(5, 15)).timeout
 	action_goal_finished = true
 	stop_dancing()
+#endregion

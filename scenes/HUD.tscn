@@ -26,6 +26,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Resistance"
 
+[node name="ResistanceBar" type="ProgressBar" parent="TopBar/Resistance" unique_id=1988242555]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
 [node name="Inventory" type="HBoxContainer" parent="TopBar" unique_id=1109866467]
 layout_mode = 2
 size_flags_horizontal = 6

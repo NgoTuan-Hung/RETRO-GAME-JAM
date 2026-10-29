@@ -28,3 +28,7 @@ func _on_game_timer_timeout() -> void:
 func update_boogie_woogie_energy(current_val: int, max_val: int) -> void:
 	%EnergyBar.max_value = max_val
 	%EnergyBar.value = current_val
+
+func update_resistance(current_val: float, max_val: float) -> void:
+	%ResistanceBar.max_value = max_val
+	%ResistanceBar.value = current_val

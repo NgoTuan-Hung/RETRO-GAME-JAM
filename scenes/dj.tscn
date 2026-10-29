@@ -44,7 +44,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
-radius = 8.0
+radius = 4.0
 
 [node name="DJ" type="CharacterBody2D" unique_id=1208091697]
 collision_layer = 9
