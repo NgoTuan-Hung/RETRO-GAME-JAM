@@ -1,6 +1,7 @@
 class_name NPC
 extends CharacterBody2D
 
+#region variables
 ## The [NPCSpriteSet] defining this NPC's appearance.
 ##
 ## Drag a Spriteset from [code]res://resources/NPCSpriteSets[/code] into the
@@ -9,6 +10,11 @@ extends CharacterBody2D
 @export var spriteset: NPCSpriteSet
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var talkable := $Talkable
+@onready var random_dialogue_timer := $RandomDialogueTimer
+
+@export var dancer_dialogue := "res://dialog/dancer_random_dialogue.txt"
+@export var possessed_dancer_dialogue := "res://dialog/possessed_dancer_random_dialogue.txt"
 
 # Ghost possession state
 enum State { NORMAL, BEING_POSSESSED, WALK, DANCE}
@@ -39,6 +45,9 @@ enum Action {WALK, DANCE}
 var current_action: Action = Action.WALK
 var action_goal_finished: bool = true
 
+#endregion
+
+#region built-in functions
 func _ready() -> void:
 	# If no spriteset is assigned in Inspector, pick a random one from the folder
 	if spriteset == null:
@@ -56,6 +65,9 @@ func _ready() -> void:
 	$Sprite2D.texture = spriteset.normal_sheet
 	$AnimationPlayer.play("start_dancing")
 	GameManager.instance.register_as_ghost_target(self) # Register as a ghost target so it can be picked by the ghost
+	# random_dialogue_timer.start(randf_range(5.0, 20.0))
+	print(FileAccess.open(dancer_dialogue, FileAccess.READ).get_as_text())
+	print(FileAccess.open(possessed_dancer_dialogue, FileAccess.READ).get_as_text())
 
 func _process(delta: float) -> void:
 	# Stop actions while being possessed
@@ -84,7 +96,9 @@ func _physics_process(delta: float) -> void:
 			calculate_direction_this_physics_tick()
 
 	handle_movement(direction_this_physics_tick)
+#endregion
 
+#region possession
 ## Starts the possession process for this NPC, making it switch to the "being possessed" state and play the corresponding animation. 
 ## The possession lasts for the specified duration, during which the NPC's sprite alternates between its normal and possessed appearances.
 ## The speed of the sprite switching accelerates over time, and a shaking effect is applied towards the end of the possession duration.
@@ -133,7 +147,9 @@ func start_possession(duration: float, possessed_by: Node2D) -> void:
 	if current_state == State.BEING_POSSESSED:
 		current_state = State.NORMAL
 		possessed = true
+#endregion
 
+#region movement
 func handle_movement(direction: Vector2) -> void:
 	if direction:
 		velocity = direction.normalized() * speed
@@ -152,6 +168,7 @@ func handle_movement(direction: Vector2) -> void:
 		$Sprite2D.flip_h = velocity.x < 0
 
 	move_and_slide()
+#endregion
 
 #region A* Pathfinding
 ## Ask the pathfinding manager for a path from current position to a random point on main floor.
@@ -238,4 +255,14 @@ func dancing_timer() -> void:
 	await get_tree().create_timer(randf_range(5, 15)).timeout
 	action_goal_finished = true
 	stop_dancing()
+#endregion
+
+#region Random Dialogue
+func say_random_dialogue() -> void :
+	talkable.say_text("Hello World!")
+
+func _on_random_dialogue_timer_timeout() -> void:
+	say_random_dialogue()
+	random_dialogue_timer.start(randf_range(5.0, 20.0))
+
 #endregion
