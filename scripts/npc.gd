@@ -70,7 +70,10 @@ func _ready() -> void:
 	random_dialogue_timer.start(randf_range(5.0, 20.0))
 	_load_barks(dancer_barks_file, dancer_barks)
 	_load_barks(possessed_dancer_barks_file, possessed_dancer_barks)
-	
+	if not GameManager.instance.BW_APPEARING.is_connected(_on_bw_appearing):
+		GameManager.instance.BW_APPEARING.connect(_on_bw_appearing)
+	if not GameManager.instance.BW_DISAPPEARING.is_connected(_on_bw_disappearing):
+		GameManager.instance.BW_DISAPPEARING.connect(_on_bw_disappearing)
 
 func _process(delta: float) -> void:
 	# Stop actions while being possessed
@@ -305,5 +308,10 @@ func _on_random_dialogue_timer_timeout() -> void:
 	say_random_dialogue()
 	random_dialogue_timer.start(randf_range(5.0, 20.0))
 
+func _on_bw_appearing() -> void :
+	talkable.say_text("He's Here!")
+
+func _on_bw_disappearing() -> void :
+	talkable.say_text("He'll be back!")
 
 #endregion

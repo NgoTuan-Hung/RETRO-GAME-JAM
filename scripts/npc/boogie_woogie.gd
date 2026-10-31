@@ -75,6 +75,7 @@ func handle_appearance() -> void:
 	if filled == capacity:
 		if current_state == State.HIBERNATE:
 			current_state = State.APPEAR
+			GameManager.instance.bw_state_appearing()
 		else: return
 		visible = true
 		animation.play("appear")
@@ -86,6 +87,7 @@ func handle_appearance() -> void:
 		await animation.animation_finished
 		if current_state == State.APPEAR:
 			current_state = State.NORMAL
+			GameManager.instance.bw_state_active()
 
 # Wait for one tick before manifestation cost takes effect
 func wait_one_minute_before_disappearance() -> void:
@@ -103,6 +105,7 @@ func handle_disappearance() -> void:
 	if filled < 1:
 		if current_state == State.NORMAL:
 			current_state = State.DISAPPEAR
+			GameManager.instance.bw_state_disappearing()
 		else: return
 		can_disappear = false
 		animation.play("fade")
@@ -112,6 +115,7 @@ func handle_disappearance() -> void:
 
 		if current_state == State.DISAPPEAR:
 			current_state = State.HIBERNATE
+			GameManager.instance.bw_state_hibernating()
 
 func sync_energy_ui() -> void:
 	GameManager.instance.hud.update_boogie_woogie_energy(filled, capacity)
@@ -174,12 +178,14 @@ func try_summon_ghost() -> void:
 		if current_state == State.NORMAL:
 			if randf() < summon_chance_per_frame:
 				current_state = State.SUMMON
+				GameManager.instance.bw_state_summoning()
 				animation.play("summon")
 				show_summon_aura()
 				place_a_ghost_near_me()
 				filled -= summoning_cost
 				await animation.animation_finished
 				current_state = State.NORMAL
+				GameManager.instance.bw_state_active()
 		else: return
 
 func place_a_ghost_near_me() -> void:

@@ -11,6 +11,12 @@ var ghost_targets: Array[Node2D] = []
 @export var dancer_walkable_area_scene: DancerWalkableArea
 var reusable_ghost: Array[Node] = []
 
+enum BW_state { ACTIVE, APPEARING, DISAPPEARING, SUMMONING, HIBERNATING }
+var BW_current_state := BW_state.HIBERNATING
+
+signal BW_APPEARING
+signal BW_DISAPPEARING
+
 func _enter_tree() -> void:
 	instance = self
 
@@ -49,3 +55,23 @@ func get_a_ghost() -> Node:
 	get_tree().current_scene.add_child(ghost)
 	reusable_ghost.append(ghost)
 	return ghost
+
+func get_bwstate() -> BW_state :
+	return BW_current_state
+
+func bw_state_active() -> void :
+	BW_current_state = BW_state.ACTIVE
+
+func bw_state_appearing() -> void :
+	BW_current_state = BW_state.APPEARING
+	BW_APPEARING.emit()
+
+func bw_state_disappearing() -> void :
+	BW_current_state = BW_state.DISAPPEARING
+	BW_DISAPPEARING.emit()
+
+func bw_state_hibernating() -> void :
+	BW_current_state = BW_state.HIBERNATING
+
+func bw_state_summoning() -> void :
+	BW_current_state = BW_state.SUMMONING

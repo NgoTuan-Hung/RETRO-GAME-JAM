@@ -104,6 +104,7 @@ min_distance_for_index_change = 2.0
 metadata/_edit_group_ = true
 
 [node name="Talkable" parent="." unique_id=1944153148 instance=ExtResource("2_4wlns")]
+scale = Vector2(0.5, 0.5)
 character_id = "dancer"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1342205383]
