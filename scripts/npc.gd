@@ -13,8 +13,10 @@ extends CharacterBody2D
 @onready var talkable := $Talkable
 @onready var random_dialogue_timer := $RandomDialogueTimer
 
-@export var dancer_dialogue := "res://dialog/dancer_random_dialogue.txt"
-@export var possessed_dancer_dialogue := "res://dialog/possessed_dancer_random_dialogue.txt"
+@export var dancer_barks_file := "res://dialog/dancer_random_dialogue.txt"
+@export var possessed_dancer_barks_file := "res://dialog/possessed_dancer_random_dialogue.txt"
+var dancer_barks := {}
+var possessed_dancer_barks := {}
 
 # Ghost possession state
 enum State { NORMAL, BEING_POSSESSED, WALK, DANCE}
@@ -65,9 +67,10 @@ func _ready() -> void:
 	$Sprite2D.texture = spriteset.normal_sheet
 	$AnimationPlayer.play("start_dancing")
 	GameManager.instance.register_as_ghost_target(self) # Register as a ghost target so it can be picked by the ghost
-	# random_dialogue_timer.start(randf_range(5.0, 20.0))
-	print(FileAccess.open(dancer_dialogue, FileAccess.READ).get_as_text())
-	print(FileAccess.open(possessed_dancer_dialogue, FileAccess.READ).get_as_text())
+	random_dialogue_timer.start(randf_range(5.0, 20.0))
+	_load_barks(dancer_barks_file, dancer_barks)
+	_load_barks(possessed_dancer_barks_file, possessed_dancer_barks)
+	
 
 func _process(delta: float) -> void:
 	# Stop actions while being possessed
@@ -258,11 +261,49 @@ func dancing_timer() -> void:
 #endregion
 
 #region Random Dialogue
+
+func _load_barks(filename : String, dictionary : Dictionary) -> void :
+	var f := FileAccess.open(filename, FileAccess.READ)
+	if f == null :
+		push_error("_load_barks failed on " + filename)
+	var rows := f.get_as_text().split("\n")
+#	for row in rows :
+#		print(row)
+	f.close()
+	for row in rows:
+		row = row.strip_edges()
+		if row == "" :
+			continue
+		var cols = row.split("\t")
+		if cols.size() < 2 :
+			continue
+		var state = cols[0].strip_edges().to_lower()
+		var text = cols[1].strip_edges()
+		if text == "" :
+			continue
+		if not dictionary.has(state) :
+			dictionary[state] = []
+		dictionary[state].append(text)
+
+
 func say_random_dialogue() -> void :
-	talkable.say_text("Hello World!")
+	var source := possessed_dancer_barks if possessed else dancer_barks
+	
+	var pool : Array
+	if possessed :
+		return
+	else:
+		match current_state :
+			State.WALK : pool = source["walk"]
+			State.DANCE : pool = source["dance"]
+			State.BEING_POSSESSED : pool = source["being_possessed"]
+			_ : pool = source["normal"]
+	var text = pool.pick_random()
+	talkable.say_text(text)
 
 func _on_random_dialogue_timer_timeout() -> void:
 	say_random_dialogue()
 	random_dialogue_timer.start(randf_range(5.0, 20.0))
+
 
 #endregion

@@ -1,41 +1,41 @@
 state	dialogue
-normal	"""Great set tonight."""
-normal	"""Is it Tuesday?"""
+normal	Great set tonight.
+normal	Is it Tuesday?
 normal	I'm just resting my eyes.
-normal	"""Someone's spiked the punch."""
-normal	"""Same again?"""
-normal	"""This is my song."""
-normal	"""Been coming here for years."""
-normal	"""Do you come here often?"""
-normal	"""Warm in here, isn't it?"""
-normal	"""Hey cutie. Wanna dance?"""
-being_possessed	"""Oo-Er!"""
-being_possessed	"""I feel funny!"""
-being_possessed	"""I see Disco People!"""
-being_possessed	"""Something's happening!"""
-being_possessed	"""I hear it!  I hear it!"""
-being_possessed	"""Dance, dance, dance!"""
-being_possessed	"""Help!"""
-being_possessed	"""I don't like it!"""
-being_possessed	"""Mummy!"""
-being_possessed	"""Don't let him take me!"""
-walk	"""Did someone say drink?"""
-walk	"""Isn't it your round?"""
-walk	"""Is it my round?"""
-walk	"""Where are the toilets?"""
-walk	"""I think I left a tap on."""
-walk	"""Has anyone seen Waldo?"""
-walk	"""They had better dialog in the last game."""
-walk	"""Couldn't they afford a better writer?"
-walk	"""Do they server food here?"""
-walk	"""What time is the last bus?"""
-dance	"""... I can't dance.  I can't talk.  Only thinh about me is the way I walk! ..."""
-dance	"""... Ah, ha, ha, ha, stayin' alive, stayin' alive ..."""
-dance	"""... I don't want to rock, DJ.  But you're making me feel so nice. ..."
-dance	"""... You are the dancing queen.  Young and sweet, only seventeen ..."""
-dance	"""... Go, go.  Go Johnny, go, go.  Go Johnny, go, go.   ..."""
-dance	"""... Well, you can knock me down.  Step in my face.  Slander my name.  All over the place. ..."""
-dance	"""... Love.  Is a burning thing.  And it makes a fiery ring. ..."""
-dance	"""... Young man, there's no need to feel down ..."""
-dance	"""... We are family. I got all my sisters with me ..."""
-dance	"""... Burn, baby, burn! Disco inferno! ..."""
+normal	Someone's spiked the punch.
+normal	Same again?
+normal	This is my song.
+normal	Been coming here for years.
+normal	Do you come here often?
+normal	Warm in here, isn't it?
+normal	Hey cutie. Wanna dance?
+being_possessed	Oo-Er!
+being_possessed	I feel funny!
+being_possessed	I see Disco People!
+being_possessed	Something's happening!
+being_possessed	I hear it!  I hear it!
+being_possessed	Dance, dance, dance!
+being_possessed	Help!
+being_possessed	I don't like it!
+being_possessed	Mummy!
+being_possessed	Don't let him take me!
+walk	Did someone say drink?
+walk	Isn't it your round?
+walk	Is it my round?
+walk	Where are the toilets?
+walk	I think I left a tap on.
+walk	Has anyone seen Waldo?
+walk	They had better dialog in the last game.
+walk	Couldn't they afford a better writer?
+walk	Do they server food here?
+walk	What time is the last bus?
+dance	... I can't dance.  I can't talk.  Only thinh about me is the way I walk! ...
+dance	... Ah, ha, ha, ha, stayin' alive, stayin' alive ...
+dance	... I don't want to rock, DJ.  But you're making me feel so nice. ...
+dance	... You are the dancing queen.  Young and sweet, only seventeen ...
+dance	... Go, go.  Go Johnny, go, go.  Go Johnny, go, go.   ...
+dance	... Well, you can knock me down.  Step in my face.  Slander my name.  All over the place. ...
+dance	... Love.  Is a burning thing.  And it makes a fiery ring. ...
+dance	... Young man, there's no need to feel down ...
+dance	... We are family. I got all my sisters with me ...
+dance	... Burn, baby, burn! Disco inferno! ...
