@@ -29,7 +29,7 @@ window/stretch/scale=3.0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/pathfinding_tool/plugin.cfg")
+enabled=PackedStringArray("res://addons/pathfinding_tool/plugin.cfg", "res://addons/pinned_inspector/plugin.cfg")
 
 [global_group]
 

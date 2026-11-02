@@ -22,6 +22,8 @@ var current_state: State = State.NORMAL
 var current_speed: float
 var normal_speed: float = 100
 
+@onready var spray_origin: Node2D = $SprayOrigin
+
 func _ready() -> void:
 	sync_resistance_ui.call_deferred()
 	GameManager.instance.register_as_ghost_target(self)
@@ -91,6 +93,10 @@ func handle_aim_and_spray_input() -> void:
 func spray_holy_water() -> void:
 	current_state = State.SPRAY
 	animation.play("spray")
+
+	var spray = GameManager.instance.get_a_holy_water_spray()
+	var fire_angle = (crosshair.global_position - spray_origin.global_position).angle()
+	spray.fire(spray_origin.global_position, fire_angle)
 
 	# wait 0.5s for the animation to finish
 	await get_tree().create_timer(0.5).timeout

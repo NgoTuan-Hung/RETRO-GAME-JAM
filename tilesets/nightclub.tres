@@ -89,6 +89,7 @@ texture = ExtResource("10_420tl")
 0:0/size_in_atlas = Vector2i(1, 2)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/y_sort_origin = 8
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ah0tn")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 4, 8, 4, 8, 8, -8, 8)
 
@@ -100,6 +101,7 @@ texture = ExtResource("11_fq64n")
 0:0/size_in_atlas = Vector2i(1, 2)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/y_sort_origin = 8
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_57a3k")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 4, 8, 4, 8, 8, -8, 8)
 
@@ -115,6 +117,7 @@ texture = ExtResource("13_vniqe")
 0:0/size_in_atlas = Vector2i(1, 2)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/y_sort_origin = 8
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_vijsh")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 4, 8, 4, 8, 8, -8, 8)
 
@@ -133,6 +136,7 @@ texture = ExtResource("11_y4tnp")
 0:0/size_in_atlas = Vector2i(1, 2)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/y_sort_origin = 8
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_kcrwt")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -2, -8, -2, 8, -8, 8)
 
@@ -144,6 +148,7 @@ texture = ExtResource("12_bv1df")
 0:0/size_in_atlas = Vector2i(1, 2)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/y_sort_origin = 8
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wj78j")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -2, -8, -2, 8, -8, 8)
 
@@ -155,6 +160,7 @@ texture = ExtResource("13_iiq26")
 0:0/size_in_atlas = Vector2i(1, 2)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/y_sort_origin = 8
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_vslx1")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 4, 8, 4, 8, 8, -8, 8)
 
@@ -166,6 +172,7 @@ texture = ExtResource("14_qydsx")
 0:0/size_in_atlas = Vector2i(1, 2)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/y_sort_origin = 8
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_b80ny")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 4, 8, 4, 8, 8, -8, 8)
 

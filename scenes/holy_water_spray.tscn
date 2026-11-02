@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dkbpwc8ad4iuh"]
+
+[ext_resource type="Script" uid="uid://bhvysk1ab06j1" path="res://scripts/misc/holy_water_spray.gd" id="1_ibfen"]
+
+[sub_resource type="Gradient" id="Gradient_bo63t"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ah0tn"]
+gradient = SubResource("Gradient_bo63t")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_bo63t"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0.30412364), 0.0, 0.0, 0, 0, Vector2(1, 2.7989693), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_2qt8o"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.7058824, 1, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnrf6"]
+radius = 0.01
+
+[node name="HolyWaterSpray" type="Area2D" unique_id=204627315]
+collision_layer = 0
+script = ExtResource("1_ibfen")
+max_distance = 50.0
+duration = 0.3
+max_radius = 15.0
+metadata/_custom_type_script = "uid://bhvysk1ab06j1"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1323509140]
+emitting = false
+amount = 24
+texture = SubResource("GradientTexture2D_ah0tn")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.85
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 280.0
+damping_min = 250.0
+damping_max = 350.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_bo63t")
+color_ramp = SubResource("Gradient_2qt8o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=280610750]
+shape = SubResource("CircleShape2D_mnrf6")

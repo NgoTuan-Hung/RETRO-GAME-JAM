@@ -17,6 +17,9 @@ var BW_current_state := BW_state.HIBERNATING
 signal BW_APPEARING
 signal BW_DISAPPEARING
 
+@export var holy_water_spray_scene: PackedScene
+var reusable_holy_water_spray: Array[Node] = []
+
 func _enter_tree() -> void:
 	instance = self
 
@@ -75,3 +78,17 @@ func bw_state_hibernating() -> void :
 
 func bw_state_summoning() -> void :
 	BW_current_state = BW_state.SUMMONING
+
+## Get the holy_water_spray_scene from game manager and instantiate it
+## , the spray is reusable if it's disabled
+func get_a_holy_water_spray() -> Node:
+	for spray in reusable_holy_water_spray:
+		if spray.process_mode == ProcessMode.PROCESS_MODE_DISABLED:
+			spray.enable()
+			return spray
+
+	var spray = holy_water_spray_scene.instantiate()
+	get_tree().current_scene.add_child(spray)
+	spray.enable()
+	reusable_holy_water_spray.append(spray)
+	return spray
