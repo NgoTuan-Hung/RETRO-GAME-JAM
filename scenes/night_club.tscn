@@ -6,17 +6,63 @@
 [ext_resource type="Resource" uid="uid://bamf7bg00oh7h" path="res://data/pathfinding_grid_data.tres" id="7_grid_data"]
 [ext_resource type="PackedScene" uid="uid://ukojxq88ombu" path="res://scenes/dj_booth.tscn" id="7_s3ugl"]
 [ext_resource type="PackedScene" uid="uid://behujelmie5hu" path="res://scenes/ghost.tscn" id="7_sto6n"]
+[ext_resource type="PackedScene" uid="uid://dkbpwc8ad4iuh" path="res://scenes/holy_water_spray.tscn" id="8_2qt8o"]
 [ext_resource type="PackedScene" uid="uid://damuwp2y0g6ke" path="res://scenes/npc.tscn" id="8_irnpy"]
 [ext_resource type="Script" uid="uid://ddd5qttbt7snl" path="res://scripts/manager/game_manager.gd" id="8_p2vvp"]
 [ext_resource type="PackedScene" uid="uid://b3vge44k7xybo" path="res://scenes/HUD.tscn" id="9_irnpy"]
 [ext_resource type="Script" uid="uid://qgw7bgvl7j81" path="res://scripts/pathfinding/pathfinding_manager.gd" id="9_manager"]
 [ext_resource type="PackedScene" uid="uid://p8qhmo6entdx" path="res://scenes/bartender.tscn" id="10_ve77s"]
 [ext_resource type="PackedScene" uid="uid://2ny7bvksahx1" path="res://scenes/dj.tscn" id="11_axcwr"]
+[ext_resource type="PackedScene" uid="uid://gxnapxeayqe" path="res://scenes/talkable.tscn" id="11_bo63t"]
+[ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="12_2qt8o"]
 [ext_resource type="PackedScene" uid="uid://cm51lqi1frfb" path="res://scenes/boogie_woogie.tscn" id="12_gyjyx"]
+[ext_resource type="Texture2D" uid="uid://dbxkjej4jcsrg" path="res://art/characters/elvis.png" id="13_8t14j"]
 [ext_resource type="PackedScene" uid="uid://dfgr4d475up1k" path="res://scenes/boiler.tscn" id="13_axcwr"]
 [ext_resource type="PackedScene" uid="uid://cqad4q36q2u5q" path="res://scenes/Bar.tscn" id="13_gyjyx"]
 [ext_resource type="Script" uid="uid://b2f1vqeexvcre" path="res://scripts/dancer_walkable_area.gd" id="16_nwef2"]
 [ext_resource type="PackedScene" uid="uid://cb3cr7t3spkhx" path="res://scenes/janitor.tscn" id="17_tvjgc"]
+
+[sub_resource type="Animation" id="Animation_uawus"]
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_ve77s"]
+resource_name = "dance"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_axcwr"]
+_data = {
+&"RESET": SubResource("Animation_uawus"),
+&"dance": SubResource("Animation_ve77s")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 4.0
 
 [node name="NightClub" type="Node2D" unique_id=108550898]
 y_sort_enabled = true
@@ -55,6 +101,7 @@ hud = NodePath("../Hud")
 giving_track_point = NodePath("../Others/GivingTrackPoint")
 ghost_scene = ExtResource("7_sto6n")
 dancer_walkable_area_scene = NodePath("../Others/DancerWalkableArea")
+holy_water_spray_scene = ExtResource("8_2qt8o")
 metadata/_custom_type_script = "uid://ddd5qttbt7snl"
 
 [node name="Hud" parent="." unique_id=1331255990 instance=ExtResource("9_irnpy")]
@@ -64,6 +111,32 @@ position = Vector2(432, 432)
 
 [node name="DJ" parent="." unique_id=1208091697 instance=ExtResource("11_axcwr")]
 position = Vector2(752, 305)
+
+[node name="Janitor" type="CharacterBody2D" parent="." unique_id=2055221177]
+position = Vector2(435, 571)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="Talkable" parent="Janitor" unique_id=1944153148 instance=ExtResource("11_bo63t")]
+character_id = "dj"
+
+[node name="Shadow" type="Sprite2D" parent="Janitor" unique_id=1520266250]
+modulate = Color(1, 1, 1, 0.3529412)
+y_sort_enabled = true
+texture = ExtResource("12_2qt8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Janitor" unique_id=342199606]
+texture = ExtResource("13_8t14j")
+offset = Vector2(0, -15)
+hframes = 4
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Janitor" unique_id=815341941]
+libraries/ = SubResource("AnimationLibrary_axcwr")
+autoplay = &"dance"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Janitor" unique_id=1527709338]
+shape = SubResource("CircleShape2D_g4v7s")
 
 [node name="Boogie Woogie" parent="." unique_id=1200191038 instance=ExtResource("12_gyjyx")]
 visible = false
