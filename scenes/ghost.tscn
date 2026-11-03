@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://codaddmuuvoad" path="res://scripts/npc/ghost.gd" id="1_l5lq6"]
 [ext_resource type="Texture2D" uid="uid://d18usok8m0e6i" path="res://art/characters/ghost.png" id="2_5mfnq"]
 [ext_resource type="Shader" uid="uid://c11bmmnx4vwq3" path="res://shader/ghost_appear.gdshader" id="2_bbnym"]
+[ext_resource type="Shader" uid="uid://bghg5umdyb7l6" path="res://shader/ghost_disolve.gdshader" id="3_veat2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ybayi"]
 shader = ExtResource("2_bbnym")
@@ -13,21 +14,6 @@ shader_parameter/max_amplitude = 0.08
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ghost"]
 radius = 1.0
-
-[sub_resource type="Animation" id="Animation_irnpy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
 
 [sub_resource type="Animation" id="Animation_ky6jx"]
 resource_name = "idle"
@@ -61,6 +47,21 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_irnpy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="Animation" id="Animation_ve77s"]
 resource_name = "walk"
 tracks/0/type = "value"
@@ -78,16 +79,22 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uawus"]
 _data = {
-&"RESET": SubResource("Animation_irnpy"),
 &"idle": SubResource("Animation_ky6jx"),
 &"possess": SubResource("Animation_uawus"),
+&"vibe": SubResource("Animation_irnpy"),
 &"walk": SubResource("Animation_ve77s")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mnrf6"]
+radius = 3.1
+height = 25.0
 
 [node name="Ghost" type="CharacterBody2D" unique_id=1450866531]
 motion_mode = 1
 script = ExtResource("1_l5lq6")
 speed = 50.0
+appear_shader = ExtResource("2_bbnym")
+dissolve_shader = ExtResource("3_veat2")
 metadata/_custom_type_script = "uid://codaddmuuvoad"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=17550733]
@@ -104,3 +111,11 @@ shape = SubResource("CircleShape2D_ghost")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1274549001]
 libraries/ = SubResource("AnimationLibrary_uawus")
 autoplay = &"idle"
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1732539560 groups=["ghost_hurt_box"]]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=699116970]
+position = Vector2(0, -18)
+shape = SubResource("CapsuleShape2D_mnrf6")

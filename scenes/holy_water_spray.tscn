@@ -27,6 +27,7 @@ radius = 0.01
 
 [node name="HolyWaterSpray" type="Area2D" unique_id=204627315]
 collision_layer = 0
+collision_mask = 16
 script = ExtResource("1_ibfen")
 max_distance = 50.0
 duration = 0.3

@@ -17,6 +17,7 @@ func _ready() -> void:
 	# Ensure the shape is a unique instance so it does not affect other spray instances
 	hitbox.shape = hitbox.shape.duplicate()
 	circle_shape = hitbox.shape as CircleShape2D
+	area_entered.connect(_on_area_entered)
 
 func fire(global_position: Vector2, fire_angle: float) -> void:
 	visible = true
@@ -54,17 +55,11 @@ func disable() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	visible = false
 
-# func _on_body_entered(body: Node2D) -> void:
-# 	# When hitting a ghost directly
-# 	if body is Ghost:
-# 		print("Hit ghost with holy water!")
-# 		# Call ghost purification or disable method
-# 		if body.has_method("purify"):
-# 			body.purify()
-# 		elif body.has_method("temporary_disable"):
-# 			body.temporary_disable()
+## Purify ghosts that enter the spray area
+## TODO: Answer the question: Should the spray purify just one ghost at a time or all ghosts in the area? For now, it purifies all ghosts in the area.
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("ghost_hurt_box"):
 
-# 	# (Optional) If hitting a possessed NPC
-# 	if body is NPC and body.possessed:
-# 		print("Purifying possessed NPC!")
-# 		# body.exorcise() ...
+		var ghost = area.get_parent() as Ghost
+		if ghost.current_state != Ghost.State.APPEAR:
+			ghost.purify(ghost.global_position - global_position)

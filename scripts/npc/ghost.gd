@@ -28,6 +28,9 @@ var chase_time: float = 0 # The ammount of time since we start chasing after the
 @export var resistance_drained_persec: float = 10 # Resistance drained from the player per second
 var time_since_last_drain: float = 0 # The ammount of time since the last drain ticked
 
+@export var appear_shader: Shader
+@export var dissolve_shader: Shader
+
 func _ready() -> void:
 	target = GameManager.instance.get_a_random_target_for_ghost()
 
@@ -35,7 +38,7 @@ func _ready() -> void:
 	time_since_last_pathfinding = randf_range(0.0, pathfinding_interval)
 
 func _process(delta: float) -> void:
-	if current_state == State.APPEAR:
+	if current_state == State.APPEAR || current_state == State.DISAPPEAR:
 		return
 
 	update_target()
@@ -60,7 +63,7 @@ func _process(delta: float) -> void:
 		update_path()
 
 func _physics_process(delta: float) -> void:
-	if current_state == State.APPEAR:
+	if current_state == State.APPEAR || current_state == State.DISAPPEAR:
 		return
 
 	handle_movement(direction_this_physics_tick)
@@ -80,6 +83,7 @@ func handle_movement(direction: Vector2) -> void:
 
 	move_and_slide()
 
+#region Pathfinding
 func decide_where_to_go_next() -> void:
 	if current_checkpoint_index >= path_to_target.size():
 		direction_this_physics_tick = Vector2.ZERO
@@ -115,22 +119,27 @@ func decide_waiting_or_not() -> void:
 		wait_for_next_pathfinding = true
 	else:
 		wait_for_next_pathfinding = false
+#endregion
 
 ## Play the appearance effect using shader
 func appear() -> void:
 	current_state = State.APPEAR
 	# Need to make change on the copy of the material
 	# Else editing one would affect others
-	sprite.material = sprite.material.duplicate()
+	sprite.material = ShaderMaterial.new()
 	var mat = sprite.material as ShaderMaterial
+	mat.shader = appear_shader
+
 	mat.set_shader_parameter("progress", 0.0)
 	var tween = create_tween()
 	tween.tween_property(mat, "shader_parameter/progress", 1.0, 1.0) # play the effect for 1s
 	await tween.finished
 	if current_state == State.APPEAR:
 		current_state = State.NORMAL
+		sprite.material = null # Remove the shader material to restore normal rendering
 	
 
+#region Possession
 ## Switch target if the current one is being possessed by another ghost or is already possessed.
 func update_target() -> void:
 	if target:
@@ -177,20 +186,47 @@ func possess_if_in_range(delta: float) -> void:
 			current_state = State.NORMAL
 			animation.play("idle")
 			time_since_last_drain = 0
+#endregion
 			
 
 ## Make the ghost invisible after the possession of a NPC by turning off visibility, collision.
 func temporary_disable() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	visible = false
-	for child in get_children():
-		if child is CollisionShape2D:
-			child.disabled = true
+	for child in find_children("*", "CollisionShape2D", true, false):
+		child.disabled = true # or child.set_deferred("disabled", false) for safety
 
 ## Make the ghost visible again
 func enable() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
 	visible = true
-	for child in get_children():
-		if child is CollisionShape2D:
-			child.disabled = false
+	for child in find_children("*", "CollisionShape2D", true, false):
+		child.disabled = false
+
+## Play the purification effect using shader
+func purify(direction: Vector2) -> void:
+	current_state = State.DISAPPEAR
+	animation.play("vibe")
+	# Need to make change on the copy of the material
+	# Else editing one would affect others
+	sprite.material = ShaderMaterial.new()
+	var mat = sprite.material as ShaderMaterial
+	mat.shader = dissolve_shader
+
+	var dir_x = 1.0 if direction.x >= 0 else -1.0
+	if sprite.flip_h:
+		dir_x = -dir_x
+
+	mat.set_shader_parameter("direction", dir_x)
+	mat.set_shader_parameter("progress", 0.0)
+
+	var tween = create_tween()
+	tween.tween_property(mat, "shader_parameter/progress", 1.0, 0.8)
+
+	for child in find_children("*", "CollisionShape2D", true, false):
+		child.disabled = true # or child.set_deferred("disabled", false) for safety
+
+	await tween.finished
+	sprite.material = null # Remove the shader material to restore normal rendering
+	process_mode = Node.PROCESS_MODE_DISABLED
+	visible = false
