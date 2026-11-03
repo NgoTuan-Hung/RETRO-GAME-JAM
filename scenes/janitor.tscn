@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://cb3cr7t3spkhx"]
+
+[ext_resource type="Script" uid="uid://cov3hevk0qpey" path="res://scripts/janitor.gd" id="1_0wvpv"]
+[ext_resource type="PackedScene" uid="uid://gxnapxeayqe" path="res://scenes/talkable.tscn" id="2_0l40l"]
+[ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="3_6rcxs"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bkojd"]
+load_path = "res://.godot/imported/elvis.png-c2bbb56746261f80388ae3c700300549.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1wuxl"]
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_0l40l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JanitorSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_bkojd"]
+resource_name = "clean"
+step = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JanitorSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_qe0e1"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JanitorSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0wvpv"]
+resource_name = "walk"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JanitorSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_6rcxs"]
+resource_name = "walk_bucket"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JanitorSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qe0e1"]
+_data = {
+&"RESET": SubResource("Animation_0l40l"),
+&"clean": SubResource("Animation_bkojd"),
+&"idle": SubResource("Animation_qe0e1"),
+&"walk": SubResource("Animation_0wvpv"),
+&"walk_bucket": SubResource("Animation_6rcxs")
+}
+
+[node name="Janitor" type="CharacterBody2D" unique_id=1606301133]
+collision_layer = 9
+motion_mode = 1
+script = ExtResource("1_0wvpv")
+speed = 50.0
+direction = Vector2(1, 1)
+
+[node name="Talkable" parent="." unique_id=1944153148 instance=ExtResource("2_0l40l")]
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1317205744]
+modulate = Color(1, 1, 1, 0.23529412)
+scale = Vector2(1.25, 0.75)
+texture = ExtResource("3_6rcxs")
+
+[node name="JanitorSprite" type="Sprite2D" parent="." unique_id=1357740048]
+texture = SubResource("CompressedTexture2D_bkojd")
+offset = Vector2(0, -15)
+hframes = 4
+vframes = 4
+frame = 4
+
+[node name="Footprint" type="CollisionShape2D" parent="." unique_id=754321057]
+shape = SubResource("CircleShape2D_1wuxl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=497612608]
+libraries/ = SubResource("AnimationLibrary_qe0e1")
