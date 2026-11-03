@@ -123,3 +123,5 @@ shape = SubResource("CircleShape2D_1wuxl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=497612608]
 libraries/ = SubResource("AnimationLibrary_qe0e1")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1402283721]
