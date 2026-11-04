@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cqad4q36q2u5q" path="res://scenes/Bar.tscn" id="13_gyjyx"]
 [ext_resource type="Script" uid="uid://b2f1vqeexvcre" path="res://scripts/dancer_walkable_area.gd" id="16_nwef2"]
 [ext_resource type="PackedScene" uid="uid://cb3cr7t3spkhx" path="res://scenes/janitor.tscn" id="17_tvjgc"]
+[ext_resource type="PackedScene" uid="uid://ddkqu8p1o2382" path="res://scenes/michael_jackson.tscn" id="19_bo63t"]
 
 [node name="NightClub" type="Node2D" unique_id=108550898]
 y_sort_enabled = true
@@ -119,5 +120,8 @@ metadata/_custom_type_script = "uid://b2f1vqeexvcre"
 
 [node name="Janitor2" parent="." unique_id=1606301133 instance=ExtResource("17_tvjgc")]
 position = Vector2(500, 400)
+
+[node name="MichaelJackson" parent="." unique_id=504448448 instance=ExtResource("19_bo63t")]
+position = Vector2(600, 400)
 
 [connection signal="on_game_time_changed" from="Hud" to="Boogie Woogie" method="_on_hud_on_game_time_changed"]

@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://ddkqu8p1o2382"]
+
+[ext_resource type="Script" uid="uid://blibqp82rc1yi" path="res://scripts/michael_jackson.gd" id="1_ebhpf"]
+[ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="1_j3t4f"]
+[ext_resource type="Texture2D" uid="uid://b5lx4ho4kddxv" path="res://art/characters/mj.png" id="3_ebhpf"]
+
+[sub_resource type="Animation" id="Animation_j3t4f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_ebhpf"]
+resource_name = "moon_walk"
+step = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a1o73"]
+_data = {
+&"RESET": SubResource("Animation_j3t4f"),
+&"moon_walk": SubResource("Animation_ebhpf")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j3t4f"]
+radius = 5.0
+
+[node name="MichaelJackson" type="CharacterBody2D" unique_id=504448448]
+script = ExtResource("1_ebhpf")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1628949780]
+modulate = Color(1, 1, 1, 0.23529412)
+scale = Vector2(1.25, 0.75)
+texture = ExtResource("1_j3t4f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=318932335]
+texture = ExtResource("3_ebhpf")
+offset = Vector2(0, -15)
+hframes = 4
+vframes = 2
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=192524001]
+libraries/ = SubResource("AnimationLibrary_a1o73")
+speed_scale = 1.5
+
+[node name="Footprint" type="CollisionShape2D" parent="." unique_id=1885971047]
+shape = SubResource("CircleShape2D_j3t4f")
