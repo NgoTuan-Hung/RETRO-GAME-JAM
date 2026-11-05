@@ -96,6 +96,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
 radius = 4.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7n8xq"]
+radius = 3.1
+height = 32.0
+
 [node name="NPC" type="CharacterBody2D" unique_id=1391010846]
 motion_mode = 1
 script = ExtResource("1_abqhh")
@@ -127,5 +131,13 @@ shape = SubResource("CircleShape2D_g4v7s")
 
 [node name="RandomDialogueTimer" type="Timer" parent="." unique_id=17690751]
 one_shot = true
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1940658921 groups=["npc_hurt_box"]]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=880266688]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_7n8xq")
 
 [connection signal="timeout" from="RandomDialogueTimer" to="." method="_on_random_dialogue_timer_timeout"]

@@ -13,6 +13,8 @@ var circle_shape: CircleShape2D
 
 var spray_tween: Tween
 
+@export var boogie_energy_drain: float = 10
+
 func _ready() -> void:
 	# Ensure the shape is a unique instance so it does not affect other spray instances
 	hitbox.shape = hitbox.shape.duplicate()
@@ -59,7 +61,15 @@ func disable() -> void:
 ## TODO: Answer the question: Should the spray purify just one ghost at a time or all ghosts in the area? For now, it purifies all ghosts in the area.
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("ghost_hurt_box"):
-
 		var ghost = area.get_parent() as Ghost
 		if ghost.current_state != Ghost.State.APPEAR:
 			ghost.purify(ghost.global_position - global_position)
+	elif area.is_in_group("npc_hurt_box"):
+		var npc = area.get_parent() as NPC
+		if npc.possessed:
+			npc.stop_possession()
+			var ghost_effect = GameManager.instance.get_a_ghost_effect()
+			ghost_effect.start_eject(npc.global_position, (npc.global_position - global_position).normalized(), npc.sprite.flip_h)
+	elif area.is_in_group("boogie_woogie_hurt_box"):
+		var boogie = area.get_parent() as BoogieWoogie
+		boogie.filled -= boogie_energy_drain

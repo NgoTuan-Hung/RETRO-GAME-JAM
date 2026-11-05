@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dkbpwc8ad4iuh" path="res://scenes/holy_water_spray.tscn" id="8_2qt8o"]
 [ext_resource type="PackedScene" uid="uid://damuwp2y0g6ke" path="res://scenes/npc.tscn" id="8_irnpy"]
 [ext_resource type="Script" uid="uid://ddd5qttbt7snl" path="res://scripts/manager/game_manager.gd" id="8_p2vvp"]
+[ext_resource type="PackedScene" uid="uid://dhbmnpwt806af" path="res://scenes/ghost_effect.tscn" id="9_2qt8o"]
 [ext_resource type="PackedScene" uid="uid://b3vge44k7xybo" path="res://scenes/HUD.tscn" id="9_irnpy"]
 [ext_resource type="Script" uid="uid://qgw7bgvl7j81" path="res://scripts/pathfinding/pathfinding_manager.gd" id="9_manager"]
 [ext_resource type="PackedScene" uid="uid://p8qhmo6entdx" path="res://scenes/bartender.tscn" id="10_ve77s"]
@@ -58,6 +59,7 @@ giving_track_point = NodePath("../Others/GivingTrackPoint")
 ghost_scene = ExtResource("7_sto6n")
 dancer_walkable_area_scene = NodePath("../Others/DancerWalkableArea")
 holy_water_spray_scene = ExtResource("8_2qt8o")
+ghost_effect_scene = ExtResource("9_2qt8o")
 metadata/_custom_type_script = "uid://ddd5qttbt7snl"
 
 [node name="Hud" parent="." unique_id=1331255990 instance=ExtResource("9_irnpy")]

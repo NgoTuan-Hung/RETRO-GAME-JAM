@@ -1,7 +1,7 @@
 class_name NPC
 extends CharacterBody2D
 
-#region variables
+#region Variables
 ## The [NPCSpriteSet] defining this NPC's appearance.
 ##
 ## Drag a Spriteset from [code]res://resources/NPCSpriteSets[/code] into the
@@ -49,7 +49,7 @@ var action_goal_finished: bool = true
 
 #endregion
 
-#region built-in functions
+#region Built-in Functions
 func _ready() -> void:
 	# If no spriteset is assigned in Inspector, pick a random one from the folder
 	if spriteset == null:
@@ -104,7 +104,7 @@ func _physics_process(delta: float) -> void:
 	handle_movement(direction_this_physics_tick)
 #endregion
 
-#region possession
+#region Possession
 ## Starts the possession process for this NPC, making it switch to the "being possessed" state and play the corresponding animation. 
 ## The possession lasts for the specified duration, during which the NPC's sprite alternates between its normal and possessed appearances.
 ## The speed of the sprite switching accelerates over time, and a shaking effect is applied towards the end of the possession duration.
@@ -153,9 +153,14 @@ func start_possession(duration: float, possessed_by: Node2D) -> void:
 	if current_state == State.BEING_POSSESSED:
 		current_state = State.NORMAL
 		possessed = true
+
+func stop_possession() -> void:
+	if possessed:
+		possessed = false
+		sprite.texture = spriteset.normal_sheet
 #endregion
 
-#region movement
+#region Movement
 func handle_movement(direction: Vector2) -> void:
 	if direction:
 		velocity = direction.normalized() * speed

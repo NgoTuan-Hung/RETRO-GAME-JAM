@@ -80,7 +80,8 @@ func handle_appearance() -> void:
 		visible = true
 		animation.play("appear")
 		global_position = initial_position # Reset his position to the basement upon appearing
-		collision_shape.disabled = false
+		for child in find_children("*", "CollisionShape2D", true, false):
+			child.set_deferred("disabled", false)
 		# Manifestation cost starts on the next tick, not right after appearing
 		wait_one_minute_before_disappearance()
 
@@ -109,7 +110,8 @@ func handle_disappearance() -> void:
 		else: return
 		can_disappear = false
 		animation.play("fade")
-		collision_shape.disabled = true
+		for child in find_children("*", "CollisionShape2D", true, false):
+			child.set_deferred("disabled", true)
 		await animation.animation_finished # Wait for the animation to finish
 		visible = false
 

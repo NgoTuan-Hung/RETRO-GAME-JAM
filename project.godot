@@ -35,6 +35,8 @@ enabled=PackedStringArray("res://addons/pathfinding_tool/plugin.cfg", "res://add
 
 pushable="Entities which are pushable by the Boogie Woogie"
 ghost_hurt_box=""
+npc_hurt_box=""
+boogie_woogie_hurt_box=""
 
 [gui]
 

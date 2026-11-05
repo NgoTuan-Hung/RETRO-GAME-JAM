@@ -20,6 +20,9 @@ signal BW_DISAPPEARING
 @export var holy_water_spray_scene: PackedScene
 var reusable_holy_water_spray: Array[Node] = []
 
+@export var ghost_effect_scene: PackedScene
+var reusable_ghost_effect: Array[Node] = []
+
 func _enter_tree() -> void:
 	instance = self
 
@@ -92,3 +95,14 @@ func get_a_holy_water_spray() -> Node:
 	spray.enable()
 	reusable_holy_water_spray.append(spray)
 	return spray
+
+func get_a_ghost_effect() -> Node:
+	for effect in reusable_ghost_effect:
+		if effect.process_mode == ProcessMode.PROCESS_MODE_DISABLED:
+			effect.enable()
+			return effect
+
+	var effect = ghost_effect_scene.instantiate()
+	get_tree().current_scene.add_child(effect)
+	reusable_ghost_effect.append(effect)
+	return effect

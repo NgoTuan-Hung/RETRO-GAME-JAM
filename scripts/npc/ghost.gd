@@ -194,14 +194,14 @@ func temporary_disable() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	visible = false
 	for child in find_children("*", "CollisionShape2D", true, false):
-		child.disabled = true # or child.set_deferred("disabled", false) for safety
+		child.set_deferred("disabled", true)
 
 ## Make the ghost visible again
 func enable() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
 	visible = true
 	for child in find_children("*", "CollisionShape2D", true, false):
-		child.disabled = false
+		child.set_deferred("disabled", false)
 
 ## Play the purification effect using shader
 func purify(direction: Vector2) -> void:
@@ -224,7 +224,7 @@ func purify(direction: Vector2) -> void:
 	tween.tween_property(mat, "shader_parameter/progress", 1.0, 0.8)
 
 	for child in find_children("*", "CollisionShape2D", true, false):
-		child.disabled = true # or child.set_deferred("disabled", false) for safety
+		child.set_deferred("disabled", true)
 
 	await tween.finished
 	sprite.material = null # Remove the shader material to restore normal rendering
