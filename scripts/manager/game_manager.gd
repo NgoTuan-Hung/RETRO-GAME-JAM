@@ -96,6 +96,8 @@ func get_a_holy_water_spray() -> Node:
 	reusable_holy_water_spray.append(spray)
 	return spray
 
+## Get the ghost_effect_scene from game manager and instantiate it
+## , the effect is reusable if it's disabled
 func get_a_ghost_effect() -> Node:
 	for effect in reusable_ghost_effect:
 		if effect.process_mode == ProcessMode.PROCESS_MODE_DISABLED:

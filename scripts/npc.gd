@@ -154,6 +154,7 @@ func start_possession(duration: float, possessed_by: Node2D) -> void:
 		current_state = State.NORMAL
 		possessed = true
 
+## Stops the possession on this NPC and restores its normal appearance.
 func stop_possession() -> void:
 	if possessed:
 		possessed = false
