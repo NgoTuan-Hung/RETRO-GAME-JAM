@@ -23,6 +23,7 @@ enum State { NORMAL, BEING_POSSESSED, WALK, DANCE}
 var current_state: State = State.NORMAL
 var possessed = false
 var possessed_by: Node2D
+var cancel_possession: bool = false # Flag to cancel possession when the player sprays holy water on the ghost while possessing an NPC
 
 # Movement and A* pathfinding
 @export var speed: float = 100
@@ -126,6 +127,11 @@ func start_possession(duration: float, possessed_by: Node2D) -> void:
 	var original_offset: Vector2 = sprite.position
 
 	while elapsed < duration:
+		# If the possession is canceled by receiving the signal from the ghost, reset the NPC's state and exit the loop.
+		if cancel_possession:
+			reset_state_after_cancel(original_offset)
+			return
+
 		# Toggle between normal and possessed sprites
 		is_showing_possessed = !is_showing_possessed
 		sprite.texture = spriteset.possessed_sheet if is_showing_possessed else spriteset.normal_sheet
@@ -153,6 +159,19 @@ func start_possession(duration: float, possessed_by: Node2D) -> void:
 	if current_state == State.BEING_POSSESSED:
 		current_state = State.NORMAL
 		possessed = true
+	animation.play("dance")
+
+func cancel_current_possession() -> void:
+	cancel_possession = true
+
+## Resets the NPC's state after canceling possession, restoring its normal appearance and position.
+func reset_state_after_cancel(sprite_offset: Vector2) -> void:
+	cancel_possession = false
+	if current_state == State.BEING_POSSESSED:
+		current_state = State.NORMAL
+		sprite.texture = spriteset.normal_sheet
+		sprite.position = sprite_offset
+		animation.play("dance")
 
 ## Stops the possession on this NPC and restores its normal appearance.
 func stop_possession() -> void:

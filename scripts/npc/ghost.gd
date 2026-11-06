@@ -19,6 +19,8 @@ var direction_this_physics_tick: Vector2 = Vector2.ZERO
 @onready var sprite: Sprite2D = $Sprite2D
 @export var possession_range: float = 10 # The minimum range in which the ghost is allowed to posses dancers
 @export var npc_possession_time: float = 2
+var possessing_npc: NPC = null # The NPC that is currently being possessed by the ghost, if any
+var cancel_possession: bool = false # Flag to cancel possession when the player sprays holy water on the ghost while possessing an NPC
 
 enum State { NORMAL, APPEAR, DISAPPEAR, POSSESS }
 var current_state: State = State.APPEAR # Also initial state
@@ -30,6 +32,8 @@ var time_since_last_drain: float = 0 # The ammount of time since the last drain 
 
 @export var appear_shader: Shader
 @export var dissolve_shader: Shader
+
+var purify_direction: Vector2
 
 func _ready() -> void:
 	target = GameManager.instance.get_a_random_target_for_ghost()
@@ -161,14 +165,24 @@ func possess_if_in_range(delta: float) -> void:
 		if distance_to_target < possession_range && current_state == State.NORMAL:
 			current_state = State.POSSESS
 			animation.play("possess")
+			possessing_npc = target
 
 			await target.start_possession(npc_possession_time, self)
+			# If the NPC cancels the possession, the above function will return early and cancel_possession will be set to true
+			# , so we need to check for that and reset the state accordingly.
+			if cancel_possession:
+				cancel_current_possession()
+				return
+
+			# If the possession finishes normally, we will reset the state and make the ghost vanish.
 			if current_state == State.POSSESS:
 				current_state = State.NORMAL
 				temporary_disable()
-		## Also abort if out of possession range
+		# Also abort if out of possession range
 		elif distance_to_target > possession_range && current_state == State.POSSESS:
-			current_state = State.NORMAL
+			cancel_possession_on_npc(Vector2.RIGHT)
+			if current_state == State.POSSESS:
+				current_state = State.NORMAL
 	elif target is Player:
 		chase_time += delta
 		if distance_to_target < possession_range:
@@ -186,6 +200,22 @@ func possess_if_in_range(delta: float) -> void:
 			current_state = State.NORMAL
 			animation.play("idle")
 			time_since_last_drain = 0
+
+## Cancel possession on the NPC if the ghost is sprayed with holy water while possessing an NPC.
+## The ghost will stop possessing the NPC and will be purified in the direction of the holy water spray.
+func cancel_possession_on_npc(purify_direction: Vector2) -> void:
+	if possessing_npc:
+		possessing_npc.cancel_current_possession()
+		possessing_npc = null
+		cancel_possession = true
+		self.purify_direction = purify_direction
+
+## Reset the ghost's state after canceling possession on an NPC.
+func cancel_current_possession() -> void:
+	cancel_possession = false
+	if current_state == State.POSSESS:
+		current_state = State.NORMAL
+	purify(purify_direction)
 #endregion
 			
 
@@ -203,6 +233,7 @@ func enable() -> void:
 	for child in find_children("*", "CollisionShape2D", true, false):
 		child.set_deferred("disabled", false)
 
+#region Purify
 ## Play the purification effect using shader
 func purify(direction: Vector2) -> void:
 	current_state = State.DISAPPEAR
@@ -230,3 +261,4 @@ func purify(direction: Vector2) -> void:
 	sprite.material = null # Remove the shader material to restore normal rendering
 	process_mode = Node.PROCESS_MODE_DISABLED
 	visible = false
+#endregion
