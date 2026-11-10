@@ -1,42 +1,24 @@
 extends Node2D
 class_name Talkable
 
-@export var offset := 32					# display height above character
-@export var character_id : String
-
-signal get_dialogue_options(speaker : Talkable, listener : Talkable)
-signal used_dialog_option(dialogue_id : String)
-
 signal speech_bubble_clicked
 signal speech_bubble_complete
 signal speech_bubble_closed
 
-# Delay time between characters
-const letter_time := 0.03					# static typed float
-const space_time := 0.06					# static typed float
-const punctuation_time := 0.2				# static typed float
+#region textbox display variables
+@export var offset := 32					# display height above character
+@export var character_id : String			# DialogueManager ID
+const letter_time := 0.03					# delay after letters and numbers
+const space_time := 0.06					# delay after spaces
+const punctuation_time := 0.2				# delay after punctuation
+const linger_time_per_character := 0.05		# time before textbox disappears
+const minimum_linger_time := 2.0			# minimum display time when complete
+var linger_time := 0.0						# accumulated linger time
+var lingering := false						# becomes true when text complete
+var speech := ""							# full text to be displayed
+#endregion
 
-# How long does the speech bubble stay visible once displayed
-const linger_time_per_character := 0.05		# static typed float
-const minimum_linger_time := 2.0			# static typed float
-var linger_time := 0.0						# static typed float
-var lingering := false
-
-# Maximum width for the speech bubble
-# const max_width := 256		# static typed int - width of bubble
-
-# Text to display
-var speech := ""			# static typed String - text to display
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	if character_id == "" :
-		character_id = "dancer"
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+#region textbox display functions
 func say_text(text : String) -> void :
 	$SpeechBubble/MarginContainer/Speech.text = ""
 	speech = text
@@ -82,11 +64,16 @@ func _on_timer_timeout() -> void:
 		lingering = true
 		$SpeechBubble/Timer.start(max(linger_time, minimum_linger_time))
 
+#endregion
+
+#region DialogueManager functions
 func talk_to(speaker: Talkable, listener: Talkable) -> void :
-	get_dialogue_options.emit(speaker, listener)
+	pass
 
 func use_dialogue_options(dialogue_options : Dictionary) -> void :
 	pass
 
 func show_dialogue_options(dialogue_options : Dictionary) -> void :
 	pass
+
+#endregion
