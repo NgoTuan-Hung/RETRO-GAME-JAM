@@ -148,7 +148,8 @@ func talk() -> void :
 			if d < distance :
 				closest = body
 				distance = d
-	$Talkable.say_text("Hello World!")
+	var dialogue : Dictionary = DialogueManager.get_dialogue() 
+	$Talkable.say_text(dialogue["dialogue"])
 	if closest :
 		print("closest = " + closest.name + " : distance : " + str(distance))
 	talked.emit()
