@@ -31,18 +31,48 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 10)
 layout_mode = 2
 size_flags_vertical = 4
-max_value = 100.0
 value = 100.0
 show_percentage = false
 
-[node name="Inventory" type="HBoxContainer" parent="TopBar" unique_id=1109866467]
+[node name="Resource" type="HBoxContainer" parent="TopBar" unique_id=1109866467]
 layout_mode = 2
 size_flags_horizontal = 6
 
-[node name="InventoryLabel" type="Label" parent="TopBar/Inventory" unique_id=1394239491]
+[node name="HolyWaterLabel" type="Label" parent="TopBar/Resource" unique_id=1059377891]
+unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Some unknown water"
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.28235295, 0.7921569, 0.89411765, 1)
 theme_override_font_sizes/font_size = 12
-text = "Inventory"
+text = "W: 0"
+
+[node name="DrinkLabel" type="Label" parent="TopBar/Resource" unique_id=1203635206]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Drinks"
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.9843137, 0.52156866, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "D: 0"
+
+[node name="RockDiscLabel" type="Label" parent="TopBar/Resource" unique_id=442937434]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Some rock discs"
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.8509804, 0.27450982, 0.9372549, 1)
+theme_override_font_sizes/font_size = 12
+text = "R: 0"
+
+[node name="GearLabel" type="Label" parent="TopBar/Resource" unique_id=885713025]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Some gears"
+mouse_filter = 0
+theme_override_colors/font_color = Color(1, 0.81960785, 0.4, 1)
+theme_override_font_sizes/font_size = 12
+text = "[G: 0]"
 
 [node name="Clock" type="Label" parent="TopBar" unique_id=185904554]
 layout_mode = 2

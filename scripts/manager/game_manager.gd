@@ -2,7 +2,7 @@ class_name GameManager
 extends Node
 
 static var instance: GameManager
-@export var player: Node2D
+@export var player: Player
 @export var hud: Node
 @export var giving_track_point: Node2D
 
@@ -25,6 +25,12 @@ var reusable_ghost_effect: Array[Node] = []
 
 func _enter_tree() -> void:
 	instance = self
+
+func _ready() -> void:
+	# Connect the player's resource signals to the HUD's update functions
+	player.resource_changed.connect(hud.update_resource)
+	player.resource_changed.emit(player.holy_water_count, player.drink_count, player.rock_disc_count, 0)
+	player.resource_depleted.connect(hud.feedback_on_resource_depletion)
 
 ## Ghost need to chase after the player or the npcs so for now
 ## we will add whatever that is player or npc to this array.

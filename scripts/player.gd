@@ -23,6 +23,25 @@ var current_speed: float
 var normal_speed: float = 100
 
 @onready var spray_origin: Node2D = $SprayOrigin
+var holy_water_count: int = 1:
+	set(value):
+		holy_water_count = value
+		resource_changed.emit(value, drink_count, rock_disc_count, 0)
+
+var drink_count: int = 1:
+	set(value):
+		drink_count = value
+		resource_changed.emit(holy_water_count, value, rock_disc_count, 0)
+
+var rock_disc_count: int = 1:
+	set(value):
+		rock_disc_count = value
+		resource_changed.emit(holy_water_count, drink_count, value, 0)
+
+## HUD can subscribe to this signal to update the resource display when the player's resources change.
+signal resource_changed(water_count: int, drink_count: int, rock_count: int, gears: int)
+## HUD can subscribe to this signal to provide feedback when a resource is depleted.
+signal resource_depleted(resource_name: String)
 
 func _ready() -> void:
 	sync_resistance_ui.call_deferred()
@@ -70,6 +89,11 @@ func handle_drink_input() -> void:
 		start_drinking()
 
 func start_drinking() -> void:
+	if drink_count < 1:
+		resource_depleted.emit("Drink")
+		return
+
+	drink_count -= 1
 	current_state = State.DRINK
 	animation.play("drink")
 
@@ -91,6 +115,11 @@ func handle_aim_and_spray_input() -> void:
 		crosshair.visible = false
 
 func spray_holy_water() -> void:
+	if holy_water_count < 1:
+		resource_depleted.emit("Holy Water")
+		return
+
+	holy_water_count -= 1
 	current_state = State.SPRAY
 	animation.play("spray")
 
