@@ -20,6 +20,22 @@
 [ext_resource type="Script" uid="uid://b2f1vqeexvcre" path="res://scripts/dancer_walkable_area.gd" id="16_nwef2"]
 [ext_resource type="PackedScene" uid="uid://cb3cr7t3spkhx" path="res://scenes/janitor.tscn" id="17_tvjgc"]
 [ext_resource type="PackedScene" uid="uid://ddkqu8p1o2382" path="res://scenes/michael_jackson.tscn" id="19_bo63t"]
+[ext_resource type="Script" uid="uid://b588oqvtbjlyx" path="res://scripts/misc/stool.gd" id="20_4trnp"]
+[ext_resource type="Texture2D" uid="uid://gpcfb5smn4hb" path="res://art/objects/safe.png" id="21_8t14j"]
+[ext_resource type="Texture2D" uid="uid://huiljkk1bu4o" path="res://art/objects/shelf.png" id="22_xgs3h"]
+[ext_resource type="Script" uid="uid://caowjsgcps40" path="res://scripts/misc/table.gd" id="22_xj5da"]
+[ext_resource type="Texture2D" uid="uid://5keh8yjy85r7" path="res://art/objects/electric_box.png" id="23_0cwde"]
+[ext_resource type="Texture2D" uid="uid://chpb3gse2puyw" path="res://art/objects/door.png" id="23_ts7sh"]
+[ext_resource type="PackedScene" uid="uid://dfo1fj2ckjjx1" path="res://scenes/spirit_bottle.tscn" id="24_53661"]
+[ext_resource type="Texture2D" uid="uid://deu64ek1e0c28" path="res://art/objects/table.png" id="25_pp4df"]
+[ext_resource type="Texture2D" uid="uid://cvudit7luk1cj" path="res://art/objects/stool.png" id="26_5jrxm"]
+[ext_resource type="Script" uid="uid://dpaj5x6dk8ixy" path="res://scripts/misc/debugger.gd" id="34_vxafw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnrf6"]
+size = Vector2(8, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o06qh"]
+size = Vector2(10, 2)
 
 [node name="NightClub" type="Node2D" unique_id=108550898]
 y_sort_enabled = true
@@ -36,7 +52,7 @@ tile_set = ExtResource("1_xxoyl")
 use_kinematic_bodies = true
 
 [node name="Player" parent="." unique_id=185241265 groups=["pushable"] instance=ExtResource("2_41w1w")]
-position = Vector2(640, 360)
+position = Vector2(501, 321)
 
 [node name="PathfindingGridDebugger" type="Node2D" parent="." unique_id=778899001]
 visible = false
@@ -51,7 +67,7 @@ show_walkable_wireframes = true
 script = ExtResource("9_manager")
 grid_data = ExtResource("7_grid_data")
 
-[node name="GameManager" type="Node" parent="." unique_id=1904689696 node_paths=PackedStringArray("player", "hud", "giving_track_point", "dancer_walkable_area_scene")]
+[node name="GameManager" type="Node" parent="." unique_id=1904689696 node_paths=PackedStringArray("player", "hud", "giving_track_point", "dancer_walkable_area_scene", "bartender")]
 script = ExtResource("8_p2vvp")
 player = NodePath("../Player")
 hud = NodePath("../Hud")
@@ -60,12 +76,16 @@ ghost_scene = ExtResource("7_sto6n")
 dancer_walkable_area_scene = NodePath("../Others/DancerWalkableArea")
 holy_water_spray_scene = ExtResource("8_2qt8o")
 ghost_effect_scene = ExtResource("9_2qt8o")
+bartender = NodePath("../Bartender")
+spirit_bottle_scene = ExtResource("24_53661")
 metadata/_custom_type_script = "uid://ddd5qttbt7snl"
 
 [node name="Hud" parent="." unique_id=1331255990 instance=ExtResource("9_irnpy")]
 
 [node name="Bartender" parent="." unique_id=253101363 instance=ExtResource("10_ve77s")]
 position = Vector2(432, 432)
+speed = 50.0
+min_distance_for_index_change = 2.0
 
 [node name="DJ" parent="." unique_id=1208091697 instance=ExtResource("11_axcwr")]
 position = Vector2(752, 305)
@@ -87,6 +107,232 @@ position = Vector2(512, 492)
 
 [node name="Bar" parent="Fixtures and Furnishings" unique_id=212838228 instance=ExtResource("13_gyjyx")]
 position = Vector2(432, 440)
+
+[node name="Safe" type="Node2D" parent="Fixtures and Furnishings" unique_id=1755130530]
+position = Vector2(782, 480)
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Safe" unique_id=1715072808]
+texture = ExtResource("21_8t14j")
+offset = Vector2(0, -14)
+
+[node name="Shelf" type="Node2D" parent="Fixtures and Furnishings" unique_id=1013572378]
+position = Vector2(411, 288)
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Shelf" unique_id=990254612]
+texture = ExtResource("22_xgs3h")
+offset = Vector2(0, -14)
+
+[node name="ElectricBox" type="Node2D" parent="Fixtures and Furnishings" unique_id=1000827121]
+position = Vector2(382, 480)
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/ElectricBox" unique_id=290663829]
+texture = ExtResource("23_0cwde")
+offset = Vector2(0, -14)
+
+[node name="Stool" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=967396857 node_paths=PackedStringArray("table")]
+position = Vector2(388, 315)
+script = ExtResource("20_4trnp")
+table = NodePath("../Table")
+metadata/_custom_type_script = "uid://b588oqvtbjlyx"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Stool" unique_id=1404928636]
+texture = ExtResource("26_5jrxm")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Stool" unique_id=366840593]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mnrf6")
+
+[node name="Stool2" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1489793560 node_paths=PackedStringArray("table")]
+position = Vector2(428, 315)
+script = ExtResource("20_4trnp")
+table = NodePath("../Table")
+metadata/_custom_type_script = "uid://b588oqvtbjlyx"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Stool2" unique_id=1688280678]
+texture = ExtResource("26_5jrxm")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Stool2" unique_id=1255060671]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mnrf6")
+
+[node name="Table" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1408438469]
+position = Vector2(408, 315)
+script = ExtResource("22_xj5da")
+metadata/_custom_type_script = "uid://caowjsgcps40"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Table" unique_id=485853432]
+texture = ExtResource("25_pp4df")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Table" unique_id=101327274]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_o06qh")
+
+[node name="Stool3" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=2019741378 node_paths=PackedStringArray("table")]
+position = Vector2(528, 315)
+script = ExtResource("20_4trnp")
+table = NodePath("../Table2")
+metadata/_custom_type_script = "uid://b588oqvtbjlyx"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Stool3" unique_id=1527898419]
+texture = ExtResource("26_5jrxm")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Stool3" unique_id=1050751793]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mnrf6")
+
+[node name="Stool4" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=418764628 node_paths=PackedStringArray("table")]
+position = Vector2(568, 315)
+script = ExtResource("20_4trnp")
+table = NodePath("../Table2")
+metadata/_custom_type_script = "uid://b588oqvtbjlyx"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Stool4" unique_id=1421169494]
+texture = ExtResource("26_5jrxm")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Stool4" unique_id=1626452081]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mnrf6")
+
+[node name="Table2" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1489800005]
+position = Vector2(548, 315)
+script = ExtResource("22_xj5da")
+metadata/_custom_type_script = "uid://caowjsgcps40"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Table2" unique_id=1307836336]
+texture = ExtResource("25_pp4df")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Table2" unique_id=1247569472]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_o06qh")
+
+[node name="Stool5" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1471291408 node_paths=PackedStringArray("table")]
+position = Vector2(460, 355)
+script = ExtResource("20_4trnp")
+table = NodePath("../Table3")
+metadata/_custom_type_script = "uid://b588oqvtbjlyx"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Stool5" unique_id=853998466]
+texture = ExtResource("26_5jrxm")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Stool5" unique_id=1737890860]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mnrf6")
+
+[node name="Stool6" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=684069265 node_paths=PackedStringArray("table")]
+position = Vector2(500, 355)
+script = ExtResource("20_4trnp")
+table = NodePath("../Table3")
+metadata/_custom_type_script = "uid://b588oqvtbjlyx"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Stool6" unique_id=2075632806]
+texture = ExtResource("26_5jrxm")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Stool6" unique_id=971139516]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mnrf6")
+
+[node name="Table3" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1229566164]
+position = Vector2(480, 355)
+script = ExtResource("22_xj5da")
+metadata/_custom_type_script = "uid://caowjsgcps40"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Table3" unique_id=412401186]
+texture = ExtResource("25_pp4df")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Table3" unique_id=2056867108]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_o06qh")
+
+[node name="Stool7" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=501482177 node_paths=PackedStringArray("table")]
+position = Vector2(388, 395)
+script = ExtResource("20_4trnp")
+table = NodePath("../Table4")
+metadata/_custom_type_script = "uid://b588oqvtbjlyx"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Stool7" unique_id=16089798]
+texture = ExtResource("26_5jrxm")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Stool7" unique_id=36296632]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mnrf6")
+
+[node name="Stool8" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1145691490 node_paths=PackedStringArray("table")]
+position = Vector2(428, 395)
+script = ExtResource("20_4trnp")
+table = NodePath("../Table4")
+metadata/_custom_type_script = "uid://b588oqvtbjlyx"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Stool8" unique_id=233862635]
+texture = ExtResource("26_5jrxm")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Stool8" unique_id=661909979]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mnrf6")
+
+[node name="Table4" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=899629066]
+position = Vector2(408, 395)
+script = ExtResource("22_xj5da")
+metadata/_custom_type_script = "uid://caowjsgcps40"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Table4" unique_id=850844532]
+texture = ExtResource("25_pp4df")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Table4" unique_id=762548497]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_o06qh")
+
+[node name="Stool9" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=2104858215 node_paths=PackedStringArray("table")]
+position = Vector2(528, 395)
+script = ExtResource("20_4trnp")
+table = NodePath("../Table5")
+metadata/_custom_type_script = "uid://b588oqvtbjlyx"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Stool9" unique_id=1804402093]
+texture = ExtResource("26_5jrxm")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Stool9" unique_id=1335607053]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mnrf6")
+
+[node name="Stool10" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=151577012 node_paths=PackedStringArray("table")]
+position = Vector2(568, 395)
+script = ExtResource("20_4trnp")
+table = NodePath("../Table5")
+metadata/_custom_type_script = "uid://b588oqvtbjlyx"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Stool10" unique_id=709128004]
+texture = ExtResource("26_5jrxm")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Stool10" unique_id=9183692]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mnrf6")
+
+[node name="Table5" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1600442152]
+position = Vector2(548, 395)
+script = ExtResource("22_xj5da")
+metadata/_custom_type_script = "uid://caowjsgcps40"
+
+[node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Table5" unique_id=807297557]
+texture = ExtResource("25_pp4df")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixtures and Furnishings/Table5" unique_id=1530898200]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_o06qh")
 
 [node name="Dancers" type="Node2D" parent="." unique_id=586539468]
 y_sort_enabled = true
@@ -125,5 +371,30 @@ position = Vector2(500, 400)
 
 [node name="MichaelJackson" parent="." unique_id=504448448 instance=ExtResource("19_bo63t")]
 position = Vector2(600, 400)
+
+[node name="Door" type="Sprite2D" parent="." unique_id=705836339]
+position = Vector2(440, 464)
+texture = ExtResource("23_ts7sh")
+
+[node name="Door2" type="Sprite2D" parent="." unique_id=167009527]
+position = Vector2(840, 464)
+texture = ExtResource("23_ts7sh")
+
+[node name="Door3" type="Sprite2D" parent="." unique_id=874618764]
+position = Vector2(824, 272)
+texture = ExtResource("23_ts7sh")
+
+[node name="Door4" type="Sprite2D" parent="." unique_id=1470568625]
+position = Vector2(680, 272)
+texture = ExtResource("23_ts7sh")
+
+[node name="Door5" type="Sprite2D" parent="." unique_id=996209252]
+position = Vector2(472, 272)
+texture = ExtResource("23_ts7sh")
+
+[node name="Debugger" type="Node" parent="." unique_id=731664468 node_paths=PackedStringArray("stool")]
+script = ExtResource("34_vxafw")
+stool = NodePath("../Fixtures and Furnishings/Stool")
+metadata/_custom_type_script = "uid://dpaj5x6dk8ixy"
 
 [connection signal="on_game_time_changed" from="Hud" to="Boogie Woogie" method="_on_hud_on_game_time_changed"]

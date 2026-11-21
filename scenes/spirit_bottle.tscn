@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dfo1fj2ckjjx1"]
+
+[ext_resource type="Script" uid="uid://b21q7x0uipe1w" path="res://scripts/misc/spirit_bottle.gd" id="1_xdy5d"]
+[ext_resource type="Texture2D" uid="uid://bv6oehdbsplvq" path="res://art/placeholder/absolute_vodka.png" id="2_ynrs2"]
+[ext_resource type="Texture2D" uid="uid://m0fos38tplqo" path="res://art/placeholder/black_bush.png" id="3_e2n6h"]
+[ext_resource type="Texture2D" uid="uid://dfvun7vqaipi8" path="res://art/placeholder/havana_club.png" id="4_i0fxm"]
+[ext_resource type="Texture2D" uid="uid://bmulg1o44mhvl" path="res://art/placeholder/plymouth_gin.png" id="5_ghcl3"]
+[ext_resource type="Texture2D" uid="uid://b67sj0kp0jp28" path="res://art/placeholder/tariquet.png" id="6_v2lti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rrdi"]
+size = Vector2(3, 1)
+
+[node name="SpiritBottle" type="Area2D" unique_id=700712813 groups=["spirit_bottle"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_xdy5d")
+textures = Array[Texture2D]([ExtResource("2_ynrs2"), ExtResource("3_e2n6h"), ExtResource("4_i0fxm"), ExtResource("5_ghcl3"), ExtResource("6_v2lti")])
+metadata/_custom_type_script = "uid://b21q7x0uipe1w"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=232631610]
+texture = ExtResource("2_ynrs2")
+offset = Vector2(0, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=730441754]
+position = Vector2(-0.5, -13.5)
+shape = SubResource("RectangleShape2D_7rrdi")

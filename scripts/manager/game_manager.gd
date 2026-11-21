@@ -23,6 +23,11 @@ var reusable_holy_water_spray: Array[Node] = []
 @export var ghost_effect_scene: PackedScene
 var reusable_ghost_effect: Array[Node] = []
 
+@export var bartender: Bartender
+
+@export var spirit_bottle_scene: PackedScene
+var reusable_spirit_bottle: Array[Node] = []
+
 func _enter_tree() -> void:
 	instance = self
 
@@ -114,3 +119,16 @@ func get_a_ghost_effect() -> Node:
 	get_tree().current_scene.add_child(effect)
 	reusable_ghost_effect.append(effect)
 	return effect
+
+## Get the spirit_bottle_scene from game manager and instantiate it
+## , the bottle is reusable if it's disabled
+func get_a_spirit_bottle() -> Node:
+	for bottle in reusable_spirit_bottle:
+		if bottle.process_mode == ProcessMode.PROCESS_MODE_DISABLED:
+			bottle.enable()
+			return bottle
+
+	var bottle = spirit_bottle_scene.instantiate()
+	get_tree().current_scene.add_child(bottle)
+	reusable_spirit_bottle.append(bottle)
+	return bottle

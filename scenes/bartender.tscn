@@ -3,12 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="1_1nruu"]
 [ext_resource type="Texture2D" uid="uid://by1ko8o4b10s8" path="res://art/characters/bartender.png" id="1_6awep"]
 [ext_resource type="PackedScene" uid="uid://gxnapxeayqe" path="res://scenes/talkable.tscn" id="1_cnd4h"]
+[ext_resource type="Script" uid="uid://4nwaea8lihpg" path="res://scripts/npc/bartender.gd" id="1_sxo6c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
-radius = 4.0
+radius = 1.0
 
-[node name="Bartender" type="CharacterBody2D" unique_id=253101363]
+[node name="Bartender" type="CharacterBody2D" unique_id=1892636039]
 collision_layer = 9
+script = ExtResource("1_sxo6c")
+metadata/_custom_type_script = "uid://4nwaea8lihpg"
 metadata/_edit_group_ = true
 
 [node name="Talkable" parent="." unique_id=1944153148 instance=ExtResource("1_cnd4h")]
@@ -25,3 +28,5 @@ offset = Vector2(0, -15)
 
 [node name="Footprint" type="CollisionShape2D" parent="." unique_id=1087389886]
 shape = SubResource("CircleShape2D_g4v7s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=410145083]
