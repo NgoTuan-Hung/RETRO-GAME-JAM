@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://dfo1fj2ckjjx1" path="res://scenes/spirit_bottle.tscn" id="24_53661"]
 [ext_resource type="Texture2D" uid="uid://deu64ek1e0c28" path="res://art/objects/table.png" id="25_pp4df"]
 [ext_resource type="Texture2D" uid="uid://cvudit7luk1cj" path="res://art/objects/stool.png" id="26_5jrxm"]
-[ext_resource type="Script" uid="uid://dpaj5x6dk8ixy" path="res://scripts/misc/debugger.gd" id="34_vxafw"]
+[ext_resource type="Script" uid="uid://nlabevyabxre" path="res://scripts/misc/customer_simulation_debugger.gd" id="30_53661"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnrf6"]
 size = Vector2(8, 2)
@@ -157,9 +157,11 @@ offset = Vector2(0, -8)
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_mnrf6")
 
-[node name="Table" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1408438469]
+[node name="Table" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1408438469 node_paths=PackedStringArray("left_stool", "right_stool")]
 position = Vector2(408, 315)
 script = ExtResource("22_xj5da")
+left_stool = NodePath("../Stool")
+right_stool = NodePath("../Stool2")
 metadata/_custom_type_script = "uid://caowjsgcps40"
 
 [node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Table" unique_id=485853432]
@@ -198,9 +200,11 @@ offset = Vector2(0, -8)
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_mnrf6")
 
-[node name="Table2" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1489800005]
+[node name="Table2" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1489800005 node_paths=PackedStringArray("left_stool", "right_stool")]
 position = Vector2(548, 315)
 script = ExtResource("22_xj5da")
+left_stool = NodePath("../Stool3")
+right_stool = NodePath("../Stool4")
 metadata/_custom_type_script = "uid://caowjsgcps40"
 
 [node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Table2" unique_id=1307836336]
@@ -239,9 +243,11 @@ offset = Vector2(0, -8)
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_mnrf6")
 
-[node name="Table3" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1229566164]
+[node name="Table3" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1229566164 node_paths=PackedStringArray("left_stool", "right_stool")]
 position = Vector2(480, 355)
 script = ExtResource("22_xj5da")
+left_stool = NodePath("../Stool5")
+right_stool = NodePath("../Stool6")
 metadata/_custom_type_script = "uid://caowjsgcps40"
 
 [node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Table3" unique_id=412401186]
@@ -280,9 +286,11 @@ offset = Vector2(0, -8)
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_mnrf6")
 
-[node name="Table4" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=899629066]
+[node name="Table4" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=899629066 node_paths=PackedStringArray("left_stool", "right_stool")]
 position = Vector2(408, 395)
 script = ExtResource("22_xj5da")
+left_stool = NodePath("../Stool7")
+right_stool = NodePath("../Stool8")
 metadata/_custom_type_script = "uid://caowjsgcps40"
 
 [node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Table4" unique_id=850844532]
@@ -321,9 +329,11 @@ offset = Vector2(0, -8)
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_mnrf6")
 
-[node name="Table5" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1600442152]
+[node name="Table5" type="StaticBody2D" parent="Fixtures and Furnishings" unique_id=1600442152 node_paths=PackedStringArray("left_stool", "right_stool")]
 position = Vector2(548, 395)
 script = ExtResource("22_xj5da")
+left_stool = NodePath("../Stool9")
+right_stool = NodePath("../Stool10")
 metadata/_custom_type_script = "uid://caowjsgcps40"
 
 [node name="Sprite2D" type="Sprite2D" parent="Fixtures and Furnishings/Table5" unique_id=807297557]
@@ -392,9 +402,8 @@ texture = ExtResource("23_ts7sh")
 position = Vector2(472, 272)
 texture = ExtResource("23_ts7sh")
 
-[node name="Debugger" type="Node" parent="." unique_id=731664468 node_paths=PackedStringArray("stool")]
-script = ExtResource("34_vxafw")
-stool = NodePath("../Fixtures and Furnishings/Stool")
-metadata/_custom_type_script = "uid://dpaj5x6dk8ixy"
+[node name="Debugger" type="Node" parent="." unique_id=615505868 node_paths=PackedStringArray("tables")]
+script = ExtResource("30_53661")
+tables = [NodePath("../Fixtures and Furnishings/Table"), NodePath("../Fixtures and Furnishings/Table2"), NodePath("../Fixtures and Furnishings/Table3"), NodePath("../Fixtures and Furnishings/Table4"), NodePath("../Fixtures and Furnishings/Table5")]
 
 [connection signal="on_game_time_changed" from="Hud" to="Boogie Woogie" method="_on_hud_on_game_time_changed"]

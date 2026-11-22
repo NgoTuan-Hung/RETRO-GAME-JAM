@@ -7,4 +7,4 @@ func _ready() -> void:
     pass
 
 func customer_sit() -> void:
-    table.order_drink(self)
+    table.order_drink(global_position.x > table.global_position.x)
