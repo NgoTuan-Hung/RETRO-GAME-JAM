@@ -10,6 +10,7 @@ radius = 1.0
 
 [node name="Bartender" type="CharacterBody2D" unique_id=1892636039]
 collision_layer = 9
+motion_mode = 1
 script = ExtResource("1_sxo6c")
 metadata/_custom_type_script = "uid://4nwaea8lihpg"
 metadata/_edit_group_ = true

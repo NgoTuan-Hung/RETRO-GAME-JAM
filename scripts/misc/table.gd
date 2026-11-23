@@ -16,24 +16,35 @@ func _ready() -> void:
 	pass
 
 func order_drink(right_stool: bool) -> void:
-	GameManager.instance.bartender.take_order(self)
+	var order
+
 	if right_stool:
 		right_customer = true
+		order = Order.new(self, false, true)
 	else:
 		left_customer = true
+		order = Order.new(self, true, false)
 
-func customer_left(right_stool: bool) -> void:
+	GameManager.instance.bartender.take_order(order)
+
+func customer_leave(right_stool: bool) -> void:
+	var clean_table_request
+
 	if right_stool:
 		right_customer = false
+		clean_table_request = CleanTableRequest.new(self, false, true)
 	else:
 		left_customer = false
+		clean_table_request = CleanTableRequest.new(self, true, false)
 
-func place_drink_for_customer():
-	if left_customer && not left_drink:
+	GameManager.instance.bartender.note_clean_table(clean_table_request)
+
+func place_drink_for_customer(order: Order):
+	if order.order_from_left && not left_drink:
 		left_drink = GameManager.instance.get_a_spirit_bottle()
 		left_drink.global_position = global_position + Vector2(-bottle_offset, 0)
 	
-	if right_customer && not right_drink:
+	if order.order_from_right && not right_drink:
 		right_drink = GameManager.instance.get_a_spirit_bottle()
 		right_drink.global_position = global_position + Vector2(bottle_offset, 0)
 

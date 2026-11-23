@@ -10,16 +10,22 @@ var direction_this_physics_tick: Vector2   # Movement direction for the current 
 var current_path_index: int = 0            # Current target checkpoint index
 @export var min_distance_for_index_change: float = 0.5 # Distance threshold to advance to the next checkpoint
 
-var orders: Array[Table] = []
+var orders: Array[Order] = []
 var current_table: Table = null
-var table_serving_distance: float = 10.0
-var this_round_orders: Array[Table] = []
-var current_table_index: int = 0
+var table_serving_distance: float = 15.0
+var this_round_orders: Array[Order] = []
+var current_order_index: int = 0
 
 var origin: Vector2
 
 enum ServingState {ROUND_SERVING, RETURN, ROUND_CLEANING, IDLE}
 var current_serving_state: ServingState = ServingState.IDLE
+
+var clean_requests: Array[Order] = []
+var current_clean: Table = null
+var table_cleaning_distance: float = 15.0
+var this_round_clean_requests: Array[Order] = []
+var current_request_index: int = 0
 
 func _ready() -> void:
 	origin = global_position
@@ -32,10 +38,6 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	calculate_direction_this_physics_tick()
 	handle_movement(direction_this_physics_tick)
-
-func take_order(table: Table):
-	if table not in orders:
-		orders.append(table)
 
 #region Movement
 func handle_movement(direction: Vector2) -> void:
@@ -84,19 +86,42 @@ func calculate_direction_this_physics_tick() -> void:
 		direction_this_physics_tick = path_to_destination[current_path_index] - global_position
 #endregion
 
-#region Serving
+#region Serving & Cleaning
+func take_order(order: Order):
+	for o in orders:
+		if o.table == order.table:
+			if order.order_from_left:
+				o.order_from_left = true
+			else:
+				o.order_from_right = true
+
+	orders.append(order)
+
 func check_reached_destination() -> void:
 	if current_serving_state == ServingState.ROUND_SERVING:
 		if current_table and global_position.distance_to(current_table.global_position) < table_serving_distance:
-			current_table.place_drink_for_customer()
+			current_table.place_drink_for_customer(this_round_orders[current_order_index])
 			current_table = null
 
-			current_table_index += 1
-			if current_table_index < this_round_orders.size():
-				current_table = this_round_orders[current_table_index]
+			current_order_index += 1
+			if current_order_index < this_round_orders.size():
+				current_table = this_round_orders[current_order_index].table
 				construct_a_path_to_table(current_table)
 			else:
 				if current_serving_state == ServingState.ROUND_SERVING:
+					current_serving_state = ServingState.RETURN
+					construct_a_path_to_origin()
+	elif current_serving_state == ServingState.ROUND_CLEANING:
+		if current_clean and global_position.distance_to(current_clean.global_position) < table_cleaning_distance:
+			# current_clean.place_drink_for_customer(this_round_orders[current_order_index])
+			current_clean = null
+
+			current_request_index += 1
+			if current_request_index < this_round_clean_requests.size():
+				current_clean = this_round_clean_requests[current_request_index].table
+				construct_a_path_to_table(current_clean)
+			else:
+				if current_serving_state == ServingState.ROUND_CLEANING:
 					current_serving_state = ServingState.RETURN
 					construct_a_path_to_origin()
 	elif current_serving_state == ServingState.RETURN:
@@ -106,12 +131,21 @@ func check_reached_destination() -> void:
 func serve_this_round() -> void:
 	if current_serving_state == ServingState.IDLE:
 		if orders.size() > 0:
-			print("Serve this round !!!")
 			this_round_orders = orders.duplicate()
 			orders.clear()
-			current_table_index = 0
+			current_order_index = 0
 			if current_serving_state == ServingState.IDLE:
 				current_serving_state = ServingState.ROUND_SERVING
-			current_table = this_round_orders[0]
+			current_table = this_round_orders[0].table
 			construct_a_path_to_table(current_table)
+
+func note_clean_table(clean_table_request: CleanTableRequest):
+	for cr in clean_requests:
+		if cr.table == clean_table_request.table:
+			if clean_table_request.request_from_left:
+				cr.request_from_left = true
+			else:
+				cr.request_from_right = true
+
+	clean_requests.append(clean_table_request)
 #endregion
