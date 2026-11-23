@@ -21,10 +21,10 @@ var origin: Vector2
 enum ServingState {ROUND_SERVING, RETURN, ROUND_CLEANING, IDLE}
 var current_serving_state: ServingState = ServingState.IDLE
 
-var clean_requests: Array[Order] = []
-var current_clean: Table = null
+var clean_requests: Array[CleanTableRequest] = []
+var current_cleaning_table: Table = null
 var table_cleaning_distance: float = 15.0
-var this_round_clean_requests: Array[Order] = []
+var this_round_clean_requests: Array[CleanTableRequest] = []
 var current_request_index: int = 0
 
 func _ready() -> void:
@@ -92,8 +92,9 @@ func take_order(order: Order):
 		if o.table == order.table:
 			if order.order_from_left:
 				o.order_from_left = true
-			else:
+			if order.order_from_right:
 				o.order_from_right = true
+			return
 
 	orders.append(order)
 
@@ -108,22 +109,24 @@ func check_reached_destination() -> void:
 				current_table = this_round_orders[current_order_index].table
 				construct_a_path_to_table(current_table)
 			else:
-				if current_serving_state == ServingState.ROUND_SERVING:
+				# If there are any table need cleaning, go for cleaning, otherwise, go back.
+				if clean_requests.size() > 0:
+					clean_this_round()
+				else:
 					current_serving_state = ServingState.RETURN
 					construct_a_path_to_origin()
 	elif current_serving_state == ServingState.ROUND_CLEANING:
-		if current_clean and global_position.distance_to(current_clean.global_position) < table_cleaning_distance:
-			# current_clean.place_drink_for_customer(this_round_orders[current_order_index])
-			current_clean = null
+		if current_cleaning_table and global_position.distance_to(current_cleaning_table.global_position) < table_cleaning_distance:
+			current_cleaning_table.clean_table(this_round_clean_requests[current_request_index])
+			current_cleaning_table = null
 
 			current_request_index += 1
 			if current_request_index < this_round_clean_requests.size():
-				current_clean = this_round_clean_requests[current_request_index].table
-				construct_a_path_to_table(current_clean)
+				current_cleaning_table = this_round_clean_requests[current_request_index].table
+				construct_a_path_to_table(current_cleaning_table)
 			else:
-				if current_serving_state == ServingState.ROUND_CLEANING:
-					current_serving_state = ServingState.RETURN
-					construct_a_path_to_origin()
+				current_serving_state = ServingState.RETURN
+				construct_a_path_to_origin()
 	elif current_serving_state == ServingState.RETURN:
 		if global_position.distance_to(origin) < 15:
 			current_serving_state = ServingState.IDLE
@@ -134,18 +137,28 @@ func serve_this_round() -> void:
 			this_round_orders = orders.duplicate()
 			orders.clear()
 			current_order_index = 0
-			if current_serving_state == ServingState.IDLE:
-				current_serving_state = ServingState.ROUND_SERVING
+			current_serving_state = ServingState.ROUND_SERVING
 			current_table = this_round_orders[0].table
 			construct_a_path_to_table(current_table)
+		elif clean_requests.size() > 0:
+			clean_this_round()
+
+func clean_this_round() -> void:
+	this_round_clean_requests = clean_requests.duplicate()
+	clean_requests.clear()
+	current_request_index = 0
+	current_serving_state = ServingState.ROUND_CLEANING
+	current_cleaning_table = this_round_clean_requests[0].table
+	construct_a_path_to_table(current_cleaning_table)
 
 func note_clean_table(clean_table_request: CleanTableRequest):
 	for cr in clean_requests:
 		if cr.table == clean_table_request.table:
 			if clean_table_request.request_from_left:
 				cr.request_from_left = true
-			else:
+			if clean_table_request.request_from_right:
 				cr.request_from_right = true
+			return
 
 	clean_requests.append(clean_table_request)
 #endregion

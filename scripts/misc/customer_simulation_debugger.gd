@@ -39,7 +39,7 @@ var btn_spawn = spawn_customer
 @export_tool_button("Auto-Discover Tables", "Search")
 var btn_discover = auto_discover_tables
 
-## Clear all currently sitting customers, calling table.customer_left() for each.
+## Clear all currently sitting customers, calling stool.customer_leave() for each.
 @export_tool_button("Clear All Customers", "Stop")
 var btn_clear = clear_all_sitting_customers
 
@@ -60,13 +60,15 @@ var btn_clear = clear_all_sitting_customers
 class SittingCustomer:
 	var customer_id: int
 	var table: Table
+	var stool: Stool
 	var is_right_stool: bool
 	var remaining_time: float
 	var total_duration: float
 
-	func _init(p_id: int, p_table: Table, p_is_right: bool, p_duration: float) -> void:
+	func _init(p_id: int, p_table: Table, p_stool: Stool, p_is_right: bool, p_duration: float) -> void:
 		customer_id = p_id
 		table = p_table
+		stool = p_stool
 		is_right_stool = p_is_right
 		remaining_time = p_duration
 		total_duration = p_duration
@@ -169,27 +171,21 @@ func spawn_customer() -> void:
 	# Choose randomly between open seats
 	var choose_right: bool = available_seats.pick_random()
 	var stool_side: String = "right" if choose_right else "left"
+	var target_stool: Stool = selected_table.right_stool if choose_right else selected_table.left_stool
 
 	# Call stool.customer_sit() on the chosen stool
-	if choose_right:
-		if selected_table.right_stool != null:
-			selected_table.right_stool.customer_sit()
-		else:
-			# Fallback if right_stool wasn't assigned or found
-			selected_table.order_drink(true)
+	if target_stool != null:
+		target_stool.customer_sit()
 	else:
-		if selected_table.left_stool != null:
-			selected_table.left_stool.customer_sit()
-		else:
-			# Fallback if left_stool wasn't assigned or found
-			selected_table.order_drink(false)
+		# Fallback if stool wasn't assigned or found
+		selected_table.order_drink(choose_right)
 
 	# Simulate drinking duration (30 - 60s)
 	var low_drink = min(min_drinking_duration, max_drinking_duration)
 	var high_drink = max(min_drinking_duration, max_drinking_duration)
 	var drinking_duration = randf_range(low_drink, high_drink)
 
-	var sitting_customer = SittingCustomer.new(cid, selected_table, choose_right, drinking_duration)
+	var sitting_customer = SittingCustomer.new(cid, selected_table, target_stool, choose_right, drinking_duration)
 	_sitting_customers.append(sitting_customer)
 	active_customers_count = _sitting_customers.size()
 
@@ -202,7 +198,19 @@ func spawn_customer() -> void:
 		])
 
 
-## Decrements customer drinking timers and triggers table.customer_left() when time is up.
+## Triggers customer leaving through their corresponding stool (or table fallback).
+func _customer_leave(customer: SittingCustomer) -> void:
+	if is_instance_valid(customer.stool):
+		customer.stool.customer_leave()
+	elif is_instance_valid(customer.table):
+		var fallback_stool = customer.table.right_stool if customer.is_right_stool else customer.table.left_stool
+		if is_instance_valid(fallback_stool):
+			fallback_stool.customer_leave()
+		else:
+			customer.table.customer_leave(customer.is_right_stool)
+
+
+## Decrements customer drinking timers and triggers stool.customer_leave() when time is up.
 func _process_sitting_customers(delta: float) -> void:
 	for i in range(_sitting_customers.size() - 1, -1, -1):
 		var c = _sitting_customers[i]
@@ -219,7 +227,7 @@ func _process_sitting_customers(delta: float) -> void:
 		c.remaining_time -= delta
 		if c.remaining_time <= 0.0:
 			var side = "right" if c.is_right_stool else "left"
-			c.table.customer_left(c.is_right_stool)
+			_customer_leave(c)
 			if log_events:
 				print("[CustomerSim] Customer #%d finished drinking and left %s (%s stool) after %.1fs." % [
 					c.customer_id,
@@ -235,8 +243,7 @@ func _process_sitting_customers(delta: float) -> void:
 ## Clears all sitting customers immediately.
 func clear_all_sitting_customers() -> void:
 	for c in _sitting_customers:
-		if is_instance_valid(c.table):
-			c.table.customer_left(c.is_right_stool)
+		_customer_leave(c)
 	_sitting_customers.clear()
 	active_customers_count = 0
 	if log_events:

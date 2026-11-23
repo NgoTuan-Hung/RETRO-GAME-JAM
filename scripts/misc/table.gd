@@ -48,9 +48,11 @@ func place_drink_for_customer(order: Order):
 		right_drink = GameManager.instance.get_a_spirit_bottle()
 		right_drink.global_position = global_position + Vector2(bottle_offset, 0)
 
-func clean_table():
-	if left_drink:
+func clean_table(clean_table_request: CleanTableRequest):
+	if clean_table_request.request_from_left and left_drink:
 		left_drink.disable()
+		left_drink = null
 
-	if right_drink:
-		right_drink.disable()		
+	if clean_table_request.request_from_right and right_drink:
+		right_drink.disable()
+		right_drink = null		
