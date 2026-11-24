@@ -27,6 +27,8 @@ var table_cleaning_distance: float = 15.0
 var this_round_clean_requests: Array[CleanTableRequest] = []
 var current_request_index: int = 0
 
+@onready var body_collision: BodyCollision = $BodyCollision
+
 func _ready() -> void:
 	origin = global_position
 
@@ -41,11 +43,12 @@ func _physics_process(delta: float) -> void:
 
 #region Movement
 func handle_movement(direction: Vector2) -> void:
+	var body_collision_vector = body_collision.get_push_vector()
 	if direction:
-		velocity = direction.normalized() * speed
+		velocity = direction.normalized() * speed + body_collision_vector
 		# animation.play("walk")
 	else:
-		velocity = Vector2.ZERO
+		velocity = body_collision_vector
 		# animation.play("idle")
 
 	# if moving left — flip the sprite horizontally

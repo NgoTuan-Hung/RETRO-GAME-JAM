@@ -4,9 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://by1ko8o4b10s8" path="res://art/characters/bartender.png" id="1_6awep"]
 [ext_resource type="PackedScene" uid="uid://gxnapxeayqe" path="res://scenes/talkable.tscn" id="1_cnd4h"]
 [ext_resource type="Script" uid="uid://4nwaea8lihpg" path="res://scripts/npc/bartender.gd" id="1_sxo6c"]
+[ext_resource type="Script" uid="uid://bq1yyipm3slcg" path="res://scripts/misc/body_collision.gd" id="5_cnj15"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
 radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sxo6c"]
+radius = 5.0
 
 [node name="Bartender" type="CharacterBody2D" unique_id=1892636039]
 collision_layer = 9
@@ -31,3 +35,12 @@ offset = Vector2(0, -15)
 shape = SubResource("CircleShape2D_g4v7s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=410145083]
+
+[node name="BodyCollision" type="Area2D" parent="." unique_id=967875795 groups=["body_collision"]]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("5_cnj15")
+metadata/_custom_type_script = "uid://bq1yyipm3slcg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyCollision" unique_id=1119139134]
+shape = SubResource("CircleShape2D_sxo6c")

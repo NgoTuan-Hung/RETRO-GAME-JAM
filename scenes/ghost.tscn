@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d18usok8m0e6i" path="res://art/characters/ghost.png" id="2_5mfnq"]
 [ext_resource type="Shader" uid="uid://c11bmmnx4vwq3" path="res://shader/ghost_appear.gdshader" id="2_bbnym"]
 [ext_resource type="Shader" uid="uid://bghg5umdyb7l6" path="res://shader/ghost_disolve.gdshader" id="3_veat2"]
+[ext_resource type="Script" uid="uid://bq1yyipm3slcg" path="res://scripts/misc/body_collision.gd" id="5_5mfnq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ybayi"]
 shader = ExtResource("2_bbnym")
@@ -11,9 +12,6 @@ shader_parameter/progress = 1.0
 shader_parameter/wave_frequency = 15.0
 shader_parameter/wave_speed = 8.0
 shader_parameter/max_amplitude = 0.08
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ghost"]
-radius = 1.0
 
 [sub_resource type="Animation" id="Animation_ky6jx"]
 resource_name = "idle"
@@ -85,13 +83,20 @@ _data = {
 &"walk": SubResource("Animation_ve77s")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_veat2"]
+radius = 1.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mnrf6"]
 radius = 3.1
 height = 25.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lv6vd"]
+radius = 5.0
+
 [node name="Ghost" type="CharacterBody2D" unique_id=1450866531]
 motion_mode = 1
 script = ExtResource("1_l5lq6")
+min_distance_for_index_change = 2.0
 speed = 50.0
 appear_shader = ExtResource("2_bbnym")
 dissolve_shader = ExtResource("3_veat2")
@@ -105,12 +110,12 @@ hframes = 2
 vframes = 3
 frame = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1404214691]
-shape = SubResource("CircleShape2D_ghost")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1274549001]
 libraries/ = SubResource("AnimationLibrary_uawus")
 autoplay = &"idle"
+
+[node name="Footprint" type="CollisionShape2D" parent="." unique_id=494966076]
+shape = SubResource("CircleShape2D_veat2")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1732539560 groups=["ghost_hurt_box"]]
 collision_layer = 16
@@ -119,3 +124,12 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=699116970]
 position = Vector2(0, -18)
 shape = SubResource("CapsuleShape2D_mnrf6")
+
+[node name="BodyCollision" type="Area2D" parent="." unique_id=1597394719 groups=["body_collision"]]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("5_5mfnq")
+metadata/_custom_type_script = "uid://bq1yyipm3slcg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyCollision" unique_id=833032799]
+shape = SubResource("CircleShape2D_lv6vd")

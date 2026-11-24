@@ -66,7 +66,7 @@ func _on_area_entered(area: Area2D) -> void:
 			# If the ghost is possessing an NPC, cancel the possession and purify the ghost in the direction of the holy water spray.
 			# Otherwise, just purify the ghost in the direction of the holy water spray.
 			if ghost.current_state == Ghost.State.POSSESS:
-				ghost.cancel_possession_on_npc(ghost.global_position - global_position)
+				ghost.cancel_possession_for_purification(ghost.global_position - global_position)
 			else:
 				ghost.purify(ghost.global_position - global_position)
 	elif area.is_in_group("npc_hurt_box"):

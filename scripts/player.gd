@@ -22,6 +22,8 @@ var current_state: State = State.NORMAL
 var current_speed: float
 var normal_speed: float = 100
 
+@onready var body_collision: BodyCollision = $BodyCollision
+
 @onready var spray_origin: Node2D = $SprayOrigin
 var holy_water_count: int = 1:
 	set(value):
@@ -66,14 +68,15 @@ func handle_movement() -> void:
 	if current_state != State.NORMAL:
 		current_speed = normal_speed * 0.1 # Slow down when drinking or spraying
 
+	var body_collision_vector = body_collision.get_push_vector()
 	if direction:
-		velocity = direction * current_speed
+		velocity = direction * current_speed + body_collision_vector
 		# if  moving — play the walk animation
 		# only play the walk animation if we are in the normal state
 		if current_state == State.NORMAL:
 			animation.play("walk")
 	else:
-		velocity = Vector2.ZERO
+		velocity = body_collision_vector
 		# if not moving — play the idle animation
 		# only play the idle animation if we are in the normal state
 		if current_state == State.NORMAL:

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="2_dk01f"]
 [ext_resource type="PackedScene" uid="uid://gxnapxeayqe" path="res://scenes/talkable.tscn" id="2_ssy4u"]
 [ext_resource type="Texture2D" uid="uid://hx4wsnbufpho" path="res://art/characters/boogie_woogie.png" id="2_vdhvc"]
+[ext_resource type="Script" uid="uid://bq1yyipm3slcg" path="res://scripts/misc/body_collision.gd" id="5_dk01f"]
 
 [sub_resource type="Animation" id="Animation_uawus"]
 length = 0.001
@@ -145,10 +146,8 @@ _data = {
 &"walk": SubResource("Animation_dk01f")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ssy4u"]
 radius = 1.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_cnb1k"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e1d8e"]
 blend_mode = 1
@@ -168,6 +167,9 @@ fill_to = Vector2(0.5, 0)
 radius = 6.0
 height = 48.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_np2b0"]
+radius = 5.0
+
 [node name="Boogie Woogie" type="CharacterBody2D" unique_id=522989833]
 light_mask = 9
 motion_mode = 1
@@ -186,15 +188,8 @@ texture = ExtResource("2_dk01f")
 libraries/ = SubResource("AnimationLibrary_axcwr")
 autoplay = &"dance"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=785803040]
-shape = SubResource("CircleShape2D_g4v7s")
-disabled = true
-
-[node name="PushArea" type="Area2D" parent="." unique_id=105611985]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PushArea" unique_id=878227195]
-shape = SubResource("CircleShape2D_cnb1k")
+[node name="Footprint" type="CollisionShape2D" parent="." unique_id=979356698]
+shape = SubResource("CircleShape2D_ssy4u")
 
 [node name="Visual" type="Node2D" parent="." unique_id=1315659674]
 
@@ -218,3 +213,13 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1029564340]
 position = Vector2(0, -24)
 shape = SubResource("CapsuleShape2D_vdhvc")
+
+[node name="BodyCollision" type="Area2D" parent="." unique_id=1276564486 groups=["body_collision"]]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("5_dk01f")
+push_force = 60.0
+metadata/_custom_type_script = "uid://bq1yyipm3slcg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyCollision" unique_id=602202940]
+shape = SubResource("CircleShape2D_np2b0")

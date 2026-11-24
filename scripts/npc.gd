@@ -48,6 +48,8 @@ enum Action {WALK, DANCE}
 var current_action: Action = Action.WALK
 var action_goal_finished: bool = true
 
+@onready var body_collision: BodyCollision = $BodyCollision
+
 #endregion
 
 #region Built-in Functions
@@ -110,12 +112,12 @@ func _physics_process(delta: float) -> void:
 ## The possession lasts for the specified duration, during which the NPC's sprite alternates between its normal and possessed appearances.
 ## The speed of the sprite switching accelerates over time, and a shaking effect is applied towards the end of the possession duration.
 ## TODO: Handle the case where the player sprays holy water on the ghost while it is possessing this NPC.
-func start_possession(duration: float, possessed_by: Node2D) -> void:
+func start_possession(duration: float, possessed_by: Node2D) -> bool:
 	if current_state != State.BEING_POSSESSED:
 		current_state = State.BEING_POSSESSED
 		self.possessed_by = possessed_by
 	else:
-		return
+		return false
 	animation.play("being_possessed")
 
 	var is_showing_possessed: bool = false
@@ -130,7 +132,7 @@ func start_possession(duration: float, possessed_by: Node2D) -> void:
 		# If the possession is canceled by receiving the signal from the ghost, reset the NPC's state and exit the loop.
 		if cancel_possession:
 			reset_state_after_cancel(original_offset)
-			return
+			return false
 
 		# Toggle between normal and possessed sprites
 		is_showing_possessed = !is_showing_possessed
@@ -160,6 +162,7 @@ func start_possession(duration: float, possessed_by: Node2D) -> void:
 		current_state = State.NORMAL
 		possessed = true
 	animation.play("dance")
+	return true
 
 func cancel_current_possession() -> void:
 	cancel_possession = true
@@ -182,13 +185,14 @@ func stop_possession() -> void:
 
 #region Movement
 func handle_movement(direction: Vector2) -> void:
+	var body_collision_vector = body_collision.get_push_vector()
 	if direction:
-		velocity = direction.normalized() * speed
+		velocity = direction.normalized() * speed + body_collision_vector
 		if current_state == State.NORMAL:
 			current_state = State.WALK
 			animation.play("walk")
 	else:
-		velocity = Vector2.ZERO
+		velocity = body_collision_vector
 		# if not moving — play the idle animation
 		if current_state == State.WALK:
 			current_state = State.NORMAL

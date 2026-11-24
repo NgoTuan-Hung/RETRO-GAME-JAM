@@ -38,6 +38,7 @@ ghost_hurt_box=""
 npc_hurt_box=""
 boogie_woogie_hurt_box=""
 spirit_bottle=""
+body_collision=""
 
 [gui]
 

@@ -8,7 +8,7 @@
 load_path = "res://.godot/imported/elvis.png-c2bbb56746261f80388ae3c700300549.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1wuxl"]
-radius = 5.0
+radius = 1.0
 
 [sub_resource type="Animation" id="Animation_0l40l"]
 length = 0.001

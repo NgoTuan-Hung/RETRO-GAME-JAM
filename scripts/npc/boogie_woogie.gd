@@ -27,9 +27,6 @@ var direction_this_physics_tick: Vector2
 var current_path_index: int = 0
 @export var min_distance_for_index_change: float = 0.5
 
-@onready var push_area: Area2D = $PushArea
-@export var push_force: float = 60
-
 var summon_chance_per_frame: float = 0.01 # Has some chance of spawning a ghost every frame
 @onready var summon_aura: Sprite2D = $Visual/SummonAura
 
@@ -39,6 +36,8 @@ var current_state: State = State.HIBERNATE # Invisible at the start
 
 var initial_position
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+
+@onready var body_collision: BodyCollision = $BodyCollision
 
 func _ready() -> void:
 	# call the on time changed function every tick in the hud
@@ -59,7 +58,6 @@ func _physics_process(delta: float) -> void:
 	if current_state == State.NORMAL:
 		calculate_direction_this_physics_tick()
 		handle_movement(direction_this_physics_tick)
-		push_overlapping_characters(delta)
 	
 func _on_time_changed(current_hours: int) -> void:
 	generation_rate = base_generation_rate + current_hours * hourly_addition
@@ -123,11 +121,12 @@ func sync_energy_ui() -> void:
 	GameManager.instance.hud.update_boogie_woogie_energy(filled, capacity)
 
 func handle_movement(direction: Vector2) -> void:
+	var body_collision_vector = body_collision.get_push_vector()
 	if direction:
-		velocity = direction.normalized() * speed
+		velocity = direction.normalized() * speed + body_collision_vector
 		animation.play("walk")
 	else:
-		velocity = Vector2.ZERO
+		velocity = body_collision_vector
 		# if not moving — play the idle animation
 		animation.play("dance")
 
@@ -162,16 +161,6 @@ func calculate_direction_this_physics_tick() -> void:
 		direction_this_physics_tick = Vector2.ZERO
 	else:
 		direction_this_physics_tick = path_to_dj[current_path_index] - global_position
-#endregion
-
-#region Shoving
-## Push characters that go near the boogie woogie
-func push_overlapping_characters(delta: float) -> void:
-	for body in push_area.get_overlapping_bodies():
-		if body.is_in_group("pushable") and body != self: # Only characters in the pushable group can be shoved
-			var push_dir = (body.global_position - global_position).normalized()
-			
-			body.move_and_collide(push_dir * push_force * delta)
 #endregion
 
 #region Summoning Ghosts

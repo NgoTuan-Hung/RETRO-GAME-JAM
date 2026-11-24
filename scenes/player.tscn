@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cdh08po25rpdq" path="res://art/objects/shadow.png" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://dprwkqv2lpb2j" path="res://scripts/misc/item_detector.gd" id="10_y4r1p"]
 [ext_resource type="PackedScene" uid="uid://bt7nplg3ymbml" path="res://scenes/selection_arrow.tscn" id="11_d2wvv"]
+[ext_resource type="Script" uid="uid://bq1yyipm3slcg" path="res://scripts/misc/body_collision.gd" id="12_3v2ag"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.033333335
@@ -101,13 +102,16 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_latbj"]
-radius = 5.0
+radius = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
 radius = 80.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mnrf6"]
 radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o06qh"]
+radius = 5.0
 
 [node name="Player" type="CharacterBody2D" unique_id=185241265]
 y_sort_enabled = true
@@ -269,6 +273,15 @@ selection_arrow_packed_scene = ExtResource("11_d2wvv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemDetector" unique_id=1313874011]
 shape = SubResource("CircleShape2D_mnrf6")
+
+[node name="BodyCollision" type="Area2D" parent="." unique_id=578638799 groups=["body_collision"]]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("12_3v2ag")
+metadata/_custom_type_script = "uid://bq1yyipm3slcg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyCollision" unique_id=738587357]
+shape = SubResource("CircleShape2D_o06qh")
 
 [connection signal="area_entered" from="ItemDetector" to="ItemDetector" method="_on_area_entered"]
 [connection signal="area_exited" from="ItemDetector" to="ItemDetector" method="_on_area_exited"]
