@@ -4,9 +4,9 @@ extends Area2D
 @export var selection_arrow_packed_scene: PackedScene
 var selection_arrow: Node2D
 var nearest_bottle_distance: float = INF
-var nearest_bottle: Node2D = null
+var nearest_bottle: SpiritBottle = null
 
-var detected_bottles: Array[Area2D] = []
+var detected_bottles: Array[SpiritBottle] = []
 
 func _ready() -> void:
 	selection_arrow = selection_arrow_packed_scene.instantiate()

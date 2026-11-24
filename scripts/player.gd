@@ -43,6 +43,8 @@ signal resource_changed(water_count: int, drink_count: int, rock_count: int, gea
 ## HUD can subscribe to this signal to provide feedback when a resource is depleted.
 signal resource_depleted(resource_name: String)
 
+@onready var item_detector: ItemDetector = $ItemDetector
+
 func _ready() -> void:
 	sync_resistance_ui.call_deferred()
 	GameManager.instance.register_as_ghost_target(self)
@@ -50,6 +52,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	handle_drink_input()
 	handle_aim_and_spray_input()
+	handle_take_input()
 	handle_movement()
 	
 	move_and_slide()
@@ -188,3 +191,10 @@ func set_resistance(value: float) -> void:
 	if current_resistance <= 0.0:
 		resistance_depleted.emit()
 #endregion
+
+func handle_take_input() -> void:
+	if Input.is_action_just_pressed("take"):
+		if item_detector.nearest_bottle:
+			item_detector.nearest_bottle.disable()
+			drink_count += 1
+

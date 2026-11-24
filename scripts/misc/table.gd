@@ -42,17 +42,23 @@ func customer_leave(right_stool: bool) -> void:
 func place_drink_for_customer(order: Order):
 	if order.order_from_left && not left_drink:
 		left_drink = GameManager.instance.get_a_spirit_bottle()
+		left_drink.remember_table(self)
 		left_drink.global_position = global_position + Vector2(-bottle_offset, 0)
 	
 	if order.order_from_right && not right_drink:
 		right_drink = GameManager.instance.get_a_spirit_bottle()
+		right_drink.remember_table(self)
 		right_drink.global_position = global_position + Vector2(bottle_offset, 0)
 
 func clean_table(clean_table_request: CleanTableRequest):
 	if clean_table_request.request_from_left and left_drink:
 		left_drink.disable()
-		left_drink = null
 
 	if clean_table_request.request_from_right and right_drink:
 		right_drink.disable()
-		right_drink = null		
+
+func forget_drink(drink: SpiritBottle):
+	if drink == left_drink:
+		left_drink = null
+	elif drink == right_drink:
+		right_drink = null
