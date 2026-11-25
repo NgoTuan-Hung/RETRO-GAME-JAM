@@ -1,3 +1,4 @@
+## Represents a table-cleaning request for the bartender when an NPC leaves a stool.
 class_name CleanTableRequest
 
 var table: Table

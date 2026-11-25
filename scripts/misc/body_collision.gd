@@ -3,6 +3,8 @@ extends Area2D
 
 @export var push_force: float = 120.0
 
+## Should call this function every physic tick to calculate the net soft-body
+## collision force from other bodies acting on this parent body.
 func get_push_vector() -> Vector2:
     var push_vector: Vector2 = Vector2.ZERO
     var overlapping_areas = get_overlapping_areas()

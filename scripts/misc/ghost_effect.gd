@@ -1,3 +1,5 @@
+## Visual effect spawned when the player sprays a possessed NPC,
+## showing the ghost being banished from the NPC.
 class_name GhostEffect
 extends Node2D
 

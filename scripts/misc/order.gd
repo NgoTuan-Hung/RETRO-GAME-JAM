@@ -1,3 +1,4 @@
+## Represents a drink order for the bartender when an NPC sits on a stool.
 class_name Order
 
 var table: Table

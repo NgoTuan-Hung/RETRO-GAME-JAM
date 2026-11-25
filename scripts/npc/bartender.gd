@@ -34,7 +34,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	select_next_checkpoint_on_path()
-	check_reached_destination()
+	check_serve_or_clean_round()
 	serve_this_round()
 		
 func _physics_process(delta: float) -> void:
@@ -65,6 +65,7 @@ func construct_a_path_to_table(table: Table) -> void:
 	path_to_destination = PathfindingManager.instance.find_path(global_position, table.global_position)
 	current_path_index = 0
 
+## Ask the pathfinding manager for a path from the bartender's current position back to origin.
 func construct_a_path_to_origin() -> void:
 	path_to_destination = PathfindingManager.instance.find_path(global_position, origin)
 	current_path_index = 0
@@ -78,7 +79,7 @@ func select_next_checkpoint_on_path() -> void:
 		if (global_position.distance_to(path_to_destination[current_path_index]) < min_distance_for_index_change):
 			current_path_index += 1
 
-## Move the bartender in the direction of the next checkpoint.
+## Calculate the movement direction toward the next checkpoint for this physics tick.
 func calculate_direction_this_physics_tick() -> void:
 	if !path_to_destination or path_to_destination.size() <= 1:
 		return
@@ -90,6 +91,7 @@ func calculate_direction_this_physics_tick() -> void:
 #endregion
 
 #region Serving & Cleaning
+## Queue a drink order for a table, merging left/right sides if that table already has a pending order.
 func take_order(order: Order):
 	for o in orders:
 		if o.table == order.table:
@@ -101,18 +103,21 @@ func take_order(order: Order):
 
 	orders.append(order)
 
-func check_reached_destination() -> void:
+## Called every frame to progress the active serving or cleaning round,
+## advancing to the next target table (or returning to the counter) as each table is completed.
+func check_serve_or_clean_round() -> void:
 	if current_serving_state == ServingState.ROUND_SERVING:
 		if current_table and global_position.distance_to(current_table.global_position) < table_serving_distance:
 			current_table.place_drink_for_customer(this_round_orders[current_order_index])
 			current_table = null
 
 			current_order_index += 1
+			# If there are more tables left in this serving round, move to the next one
 			if current_order_index < this_round_orders.size():
 				current_table = this_round_orders[current_order_index].table
 				construct_a_path_to_table(current_table)
 			else:
-				# If there are any table need cleaning, go for cleaning, otherwise, go back.
+				# If any tables need cleaning, start a cleaning round; otherwise, return to the counter.
 				if clean_requests.size() > 0:
 					clean_this_round()
 				else:
@@ -124,6 +129,7 @@ func check_reached_destination() -> void:
 			current_cleaning_table = null
 
 			current_request_index += 1
+			# If there are more tables left in this cleaning round, move to the next one
 			if current_request_index < this_round_clean_requests.size():
 				current_cleaning_table = this_round_clean_requests[current_request_index].table
 				construct_a_path_to_table(current_cleaning_table)
@@ -134,6 +140,8 @@ func check_reached_destination() -> void:
 		if global_position.distance_to(origin) < 15:
 			current_serving_state = ServingState.IDLE
 
+## When idle at the counter, start a serving round if there are pending orders
+## (batching multiple tables into one round), or a cleaning round if only clean requests exist.
 func serve_this_round() -> void:
 	if current_serving_state == ServingState.IDLE:
 		if orders.size() > 0:
@@ -143,9 +151,11 @@ func serve_this_round() -> void:
 			current_serving_state = ServingState.ROUND_SERVING
 			current_table = this_round_orders[0].table
 			construct_a_path_to_table(current_table)
+		# If there are no orders, check if there are any cleaning requests instead
 		elif clean_requests.size() > 0:
 			clean_this_round()
 
+## Start a cleaning round, batching all pending clean-table requests into one trip.
 func clean_this_round() -> void:
 	this_round_clean_requests = clean_requests.duplicate()
 	clean_requests.clear()
@@ -154,6 +164,7 @@ func clean_this_round() -> void:
 	current_cleaning_table = this_round_clean_requests[0].table
 	construct_a_path_to_table(current_cleaning_table)
 
+## Queue a table-cleaning request, merging left/right sides if that table already has one pending.
 func note_clean_table(clean_table_request: CleanTableRequest):
 	for cr in clean_requests:
 		if cr.table == clean_table_request.table:
