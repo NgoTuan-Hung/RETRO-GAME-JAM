@@ -13,14 +13,23 @@ signal resistance_changed(current_value: float, max_value: float)
 signal resistance_depleted()
 
 @export var max_resistance: float = 100.0
-@export var current_resistance: float = 100.0
+@export var current_resistance: float = 100.0:
+	set(value):
+		if current_resistance <= 0:
+			return
+		current_resistance = max(0.0, value)
+		sync_resistance_ui()
+		if current_resistance <= 0.0:
+			resistance_depleted.emit()
+		
+@export var resistance_gain_from_drink: float = 10
 
 var is_aiming: bool = false
 
 enum State { NORMAL, DRINK, SPRAY }
 var current_state: State = State.NORMAL
 var current_speed: float
-var normal_speed: float = 100
+@export var normal_speed: float = 100
 
 @onready var body_collision: BodyCollision = $BodyCollision
 
@@ -103,8 +112,9 @@ func start_drinking() -> void:
 	current_state = State.DRINK
 	animation.play("drink")
 
-	# wait 0.5s for the animation to finish
-	await get_tree().create_timer(0.5).timeout
+	# wait for the animation to finish
+	await animation.animation_finished
+	current_resistance += resistance_gain_from_drink
 
 	current_state = State.NORMAL
 
@@ -177,22 +187,7 @@ func sync_resistance_ui() -> void:
 	GameManager.instance.hud.update_resistance(current_resistance, max_resistance)
 
 func reduce_resistance(amount: float) -> void:
-	if current_resistance <= 0.0:
-		return
-	current_resistance = max(0.0, current_resistance - amount)
-	sync_resistance_ui()
-	if current_resistance <= 0.0:
-		resistance_depleted.emit()
-
-func restore_resistance(amount: float) -> void:
-	current_resistance = min(max_resistance, current_resistance + amount)
-	sync_resistance_ui()
-
-func set_resistance(value: float) -> void:
-	current_resistance = clamp(value, 0.0, max_resistance)
-	sync_resistance_ui()
-	if current_resistance <= 0.0:
-		resistance_depleted.emit()
+	current_resistance -= amount
 #endregion
 
 func handle_take_input() -> void:

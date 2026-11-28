@@ -27,7 +27,8 @@ var current_state: State = State.APPEAR # Also initial state
 
 var chase_time: float = 0 # The ammount of time since we start chasing after the player if he is not in our possession range
 @export var max_chase_time: float = 10 # The maximum ammount of time we are allowed to chase after the player if he is not in our possession range
-@export var resistance_drained_persec: float = 10 # Resistance drained from the player per second
+@export var resistance_drain_interval: float = 0.3 # The ammount of time per resistance drain from the player
+@export var resistance_drained_ammount: float = 10 # Resistance drained from the player
 var time_since_last_drain: float = 0 # The ammount of time since the last drain ticked
 
 @export var appear_shader: Shader
@@ -159,7 +160,7 @@ func update_target() -> void:
 ## Possess the target if in range (and not already possessed if it's NPC). If the target is out of range, abort possession.
 ## If the current target is NPC, possession will immobilize the target for the duration of npc_possession_time.
 ## If the current target is Player, possession will tick one per sec if the player is in possession_range of the ghost,
-## , the ammount of resistance subtracted from the player is determined by resistance_drained_persec.
+## , the ammount of resistance subtracted from the player is determined by resistance_drained_ammount.
 ## TODO: Handle the case where we are possessing a target and the player spray holy water on us.
 func possess_if_in_range(delta: float) -> void:
 	var distance_to_target = global_position.distance_to(target.global_position)
@@ -192,9 +193,9 @@ func possess_if_in_range(delta: float) -> void:
 				current_state = State.POSSESS
 				animation.play("possess")
 			elif current_state == State.POSSESS:
-				if time_since_last_drain > 1:
+				if time_since_last_drain > resistance_drain_interval:
 					time_since_last_drain = 0
-					target.reduce_resistance(resistance_drained_persec)
+					target.reduce_resistance(resistance_drained_ammount)
 
 				time_since_last_drain += delta
 			chase_time = 0

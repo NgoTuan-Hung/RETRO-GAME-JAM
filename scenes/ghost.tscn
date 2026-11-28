@@ -96,8 +96,8 @@ radius = 5.0
 [node name="Ghost" type="CharacterBody2D" unique_id=1450866531]
 motion_mode = 1
 script = ExtResource("1_l5lq6")
-min_distance_for_index_change = 2.0
-speed = 50.0
+min_distance_for_index_change = 4.0
+speed = 100.0
 appear_shader = ExtResource("2_bbnym")
 dissolve_shader = ExtResource("3_veat2")
 metadata/_custom_type_script = "uid://codaddmuuvoad"
@@ -108,7 +108,7 @@ texture = ExtResource("2_5mfnq")
 offset = Vector2(0, -16)
 hframes = 2
 vframes = 3
-frame = 1
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1274549001]
 libraries/ = SubResource("AnimationLibrary_uawus")
